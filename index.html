@@ -28,19 +28,30 @@
   <header class="kju-header">
     <div class="kju-container">
       <div class="kju-header-inner">
-        <a href="index.html" class="kju-brand-lockup" aria-label="Kenny Johnson University Home">
-          <img src="images/favicon.png" alt="KJU Shield Logo" class="kju-brand-shield">
-          <div class="kju-brand-text">
-            <span class="kju-brand-name">KENNY JOHNSON UNIVERSITY</span>
-            <span class="kju-brand-tagline">EDUCATION IS KEY</span>
-          </div>
-        </a>
+        <div class="kju-navbar-logo-slot">
+          <a href="index.html" class="kju-brand-logo" aria-label="Kenny Johnson University Home">
+            <img src="images/favicon.png" alt="KJU Shield Logo" height="46">
+            <div class="kju-brand-text">
+              <span class="kju-brand-name">KENNY JOHNSON UNIVERSITY</span>
+              <span class="kju-brand-tagline">EDUCATION IS KEY</span>
+            </div>
+          </a>
+        </div>
         <div class="kju-header-right">
-          <a href="faqs.html" class="kju-header-nav-link">FAQs</a>
-          <a href="privacy.html" class="kju-header-nav-link">Privacy Policy</a>
+          <nav class="kju-header-nav" id="kjuHeaderNav" aria-label="Primary Navigation">
+            <a href="#kjuHowSection" class="kju-header-nav-link">How It Works</a>
+            <a href="#kjuTestimonials" class="kju-header-nav-link">Results</a>
+            <a href="#kjuWhySection" class="kju-header-nav-link">Why KJU</a>
+            <a href="#kjuMeetSection" class="kju-header-nav-link">Meet Kenny</a>
+            <a href="faqs.html" class="kju-header-nav-link">FAQs</a>
+            <a href="privacy.html" class="kju-header-nav-link">Privacy Policy</a>
+          </nav>
           <button type="button" class="kju-header-cta-btn" data-open-fit-check>
             <span>BOOK CONSULTATION</span>
             <i class="fa-solid fa-arrow-right"></i>
+          </button>
+          <button type="button" class="kju-nav-toggle" id="kjuNavToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
           </button>
         </div>
       </div>
@@ -126,45 +137,6 @@
             </div>
           </div>
 
-          <!-- Official Briefing Dossier Transcript -->
-          <div class="kju-dossier-box" id="kjuDossierBox">
-            <button type="button" class="kju-dossier-toggle" id="kjuTranscriptToggle" aria-expanded="false" aria-controls="kjuTranscriptContent">
-              <div class="kju-dossier-toggle-left">
-                <span class="kju-dossier-icon-wrap"><i class="fa-solid fa-folder-closed"></i></span>
-                <span class="kju-dossier-title">OFFICIAL BRIEFING DOSSIER // VERBATIM TRANSCRIPT &amp; KEY NOTES</span>
-              </div>
-              <div class="kju-dossier-toggle-right">
-                <span class="kju-dossier-meta-pill"><i class="fa-regular fa-clock"></i> 1 MIN READ</span>
-                <i class="fa-solid fa-chevron-down kju-dossier-chevron"></i>
-              </div>
-            </button>
-            <div class="kju-dossier-content" id="kjuTranscriptContent">
-              <div class="kju-dossier-header-stamp">
-                <span class="stamp-badge">EXECUTIVE SUMMARY · SPOKEN REMARKS BY KENNY JOHNSON</span>
-                <span class="stamp-source">RECORDED SESSION · CANADIAN JURISDICTION</span>
-              </div>
-              <div class="kju-dossier-body">
-                <p><strong>Spoken Remarks (Kenny Johnson):</strong> When you notice an unfamiliar collection item on your Canadian credit report, the most common advice is often the most damaging: either panic and immediately pay an unverified collection agency, or send generic copy-paste dispute letters downloaded from the internet.</p>
-                
-                <p style="margin-top: 14px;">In Canada, under provincial consumer protection and credit reporting acts, debt assignees and furnisher institutions must adhere to strict verification standards. Before you take any action or contact any agency, you need to understand whether the account is reporting accurately across both Equifax Canada and TransUnion Canada, what documented proof exists, and what your statutory rights are.</p>
-
-                <div class="kju-dossier-key-points">
-                  <div class="kju-dossier-point-title">KEY STRATEGIC TAKEAWAYS FROM THIS SESSION:</div>
-                  <ul class="kju-dossier-point-list">
-                    <li><strong>The Dual-Bureau Split:</strong> Canadian lenders report independently to Equifax and TransUnion. An error or outdated collection on one bureau is often missing or different on the other. Always cross-audit both reports.</li>
-                    <li><strong>The Payment Trap:</strong> Making even a partial payment on an unverified collection account can inadvertently reset the provincial statute of limitations and acknowledge the validity of the debt without removing the derogatory mark.</li>
-                    <li><strong>Canadian Legal Standards:</strong> Copy-pasting US dispute letters citing American statutes (like FDCPA or 15 U.S.C.) results in automatic rejection by Canadian furnishers. Disputes must cite applicable Canadian provincial consumer protection legislation.</li>
-                  </ul>
-                </div>
-
-                <div class="kju-dossier-action-callout">
-                  <i class="fa-solid fa-circle-info"></i>
-                  <span><strong>Action Step:</strong> Once the video completes, download the <em>5-Minute Credit Report Check</em> below to audit your accounts before taking any action.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <!-- Gated Video Resource Card (Vault Unlock with Tangible 3D Booklet Mockup) -->
           <div class="kju-resource-gate-card" id="kjuResourceGateCard">
             <div class="kju-resource-grid">
@@ -214,14 +186,6 @@
           </div>
         </div>
 
-        <p class="kju-hero-paragraph kju-reveal">
-          Collections, late payments, high balances, inquiries, and other negative information can make getting approved for credit more difficult.
-        </p>
-
-        <p class="kju-hero-trust-stat kju-reveal">
-          Kenny Johnson University has helped 10,000+ Canadians with their credit.
-        </p>
-
         <p class="kju-hero-question kju-reveal">
           Ready to understand what's affecting yours?
         </p>
@@ -233,21 +197,49 @@
           </button>
         </div>
 
-        <!-- Editorial Trust Rail -->
-        <div class="kju-trust-rail">
-          <div class="kju-trust-rail-label">Trusted by clients across Canada</div>
+        <!-- Credentialed Canadian Trust Rail -->
+        <div class="kju-trust-rail kju-reveal" id="kjuTrustRail">
+          <!-- Credential Header Badge -->
+          <div class="kju-trust-docked-badge" role="note" aria-label="Credential badge">
+            <span class="kju-trust-badge-icon" aria-hidden="true"><i class="fa-brands fa-canadian-maple-leaf"></i></span>
+            <span class="kju-trust-badge-text">TRUSTED BY CLIENTS ACROSS CANADA</span>
+            <span class="kju-trust-badge-check" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+          </div>
+
           <div class="kju-trust-rail-grid">
-            <div class="kju-trust-rail-item">
-              <span class="kju-trust-rail-num">10,000+</span>
-              <span class="kju-trust-rail-desc">Clients Helped</span>
+            <!-- Stat Column 01 -->
+            <div class="kju-trust-rail-col" data-col="1">
+              <div class="kju-trust-num-wrapper">
+                <span class="kju-trust-rail-num" data-target="10000" data-suffix="+">
+                  <span class="kju-trust-count">10,000</span><span class="kju-trust-num-sym">+</span>
+                </span>
+              </div>
+              <div class="kju-trust-rail-label-text">Clients Helped</div>
+              <div class="kju-trust-rail-subtext">Verified Canadian Cases</div>
             </div>
-            <div class="kju-trust-rail-item">
-              <span class="kju-trust-rail-num">100%</span>
-              <span class="kju-trust-rail-desc">Canadian Credit Specialists</span>
+
+            <div class="kju-trust-rail-divider" aria-hidden="true"></div>
+
+            <!-- Stat Column 02 -->
+            <div class="kju-trust-rail-col" data-col="2">
+              <div class="kju-trust-num-wrapper">
+                <span class="kju-trust-rail-num" data-target="100" data-suffix="%">
+                  <span class="kju-trust-count">100</span><span class="kju-trust-num-sym">%</span>
+                </span>
+              </div>
+              <div class="kju-trust-rail-label-text">Canadian Credit Specialists</div>
+              <div class="kju-trust-rail-subtext">Canadian-Based Team</div>
             </div>
-            <div class="kju-trust-rail-item">
-              <span class="kju-trust-rail-num">1-on-1</span>
-              <span class="kju-trust-rail-desc">Personalized Guidance</span>
+
+            <div class="kju-trust-rail-divider" aria-hidden="true"></div>
+
+            <!-- Stat Column 03 -->
+            <div class="kju-trust-rail-col" data-col="3">
+              <div class="kju-trust-num-wrapper">
+                <span class="kju-trust-rail-num kju-spring-target">1-on-1</span>
+              </div>
+              <div class="kju-trust-rail-label-text">Personalized Guidance</div>
+              <div class="kju-trust-rail-subtext">Confidential Strategic Review</div>
             </div>
           </div>
         </div>
@@ -257,99 +249,216 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 03 — PROBLEM / PAIN RECOGNITION (WARM WHITE EDITORIAL)
+       SECTION 03 — PROBLEM / PAIN RECOGNITION (CURATED FRICTION GRID / BENTO)
        ========================================================================== -->
   <section class="kju-pain-section">
     <div class="kju-container">
-      <div class="kju-pain-editorial-wrap">
+      <div class="kju-friction-wrapper">
         
-        <!-- Left Column: Editorial Statement -->
-        <div class="kju-pain-editorial-left">
-          <h2 class="kju-section-title" style="text-align: left;">
+        <!-- Section Header -->
+        <div class="kju-friction-header kju-reveal">
+          <h2 class="kju-section-title">
             Not Sure What's Holding Your Credit Back?
           </h2>
+        </div>
+        
+        <!-- Authority Navy Editorial Lead Banner (Hugs Copy, Breaks Beige Monotony) -->
+        <div class="kju-friction-lead-banner kju-reveal kju-delay-1">
+          <p class="kju-friction-lead-text">
+            "You make good money. You pay your bills.<br>
+            You're trying to move forward financially.<br>
+            <span class="highlight">BUT YOUR CREDIT IS STILL GETTING IN THE WAY.</span>"
+          </p>
+        </div>
+
+        <!-- Diagnostic Inventory Bar (Clean Separation & High Contrast) -->
+        <div class="kju-friction-grid-label kju-reveal kju-delay-1">
+          <span class="kju-friction-inventory-badge">DIAGNOSTIC INVENTORY</span>
+          <span class="kju-friction-label-text">Common friction points identified in Canadian files:</span>
+        </div>
+
+        <!-- Dual-Axis Infinite Marquee (Telemetry Ticker with Pause & Inspect) -->
+        <div class="kju-marquee-wrapper kju-reveal kju-delay-2" role="region" aria-label="Diagnostic friction telemetry ticker">
           
-          <div class="kju-pain-lead-card">
-            <p>
-              You make good money.<br>
-              You pay your bills.<br>
-              You're trying to move forward financially.<br>
-              <span class="highlight">But your credit is still getting in the way.</span>
-            </p>
+          <!-- Track 1: Drifting Left -->
+          <div class="kju-marquee-row" aria-label="Friction points track one (moving left)">
+            <div class="kju-marquee-track track-left">
+              <!-- Set A -->
+              <div class="kju-marquee-group">
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Late or missed payments</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Collections on your credit report</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Different information between Equifax and TransUnion</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Accounts you don't recognize</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Difficulty getting approved for the credit products you want</span>
+                </div>
+                <!-- Repetition for ultra-wide displays -->
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Late or missed payments</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Collections on your credit report</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Different information between Equifax and TransUnion</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Accounts you don't recognize</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Difficulty getting approved for the credit products you want</span>
+                </div>
+              </div>
+              <!-- Set B (Duplicate for seamless loop) -->
+              <div class="kju-marquee-group" aria-hidden="true">
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Late or missed payments</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Collections on your credit report</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Different information between Equifax and TransUnion</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Accounts you don't recognize</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Difficulty getting approved for the credit products you want</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Late or missed payments</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Collections on your credit report</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Different information between Equifax and TransUnion</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Accounts you don't recognize</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Difficulty getting approved for the credit products you want</span>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- Track 2: Drifting Right -->
+          <div class="kju-marquee-row" aria-label="Friction points track two (moving right)">
+            <div class="kju-marquee-track track-right">
+              <!-- Set A -->
+              <div class="kju-marquee-group">
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">High credit utilization</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Multiple credit inquiries</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Past financial difficulties</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">A credit score that doesn't seem to improve</span>
+                </div>
+                <!-- Repetition for ultra-wide displays -->
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">High credit utilization</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Multiple credit inquiries</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Past financial difficulties</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">A credit score that doesn't seem to improve</span>
+                </div>
+              </div>
+              <!-- Set B (Duplicate for seamless loop) -->
+              <div class="kju-marquee-group" aria-hidden="true">
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">High credit utilization</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Multiple credit inquiries</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Past financial difficulties</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">A credit score that doesn't seem to improve</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">High credit utilization</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Multiple credit inquiries</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">Past financial difficulties</span>
+                </div>
+                <div class="kju-telemetry-chip">
+                  <span class="kju-telemetry-flag"><i class="fa-solid fa-triangle-exclamation"></i> FLAG</span>
+                  <span class="kju-telemetry-text">A credit score that doesn't seem to improve</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Right Column: Interactive Horizontal Stacked Rows -->
-        <div class="kju-pain-editorial-right">
-          <div class="kju-problem-stack">
-            <div class="kju-problem-row">
-              <div class="kju-problem-row-left">
-                <span class="kju-problem-idx">01</span>
-                <span class="kju-problem-text">Collections on your credit report</span>
-              </div>
-              <i class="fa-solid fa-arrow-right kju-problem-arrow"></i>
-            </div>
-            <div class="kju-problem-row">
-              <div class="kju-problem-row-left">
-                <span class="kju-problem-idx">02</span>
-                <span class="kju-problem-text">Late or missed payments</span>
-              </div>
-              <i class="fa-solid fa-arrow-right kju-problem-arrow"></i>
-            </div>
-            <div class="kju-problem-row">
-              <div class="kju-problem-row-left">
-                <span class="kju-problem-idx">03</span>
-                <span class="kju-problem-text">High credit utilization</span>
-              </div>
-              <i class="fa-solid fa-arrow-right kju-problem-arrow"></i>
-            </div>
-            <div class="kju-problem-row">
-              <div class="kju-problem-row-left">
-                <span class="kju-problem-idx">04</span>
-                <span class="kju-problem-text">Multiple credit inquiries</span>
-              </div>
-              <i class="fa-solid fa-arrow-right kju-problem-arrow"></i>
-            </div>
-            <div class="kju-problem-row">
-              <div class="kju-problem-row-left">
-                <span class="kju-problem-idx">05</span>
-                <span class="kju-problem-text">Accounts you don't recognize</span>
-              </div>
-              <i class="fa-solid fa-arrow-right kju-problem-arrow"></i>
-            </div>
-            <div class="kju-problem-row">
-              <div class="kju-problem-row-left">
-                <span class="kju-problem-idx">06</span>
-                <span class="kju-problem-text">Past financial difficulties</span>
-              </div>
-              <i class="fa-solid fa-arrow-right kju-problem-arrow"></i>
-            </div>
-            <div class="kju-problem-row">
-              <div class="kju-problem-row-left">
-                <span class="kju-problem-idx">07</span>
-                <span class="kju-problem-text">Different information between Equifax and TransUnion</span>
-              </div>
-              <i class="fa-solid fa-arrow-right kju-problem-arrow"></i>
-            </div>
-            <div class="kju-problem-row">
-              <div class="kju-problem-row-left">
-                <span class="kju-problem-idx">08</span>
-                <span class="kju-problem-text">A credit score that doesn't seem to improve</span>
-              </div>
-              <i class="fa-solid fa-arrow-right kju-problem-arrow"></i>
-            </div>
-            <div class="kju-problem-row">
-              <div class="kju-problem-row-left">
-                <span class="kju-problem-idx">09</span>
-                <span class="kju-problem-text">Difficulty getting approved for the credit products you want</span>
-              </div>
-              <i class="fa-solid fa-arrow-right kju-problem-arrow"></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="kju-pain-conclusion-bar">
-          <p>And the more you search online, the more conflicting advice you find.</p>
+        <!-- Concluding Editorial Anchor Between Two Clean Hairline Rules -->
+        <div class="kju-friction-conclusion kju-reveal kju-delay-3">
+          <div class="kju-friction-rule top"></div>
+          <p class="kju-friction-conclusion-text">
+            "And the more you search online, the more conflicting advice you find."
+          </p>
+          <div class="kju-friction-rule bottom"></div>
         </div>
 
       </div>
@@ -357,20 +466,35 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 04 — KJU INTRODUCTION (AUTHORITY NAVY)
+       SECTION 04 — KJU INTRODUCTION (AUTHORITY NAVY BREAKOUT)
        ========================================================================== -->
-  <section class="kju-intro-section">
-    <div class="kju-watermark-text">EDUCATION IS KEY.</div>
+  <section class="kju-intro-section" id="intro-section">
+    <!-- Atmospheric Ambient Spotlight Vignette -->
+    <div class="kju-intro-ambient-spotlight" aria-hidden="true"></div>
+
+    <!-- Architectural Stroke Watermark (Parallax Depth Layer) -->
+    <div class="kju-watermark-text" aria-hidden="true">EDUCATION IS KEY.</div>
+
     <div class="kju-container">
       <div class="kju-intro-inner">
-        <h2>That's where KJU comes in.</h2>
-        <p>
+        <!-- Gold Turning Point Micro-Label -->
+        <div class="kju-intro-kicker kju-reveal">
+          <span class="kju-intro-kicker-dot"></span>
+          <span>// THE TURNING POINT · ADVISORY STANDARD</span>
+        </div>
+
+        <h2 class="kju-intro-title kju-reveal kju-delay-1">That's where KJU comes in.</h2>
+        
+        <p class="kju-intro-lead-p kju-reveal kju-delay-2">
           Instead of guessing about what you should do next, we'll help you better understand what's happening with your credit and what options may be available to you.
         </p>
-        <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check>
-          <span>SPEAK WITH A CREDIT SPECIALIST</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
+
+        <div class="kju-intro-action-wrap kju-reveal kju-delay-3">
+          <button type="button" class="kju-btn kju-intro-cta-btn" data-open-fit-check>
+            <span>SPEAK WITH A CREDIT SPECIALIST</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -382,329 +506,710 @@
   <!-- ==========================================================================
        SECTION 06 — TESTIMONIALS (WARM WHITE CANVAS)
        ========================================================================== -->
-  <section class="kju-testimonial-section">
+  <section class="kju-testimonial-section" id="kjuTestimonials">
     <div class="kju-container">
-      <div class="kju-section-header kju-reveal">
-        <h2 class="kju-section-title">Real Clients. Real Experiences.</h2>
-        <p class="kju-section-subhead">
-          Don't Just Take Our Word for It.<br>
-          We've helped thousands of Canadians navigate their credit.<br>
-          Here's what some KJU clients have said about their experiences:
-        </p>
-      </div>
-
-      <!-- Featured Testimonial Layout -->
-      <div class="kju-featured-testimonial-box kju-reveal kju-delay-1">
-        <p class="kju-featured-quote">
-          “The team at Kenny Johnson University helped me understand exactly what was hurting my score and what actions I needed to take immediately.”
-        </p>
-        <div class="kju-featured-author-row">
-          <span class="kju-author-name">Kevin D.</span>
-          <div class="kju-stars" style="margin: 0;">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            <span style="font-family: var(--font-ui); font-size: 0.78rem; font-weight: 700; color: var(--kju-gold); margin-left: 6px;">FIVE-STAR CLIENT REVIEW</span>
-          </div>
+      <div class="kju-section-header kju-testimonial-header kju-reveal">
+        <h2 class="kju-section-title kju-testimonial-title">REAL CLIENTS. REAL EXPERIENCES.</h2>
+        <div class="kju-testimonial-subhead-wrap">
+          <span class="kju-testimonial-kicker">Don't Just Take Our Word for It.</span>
+          <p class="kju-testimonial-subtext">
+            We've helped thousands of Canadians navigate their credit.<br class="kju-sub-br">
+            Here's what some KJU clients have said about their experiences:
+          </p>
         </div>
       </div>
 
-      <!-- Category Filtering Tabs -->
-      <div class="kju-testimonial-filter-nav kju-reveal kju-delay-2" role="tablist" aria-label="Filter Testimonials by Category">
-        <button type="button" class="kju-filter-tab-btn is-active" data-filter="all" role="tab" aria-selected="true">
-          <i class="fa-solid fa-layer-group"></i> All Reviews (6)
-        </button>
-        <button type="button" class="kju-filter-tab-btn" data-filter="collections" role="tab" aria-selected="false">
-          <i class="fa-solid fa-triangle-exclamation"></i> Collections &amp; Items
-        </button>
-        <button type="button" class="kju-filter-tab-btn" data-filter="mortgage" role="tab" aria-selected="false">
-          <i class="fa-solid fa-house"></i> Mortgage &amp; Lending
-        </button>
-        <button type="button" class="kju-filter-tab-btn" data-filter="score" role="tab" aria-selected="false">
-          <i class="fa-solid fa-chart-line"></i> Score &amp; Knowledge
-        </button>
-        <button type="button" class="kju-filter-tab-btn" data-filter="support" role="tab" aria-selected="false">
-          <i class="fa-solid fa-headset"></i> Support &amp; Peace of Mind
-        </button>
+      <!-- 3D Coverflow / Perspective Depth Stack Stage -->
+      <div class="kju-coverflow-wrapper kju-reveal" id="kjuCoverflowWrapper">
+        <div class="kju-coverflow-stage" id="kjuCoverflowStage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Verified Client Testimonials">
+          <div class="kju-coverflow-track" id="kjuCoverflowTrack">
+
+            <!-- Card 01: Kevin D. -->
+            <article class="kju-coverflow-card is-active" data-index="0" role="group" aria-roledescription="slide" aria-label="Review 1 of 6">
+              <div class="kju-card-glare" aria-hidden="true"></div>
+              <div class="kju-card-watermark" aria-hidden="true">“</div>
+              <header class="kju-card-header">
+                <div class="kju-card-author-wrap">
+                  <span class="kju-card-author-name">Kevin D.</span>
+                  <span class="kju-verified-pill"><span class="kju-verified-dot" aria-hidden="true"></span> Verified Review</span>
+                </div>
+                <div class="kju-stars" aria-label="5 out of 5 stars">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+              </header>
+              <blockquote class="kju-card-quote">
+                “The team at Kenny Johnson University helped me understand exactly what was hurting my score and what actions I needed to take immediately.”
+              </blockquote>
+              <footer class="kju-card-footer">
+                <span class="kju-coverflow-topic-tag"><span class="kju-topic-hash">#</span> DIAGNOSTIC CLARITY</span>
+              </footer>
+            </article>
+
+            <!-- Card 02: Dennis Y. -->
+            <article class="kju-coverflow-card" data-index="1" role="group" aria-roledescription="slide" aria-label="Review 2 of 6">
+              <div class="kju-card-glare" aria-hidden="true"></div>
+              <div class="kju-card-watermark" aria-hidden="true">“</div>
+              <header class="kju-card-header">
+                <div class="kju-card-author-wrap">
+                  <span class="kju-card-author-name">Dennis Y.</span>
+                  <span class="kju-verified-pill"><span class="kju-verified-dot" aria-hidden="true"></span> Verified Review</span>
+                </div>
+                <div class="kju-stars" aria-label="5 out of 5 stars">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+              </header>
+              <blockquote class="kju-card-quote">
+                “The communication from their support team was excellent, and they always responded to my emails quickly during business hours.”
+              </blockquote>
+              <footer class="kju-card-footer">
+                <span class="kju-coverflow-topic-tag"><span class="kju-topic-hash">#</span> SUPPORT &amp; COMMUNICATION</span>
+              </footer>
+            </article>
+
+            <!-- Card 03: Robert K. -->
+            <article class="kju-coverflow-card" data-index="2" role="group" aria-roledescription="slide" aria-label="Review 3 of 6">
+              <div class="kju-card-glare" aria-hidden="true"></div>
+              <div class="kju-card-watermark" aria-hidden="true">“</div>
+              <header class="kju-card-header">
+                <div class="kju-card-author-wrap">
+                  <span class="kju-card-author-name">Robert K.</span>
+                  <span class="kju-verified-pill"><span class="kju-verified-dot" aria-hidden="true"></span> Verified Review</span>
+                </div>
+                <div class="kju-stars" aria-label="5 out of 5 stars">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+              </header>
+              <blockquote class="kju-card-quote">
+                “What impressed me most was how professional and patient they were throughout the process. I never felt judged once.”
+              </blockquote>
+              <footer class="kju-card-footer">
+                <span class="kju-coverflow-topic-tag"><span class="kju-topic-hash">#</span> RESPECT &amp; PROFESSIONALISM</span>
+              </footer>
+            </article>
+
+            <!-- Card 04: David D. -->
+            <article class="kju-coverflow-card" data-index="3" role="group" aria-roledescription="slide" aria-label="Review 4 of 6">
+              <div class="kju-card-glare" aria-hidden="true"></div>
+              <div class="kju-card-watermark" aria-hidden="true">“</div>
+              <header class="kju-card-header">
+                <div class="kju-card-author-wrap">
+                  <span class="kju-card-author-name">David D.</span>
+                  <span class="kju-verified-pill"><span class="kju-verified-dot" aria-hidden="true"></span> Verified Review</span>
+                </div>
+                <div class="kju-stars" aria-label="5 out of 5 stars">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+              </header>
+              <blockquote class="kju-card-quote">
+                “The process was organized, transparent, and educational. I appreciated how they kept me informed every step of the way.”
+              </blockquote>
+              <footer class="kju-card-footer">
+                <span class="kju-coverflow-topic-tag"><span class="kju-topic-hash">#</span> TRANSPARENCY &amp; EDUCATION</span>
+              </footer>
+            </article>
+
+            <!-- Card 05: Edward C. -->
+            <article class="kju-coverflow-card" data-index="4" role="group" aria-roledescription="slide" aria-label="Review 5 of 6">
+              <div class="kju-card-glare" aria-hidden="true"></div>
+              <div class="kju-card-watermark" aria-hidden="true">“</div>
+              <header class="kju-card-header">
+                <div class="kju-card-author-wrap">
+                  <span class="kju-card-author-name">Edward C.</span>
+                  <span class="kju-verified-pill"><span class="kju-verified-dot" aria-hidden="true"></span> Verified Review</span>
+                </div>
+                <div class="kju-stars" aria-label="5 out of 5 stars">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+              </header>
+              <blockquote class="kju-card-quote">
+                “The value I received went far beyond improving my credit score. I gained a much better understanding of personal finance.”
+              </blockquote>
+              <footer class="kju-card-footer">
+                <span class="kju-coverflow-topic-tag"><span class="kju-topic-hash">#</span> PERSONAL FINANCE GROWTH</span>
+              </footer>
+            </article>
+
+            <!-- Card 06: Joyce B. -->
+            <article class="kju-coverflow-card" data-index="5" role="group" aria-roledescription="slide" aria-label="Review 6 of 6">
+              <div class="kju-card-glare" aria-hidden="true"></div>
+              <div class="kju-card-watermark" aria-hidden="true">“</div>
+              <header class="kju-card-header">
+                <div class="kju-card-author-wrap">
+                  <span class="kju-card-author-name">Joyce B.</span>
+                  <span class="kju-verified-pill"><span class="kju-verified-dot" aria-hidden="true"></span> Verified Review</span>
+                </div>
+                <div class="kju-stars" aria-label="5 out of 5 stars">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+              </header>
+              <blockquote class="kju-card-quote">
+                “The service was worth every dollar for the peace of mind alone.”
+              </blockquote>
+              <footer class="kju-card-footer">
+                <span class="kju-coverflow-topic-tag"><span class="kju-topic-hash">#</span> PEACE OF MIND</span>
+              </footer>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Custom Institutional Mechanical Timeline Scrubber -->
+        <div class="kju-coverflow-scrubber-wrap">
+          <button type="button" class="kju-scrubber-nav-btn kju-prev-btn" id="kjuCoverflowPrev" aria-label="Previous Review">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          
+          <div class="kju-scrubber-center">
+            <div class="kju-scrubber-track" id="kjuScrubberTrack" role="slider" aria-label="Review Timeline Scrubber" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1">
+              <div class="kju-scrubber-progress" id="kjuScrubberProgress"></div>
+              <div class="kju-scrubber-pill" id="kjuScrubberPill"></div>
+            </div>
+            <div class="kju-scrubber-readout" id="kjuScrubberReadout" aria-live="polite">
+              <span class="kju-readout-num" id="kjuReadoutCurrent">01</span>
+              <span class="kju-readout-sep">/</span>
+              <span class="kju-readout-total">06</span>
+            </div>
+          </div>
+
+          <button type="button" class="kju-scrubber-nav-btn kju-next-btn" id="kjuCoverflowNext" aria-label="Next Review">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="kju-reviews-grid" id="kjuReviewsGrid">
-        <div class="kju-review-card kju-reveal kju-delay-1" data-category="support">
-          <div>
-            <div class="kju-review-meta-row">
-              <span class="kju-review-category-tag">Support &amp; Communication</span>
-              <span class="kju-review-badge"><i class="fa-solid fa-certificate"></i> Five-Star Review</span>
-            </div>
-            <div class="kju-review-header">
-              <span class="kju-reviewer-name">Dennis Y.</span>
-              <div class="kju-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <p class="kju-review-quote">
-              “The communication from their support team was excellent, and they always responded to my emails quickly during business hours.”
-            </p>
-          </div>
-        </div>
-
-        <div class="kju-review-card kju-reveal kju-delay-2" data-category="collections">
-          <div>
-            <div class="kju-review-meta-row">
-              <span class="kju-review-category-tag">Respect &amp; Professionalism</span>
-              <span class="kju-review-badge"><i class="fa-solid fa-certificate"></i> Five-Star Review</span>
-            </div>
-            <div class="kju-review-header">
-              <span class="kju-reviewer-name">Robert K.</span>
-              <div class="kju-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <p class="kju-review-quote">
-              “What impressed me most was how professional and patient they were throughout the process. I never felt judged once.”
-            </p>
-          </div>
-        </div>
-
-        <div class="kju-review-card kju-reveal kju-delay-3" data-category="mortgage">
-          <div>
-            <div class="kju-review-meta-row">
-              <span class="kju-review-category-tag">Transparency &amp; Education</span>
-              <span class="kju-review-badge"><i class="fa-solid fa-certificate"></i> Five-Star Review</span>
-            </div>
-            <div class="kju-review-header">
-              <span class="kju-reviewer-name">David D.</span>
-              <div class="kju-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <p class="kju-review-quote">
-              “The process was organized, transparent, and educational. I appreciated how they kept me informed every step of the way.”
-            </p>
-          </div>
-        </div>
-
-        <div class="kju-review-card kju-reveal kju-delay-1" data-category="score">
-          <div>
-            <div class="kju-review-meta-row">
-              <span class="kju-review-category-tag">Personal Finance Growth</span>
-              <span class="kju-review-badge"><i class="fa-solid fa-certificate"></i> Five-Star Review</span>
-            </div>
-            <div class="kju-review-header">
-              <span class="kju-reviewer-name">Edward C.</span>
-              <div class="kju-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <p class="kju-review-quote">
-              “The value I received went far beyond improving my credit score. I gained a much better understanding of personal finance.”
-            </p>
-          </div>
-        </div>
-
-        <div class="kju-review-card kju-reveal kju-delay-2" data-category="support">
-          <div>
-            <div class="kju-review-meta-row">
-              <span class="kju-review-category-tag">Peace of Mind</span>
-              <span class="kju-review-badge"><i class="fa-solid fa-certificate"></i> Five-Star Review</span>
-            </div>
-            <div class="kju-review-header">
-              <span class="kju-reviewer-name">Joyce B.</span>
-              <div class="kju-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <p class="kju-review-quote">
-              “The service was worth every dollar for the peace of mind alone.”
-            </p>
-          </div>
-        </div>
-
-        <div class="kju-review-card kju-reveal kju-delay-3" data-category="collections">
-          <div>
-            <div class="kju-review-meta-row">
-              <span class="kju-review-category-tag">Diagnostic Clarity</span>
-              <span class="kju-review-badge"><i class="fa-solid fa-certificate"></i> Five-Star Review</span>
-            </div>
-            <div class="kju-review-header">
-              <span class="kju-reviewer-name">Kevin D.</span>
-              <div class="kju-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <p class="kju-review-quote">
-              “The team at Kenny Johnson University helped me understand exactly what was hurting my score and what actions I needed to take immediately.”
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="kju-center-cta-wrap kju-reveal">
-        <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check>
+      <!-- Closing Section CTA Upgrade -->
+      <div class="kju-testimonial-cta-wrap kju-reveal">
+        <button type="button" class="kju-btn kju-btn-primary kju-btn-prestige" data-open-fit-check>
           <span>CLAIM YOUR PERSONALIZED STRATEGY SESSION</span>
           <i class="fa-solid fa-arrow-right"></i>
         </button>
+        <p class="kju-review-disclaimer">
+          Individual experiences and results vary. Testimonials do not guarantee future results.
+        </p>
       </div>
-
-      <p class="kju-review-disclaimer kju-reveal">
-        Individual experiences and results vary. Testimonials do not guarantee future results.
-      </p>
     </div>
   </section>
 
   <!-- ==========================================================================
        SECTION 07 — PERSONALIZED STRATEGY & TOPICS (WARM WHITE)
        ========================================================================== -->
-  <section class="kju-strategy-section">
+  <section class="kju-strategy-section" id="kjuStrategySection">
     <div class="kju-container">
-      <div class="kju-section-header">
+      
+      <!-- Unified Section Header -->
+      <div class="kju-section-header kju-reveal">
         <h2 class="kju-section-title">Your Credit Situation Is Unique.</h2>
         <p class="kju-section-subhead">Your Strategy Should Be Too.</p>
       </div>
 
-      <div class="kju-strategy-overview">
-        <p>We don't believe everyone with credit problems needs the exact same solution.</p>
-        <p>That's why the process starts with a conversation.</p>
-        <p style="font-weight: 700; color: var(--kju-authority-navy-dark); margin-top: 22px;">During your consultation, we'll learn more about:</p>
-        <ul class="kju-strategy-bullets">
-          <li><i class="fa-solid fa-check"></i> <span>Where you are now.</span></li>
-          <li><i class="fa-solid fa-check"></i> <span>What's happening with your credit.</span></li>
-          <li><i class="fa-solid fa-check"></i> <span>What you're trying to accomplish.</span></li>
-        </ul>
-        <p style="font-weight: 700; color: var(--text-dark-primary); margin-top: 22px;">And most importantly:<br><span style="color: var(--kju-gold);">What you can potentially do next.</span></p>
+      <!-- Split-Screen Interactive Diagnostic Terminal -->
+      <div class="kju-terminal-layout">
+        
+        <!-- Left: The Diagnostic Brief (Sticky / Dark Authority Navy) -->
+        <aside class="kju-dossier-panel kju-reveal" aria-label="Initial Audit Framework">
+          <div class="kju-dossier-kicker">
+            <span class="kju-dossier-kicker-dot" aria-hidden="true"></span>
+            <span>// INITIAL AUDIT FRAMEWORK</span>
+          </div>
 
-        <div style="margin-top: 26px;">
-          <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check>
+          <p class="kju-dossier-lead-text">
+            We don't believe everyone with credit problems needs the exact same solution. <strong>That's why the process starts with a conversation.</strong>
+          </p>
+
+          <div class="kju-dossier-checklist-title">
+            During your consultation, we'll learn more about:
+          </div>
+
+          <div class="kju-dossier-timeline" role="list">
+            <div class="kju-dossier-step" role="listitem">
+              <div class="kju-step-tick" aria-hidden="true">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <span class="kju-step-label">Where you are now.</span>
+            </div>
+            <div class="kju-dossier-step" role="listitem">
+              <div class="kju-step-tick" aria-hidden="true">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <span class="kju-step-label">What's happening with your credit.</span>
+            </div>
+            <div class="kju-dossier-step" role="listitem">
+              <div class="kju-step-tick" aria-hidden="true">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <span class="kju-step-label">What you're trying to accomplish.</span>
+            </div>
+          </div>
+
+          <!-- Clincher Accent Capsule -->
+          <div class="kju-dossier-clincher">
+            <span class="kju-clincher-prefix">And most importantly:</span>
+            <span class="kju-clincher-text">What you can potentially do next.</span>
+          </div>
+
+          <!-- Consolidated Primary Action Button -->
+          <button type="button" class="kju-btn kju-btn-primary kju-btn-prestige kju-dossier-cta-btn" data-open-fit-check>
             <span>BOOK MY CREDIT CONSULTATION</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
-        </div>
-      </div>
+        </aside>
 
-      <!-- What We'll Discuss Topics -->
-      <div class="kju-section-header" style="margin-top: 76px;">
-        <h2 class="kju-section-title">What We'll Discuss During Your Consultation</h2>
-      </div>
+        <!-- Right: The 5-Stage Curriculum Syllabus (Interactive Consultation Agenda) -->
+        <div class="kju-syllabus-container kju-reveal kju-delay-1" role="region" aria-label="Interactive Consultation Agenda">
+          
+          <!-- Stage 01 -->
+          <article class="kju-syllabus-row" tabindex="0">
+            <div class="kju-syllabus-index" aria-label="Stage 01">01</div>
+            <div class="kju-syllabus-body">
+              <h3 class="kju-syllabus-heading">What's Affecting Your Credit</h3>
+              <p class="kju-syllabus-desc">We'll discuss the factors that may be helping or hurting your overall credit profile.</p>
+            </div>
+          </article>
 
-      <div class="kju-topics-grid">
-        <div class="kju-topic-card">
-          <h3 class="kju-topic-title"><i class="fa-solid fa-chart-pie"></i> What's Affecting Your Credit</h3>
-          <p class="kju-topic-desc">We'll discuss the factors that may be helping or hurting your overall credit profile.</p>
-        </div>
-        <div class="kju-topic-card">
-          <h3 class="kju-topic-title"><i class="fa-solid fa-bullseye"></i> What You Should Focus On</h3>
-          <p class="kju-topic-desc">We'll help identify areas of your credit profile that may deserve your attention.</p>
-        </div>
-        <div class="kju-topic-card">
-          <h3 class="kju-topic-title"><i class="fa-solid fa-route"></i> Potential Strategies</h3>
-          <p class="kju-topic-desc">We'll discuss credit-building strategies and potential next steps based on your individual situation.</p>
-        </div>
-        <div class="kju-topic-card">
-          <h3 class="kju-topic-title"><i class="fa-solid fa-comments"></i> Your Questions</h3>
-          <p class="kju-topic-desc">You'll have an opportunity to ask questions about your credit and get clarity on things you may not understand.</p>
-        </div>
-        <div class="kju-topic-card">
-          <h3 class="kju-topic-title"><i class="fa-solid fa-handshake"></i> Whether KJU Can Help</h3>
-          <p class="kju-topic-desc">If one of our services may be appropriate for your situation, we'll explain how it works and what your options are.</p>
-        </div>
-      </div>
+          <!-- Stage 02 -->
+          <article class="kju-syllabus-row" tabindex="0">
+            <div class="kju-syllabus-index" aria-label="Stage 02">02</div>
+            <div class="kju-syllabus-body">
+              <h3 class="kju-syllabus-heading">What You Should Focus On</h3>
+              <p class="kju-syllabus-desc">We'll help identify areas of your credit profile that may deserve your attention.</p>
+            </div>
+          </article>
 
-      <div class="kju-center-cta-wrap">
-        <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check>
-          <span>BOOK YOUR CONSULTATION</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
+          <!-- Stage 03 -->
+          <article class="kju-syllabus-row" tabindex="0">
+            <div class="kju-syllabus-index" aria-label="Stage 03">03</div>
+            <div class="kju-syllabus-body">
+              <h3 class="kju-syllabus-heading">Potential Strategies</h3>
+              <p class="kju-syllabus-desc">We'll discuss credit-building strategies and potential next steps based on your individual situation.</p>
+            </div>
+          </article>
+
+          <!-- Stage 04 -->
+          <article class="kju-syllabus-row" tabindex="0">
+            <div class="kju-syllabus-index" aria-label="Stage 04">04</div>
+            <div class="kju-syllabus-body">
+              <h3 class="kju-syllabus-heading">Your Questions</h3>
+              <p class="kju-syllabus-desc">You'll have an opportunity to ask questions about your credit and get clarity on things you may not understand.</p>
+            </div>
+          </article>
+
+          <!-- Stage 05 -->
+          <article class="kju-syllabus-row" tabindex="0">
+            <div class="kju-syllabus-index" aria-label="Stage 05">05</div>
+            <div class="kju-syllabus-body">
+              <h3 class="kju-syllabus-heading">Whether KJU Can Help</h3>
+              <p class="kju-syllabus-desc">If one of our services may be appropriate for your situation, we'll explain how it works and what your options are.</p>
+            </div>
+          </article>
+
+        </div>
+
       </div>
 
     </div>
   </section>
 
   <!-- ==========================================================================
-       SECTION 08 — EDUCATION IS KEY: 5 PILLARS (AUTHORITY NAVY)
+       SECTION 08 — EDUCATION IS KEY: HORIZON BLADES ACCORDION
        ========================================================================== -->
-  <section class="kju-pillars-section">
+  <section class="kju-pillars-section" id="kjuPillarsSection">
     <div class="kju-container">
-      <div class="kju-section-header">
-        <div class="kju-pillar-hero-stat">10,000+ Clients Helped</div>
-        <h2 class="kju-section-title" style="color: #FFFFFF;">
+
+      <!-- Section Header -->
+      <div class="kju-pillars-header kju-reveal">
+        <div class="kju-pillar-hero-badge">
+          <span class="kju-pillar-hero-dot" aria-hidden="true">✓</span>
+          <span>10,000+ Clients Helped</span>
+        </div>
+        <h2 class="kju-section-title kju-pillars-title">
           Credit Can Be Complicated.<br>Understanding It Doesn't Have to Be.
         </h2>
-        <p class="kju-section-subhead" style="color: var(--kju-white);">
+        <p class="kju-section-subhead kju-pillars-subhead">
           Kenny Johnson University was built around one simple philosophy:<br>
-          <strong style="color: #FFFFFF; font-size: 1.3rem;">EDUCATION IS KEY.</strong><br><br>
+          <span class="kju-pillars-motto">EDUCATION IS KEY.</span><br><br>
           We believe you should understand what's happening with your credit, why it's happening, and what you can realistically do about it.
         </p>
       </div>
 
-      <div class="kju-pillars-grid">
-        <div class="kju-pillar-card">
-          <h3 class="kju-pillar-title">CREDIT EDUCATION</h3>
-          <p class="kju-pillar-desc">Understand the factors that affect your credit instead of blindly following advice online.</p>
+      <!-- Flippable Card Deck Track — 5 Pillars of KJU -->
+      <div class="horizon-track kju-card-deck kju-reveal kju-delay-1" id="kjuHorizonTrack" role="region" aria-label="Five Pillars of KJU Flippable Card Deck">
+
+        <!-- Deck Controls & Hint Bar -->
+        <div class="kju-deck-toolbar">
+          <div class="kju-deck-hint">
+            <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
+            <span>HOVER OR CLICK CARDS TO FLIP SPECIFICATIONS</span>
+          </div>
+          <button type="button" class="kju-deck-flip-all-btn" id="kjuDeckFlipAllBtn" aria-label="Flip all cards in deck">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+            <span class="btn-text">FLIP ALL CARDS</span>
+          </button>
         </div>
-        <div class="kju-pillar-card">
-          <h3 class="kju-pillar-title">PERSONALIZED GUIDANCE</h3>
-          <p class="kju-pillar-desc">Your recommendations are based on your individual credit situation and goals.</p>
-        </div>
-        <div class="kju-pillar-card">
-          <h3 class="kju-pillar-title">CREDIT REPORT ANALYSIS</h3>
-          <p class="kju-pillar-desc">Better understand the information appearing on your credit reports and what it means.</p>
-        </div>
-        <div class="kju-pillar-card">
-          <h3 class="kju-pillar-title">ACTIONABLE STRATEGIES</h3>
-          <p class="kju-pillar-desc">Get clearer direction about potential steps you can take moving forward.</p>
-        </div>
-        <div class="kju-pillar-card">
-          <h3 class="kju-pillar-title">ONGOING SUPPORT</h3>
-          <p class="kju-pillar-desc">Depending on the service you select, KJU can continue supporting you throughout your credit journey.</p>
-        </div>
-      </div>
+
+        <!-- 5-Card Deck Grid -->
+        <div class="kju-deck-grid" role="list">
+
+          <!-- Card 01 — CREDIT EDUCATION -->
+          <article class="kju-flip-card" tabindex="0" role="listitem" data-card-index="0" aria-label="Pillar 01: Credit Education">
+            <div class="kju-flip-card-inner">
+              <!-- FRONT FACE -->
+              <div class="kju-flip-card-front">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">01 //</span>
+                  <span class="kju-card-pillar-tag">PILLAR 01</span>
+                </div>
+                <div class="kju-card-watermark" aria-hidden="true">01</div>
+                <div class="kju-card-icon-container">
+                  <div class="kju-card-icon-badge">
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="kju-card-content">
+                  <span class="kju-card-kicker">CORE FOUNDATION</span>
+                  <h3 class="kju-card-title">CREDIT EDUCATION</h3>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i> FLIP TO INSPECT
+                  </span>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="kju-flip-card-back">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">01 //</span>
+                  <span class="kju-card-reticle">[ PILLAR INSPECTION ]</span>
+                </div>
+                <div class="kju-card-back-content">
+                  <span class="kju-card-back-kicker">DISCLOSURE PROTOCOL</span>
+                  <h4 class="kju-card-back-title">CREDIT EDUCATION</h4>
+                  <div class="kju-card-gold-rule" aria-hidden="true"></div>
+                  <p class="kju-card-desc">Understand the factors that affect your credit instead of blindly following advice online.</p>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-hallmark">EDUCATION IS KEY.</span>
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> FLIP BACK
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 02 — PERSONALIZED GUIDANCE -->
+          <article class="kju-flip-card" tabindex="0" role="listitem" data-card-index="1" aria-label="Pillar 02: Personalized Guidance">
+            <div class="kju-flip-card-inner">
+              <!-- FRONT FACE -->
+              <div class="kju-flip-card-front">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">02 //</span>
+                  <span class="kju-card-pillar-tag">PILLAR 02</span>
+                </div>
+                <div class="kju-card-watermark" aria-hidden="true">02</div>
+                <div class="kju-card-icon-container">
+                  <div class="kju-card-icon-badge">
+                    <i class="fa-solid fa-compass" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="kju-card-content">
+                  <span class="kju-card-kicker">TAILORED ROADMAP</span>
+                  <h3 class="kju-card-title">PERSONALIZED GUIDANCE</h3>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i> FLIP TO INSPECT
+                  </span>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="kju-flip-card-back">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">02 //</span>
+                  <span class="kju-card-reticle">[ PILLAR INSPECTION ]</span>
+                </div>
+                <div class="kju-card-back-content">
+                  <span class="kju-card-back-kicker">DISCLOSURE PROTOCOL</span>
+                  <h4 class="kju-card-back-title">PERSONALIZED GUIDANCE</h4>
+                  <div class="kju-card-gold-rule" aria-hidden="true"></div>
+                  <p class="kju-card-desc">Your recommendations are based on your individual credit situation and goals.</p>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-hallmark">EDUCATION IS KEY.</span>
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> FLIP BACK
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 03 — CREDIT REPORT ANALYSIS -->
+          <article class="kju-flip-card" tabindex="0" role="listitem" data-card-index="2" aria-label="Pillar 03: Credit Report Analysis">
+            <div class="kju-flip-card-inner">
+              <!-- FRONT FACE -->
+              <div class="kju-flip-card-front">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">03 //</span>
+                  <span class="kju-card-pillar-tag">PILLAR 03</span>
+                </div>
+                <div class="kju-card-watermark" aria-hidden="true">03</div>
+                <div class="kju-card-icon-container">
+                  <div class="kju-card-icon-badge">
+                    <i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="kju-card-content">
+                  <span class="kju-card-kicker">AUDIT DIAGNOSTIC</span>
+                  <h3 class="kju-card-title">CREDIT REPORT ANALYSIS</h3>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i> FLIP TO INSPECT
+                  </span>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="kju-flip-card-back">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">03 //</span>
+                  <span class="kju-card-reticle">[ PILLAR INSPECTION ]</span>
+                </div>
+                <div class="kju-card-back-content">
+                  <span class="kju-card-back-kicker">DISCLOSURE PROTOCOL</span>
+                  <h4 class="kju-card-back-title">CREDIT REPORT ANALYSIS</h4>
+                  <div class="kju-card-gold-rule" aria-hidden="true"></div>
+                  <p class="kju-card-desc">Better understand the information appearing on your credit reports and what it means.</p>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-hallmark">EDUCATION IS KEY.</span>
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> FLIP BACK
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 04 — ACTIONABLE STRATEGIES -->
+          <article class="kju-flip-card" tabindex="0" role="listitem" data-card-index="3" aria-label="Pillar 04: Actionable Strategies">
+            <div class="kju-flip-card-inner">
+              <!-- FRONT FACE -->
+              <div class="kju-flip-card-front">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">04 //</span>
+                  <span class="kju-card-pillar-tag">PILLAR 04</span>
+                </div>
+                <div class="kju-card-watermark" aria-hidden="true">04</div>
+                <div class="kju-card-icon-container">
+                  <div class="kju-card-icon-badge">
+                    <i class="fa-solid fa-chess-knight" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="kju-card-content">
+                  <span class="kju-card-kicker">TACTICAL DIRECTIVE</span>
+                  <h3 class="kju-card-title">ACTIONABLE STRATEGIES</h3>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i> FLIP TO INSPECT
+                  </span>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="kju-flip-card-back">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">04 //</span>
+                  <span class="kju-card-reticle">[ PILLAR INSPECTION ]</span>
+                </div>
+                <div class="kju-card-back-content">
+                  <span class="kju-card-back-kicker">DISCLOSURE PROTOCOL</span>
+                  <h4 class="kju-card-back-title">ACTIONABLE STRATEGIES</h4>
+                  <div class="kju-card-gold-rule" aria-hidden="true"></div>
+                  <p class="kju-card-desc">Get clearer direction about potential steps you can take moving forward.</p>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-hallmark">EDUCATION IS KEY.</span>
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> FLIP BACK
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 05 — ONGOING SUPPORT -->
+          <article class="kju-flip-card" tabindex="0" role="listitem" data-card-index="4" aria-label="Pillar 05: Ongoing Support">
+            <div class="kju-flip-card-inner">
+              <!-- FRONT FACE -->
+              <div class="kju-flip-card-front">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">05 //</span>
+                  <span class="kju-card-pillar-tag">PILLAR 05</span>
+                </div>
+                <div class="kju-card-watermark" aria-hidden="true">05</div>
+                <div class="kju-card-icon-container">
+                  <div class="kju-card-icon-badge">
+                    <i class="fa-solid fa-handshake-angle" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="kju-card-content">
+                  <span class="kju-card-kicker">ADVISORY ALLIANCE</span>
+                  <h3 class="kju-card-title">ONGOING SUPPORT</h3>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i> FLIP TO INSPECT
+                  </span>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="kju-flip-card-back">
+                <div class="kju-card-corner-accent top-left" aria-hidden="true"></div>
+                <div class="kju-card-corner-accent bottom-right" aria-hidden="true"></div>
+                <div class="kju-card-header">
+                  <span class="kju-card-idx">05 //</span>
+                  <span class="kju-card-reticle">[ PILLAR INSPECTION ]</span>
+                </div>
+                <div class="kju-card-back-content">
+                  <span class="kju-card-back-kicker">DISCLOSURE PROTOCOL</span>
+                  <h4 class="kju-card-back-title">ONGOING SUPPORT</h4>
+                  <div class="kju-card-gold-rule" aria-hidden="true"></div>
+                  <p class="kju-card-desc">Depending on the service you select, KJU can continue supporting you throughout your credit journey.</p>
+                </div>
+                <div class="kju-card-footer">
+                  <span class="kju-card-hallmark">EDUCATION IS KEY.</span>
+                  <span class="kju-card-action">
+                    <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> FLIP BACK
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /kju-deck-grid -->
+      </div><!-- /horizon-track -->
     </div>
   </section>
-
   <!-- ==========================================================================
        SECTION 09 — HOW DOES IT WORK? (WARM WHITE HORIZONTAL TIMELINE)
        ========================================================================== -->
-  <section class="kju-how-section">
+  <section class="kju-how-section" id="kjuHowSection">
     <div class="kju-container">
-      <div class="kju-section-header kju-reveal">
-        <h2 class="kju-section-title">How Does It Work?</h2>
+      <div class="kju-section-header kju-how-header kju-reveal">
+        <h2 class="kju-section-title kju-how-title">
+          <span class="how-title-lead">HOW DOES</span> <span class="how-title-accent">IT WORK?</span>
+        </h2>
+        <p class="kju-section-subhead kju-how-subhead">
+          A straightforward process from initial conversation to clear options.
+        </p>
       </div>
 
-      <div class="kju-timeline-container kju-reveal kju-delay-1" id="kjuTimelineWrapper">
-        <div class="kju-timeline-progress-track">
-          <div class="kju-timeline-progress-fill" id="kjuTimelineProgressFill"></div>
+      <div class="kju-pipeline-container" id="kjuTimelineWrapper">
+        <!-- Dynamic Sequential Progression Spine -->
+        <div class="pipeline-spine-wrapper" aria-hidden="true">
+          <div class="pipeline-spine-base"></div>
+          <div class="pipeline-spine-fill" id="kjuTimelineProgressFill"></div>
         </div>
-        <div class="kju-timeline-track" id="kjuTimelineTrack">
-          <div class="kju-how-card-step" data-step="1">
-            <div class="kju-step-badge">
-              <span class="kju-step-num">01</span>
+
+        <!-- 4 Sequential Protocol Steps -->
+        <div class="kju-pipeline-track" id="kjuTimelineTrack">
+          <!-- STEP 01 -->
+          <article class="kju-how-card-step pipeline-step is-start is-active" data-step="1">
+            <div class="pipeline-node-wrapper">
+              <div class="kju-step-badge pipeline-node">
+                <span class="kju-step-num pipeline-node-num">01</span>
+              </div>
+              <span class="pipeline-stage-tag">ACTIVE STAGE</span>
             </div>
-            <h3 class="kju-step-heading">Book Your Consultation</h3>
-            <p class="kju-step-copy">Choose an available time to speak with a KJU credit specialist.</p>
-          </div>
-          <div class="kju-how-card-step" data-step="2">
-            <div class="kju-step-badge">
-              <span class="kju-step-num">02</span>
+            <div class="pipeline-card">
+              <div class="pipeline-card-meta">
+                <span class="pipeline-step-label">01 // STEP</span>
+                <span class="pipeline-status-pill is-start">START HERE</span>
+              </div>
+              <h3 class="kju-step-heading">Book Your Consultation</h3>
+              <p class="kju-step-copy">Choose an available time to speak with a KJU credit specialist.</p>
             </div>
-            <h3 class="kju-step-heading">Tell Us What's Going On</h3>
-            <p class="kju-step-copy">We'll discuss your credit situation, what's currently affecting you, and what you're trying to accomplish.</p>
-          </div>
-          <div class="kju-how-card-step" data-step="3">
-            <div class="kju-step-badge">
-              <span class="kju-step-num">03</span>
+          </article>
+
+          <!-- STEP 02 -->
+          <article class="kju-how-card-step pipeline-step" data-step="2">
+            <div class="pipeline-node-wrapper">
+              <div class="kju-step-badge pipeline-node">
+                <span class="kju-step-num pipeline-node-num">02</span>
+              </div>
+              <span class="pipeline-stage-tag">PENDING</span>
             </div>
-            <h3 class="kju-step-heading">Understand Your Options</h3>
-            <p class="kju-step-copy">We'll help you better understand your credit and discuss potential strategies based on your situation.</p>
-          </div>
-          <div class="kju-how-card-step" data-step="4">
-            <div class="kju-step-badge">
-              <span class="kju-step-num">04</span>
+            <div class="pipeline-card">
+              <div class="pipeline-card-meta">
+                <span class="pipeline-step-label">02 // STEP</span>
+              </div>
+              <h3 class="kju-step-heading">Tell Us What's Going On</h3>
+              <p class="kju-step-copy">We'll discuss your credit situation, what's currently affecting you, and what you're trying to accomplish.</p>
             </div>
-            <h3 class="kju-step-heading">Decide What's Right for You</h3>
-            <p class="kju-step-copy">If KJU offers a service that may be appropriate for your needs, we'll explain how it works. You decide whether you'd like to move forward.</p>
-          </div>
+          </article>
+
+          <!-- STEP 03 -->
+          <article class="kju-how-card-step pipeline-step" data-step="3">
+            <div class="pipeline-node-wrapper">
+              <div class="kju-step-badge pipeline-node">
+                <span class="kju-step-num pipeline-node-num">03</span>
+              </div>
+              <span class="pipeline-stage-tag">PENDING</span>
+            </div>
+            <div class="pipeline-card">
+              <div class="pipeline-card-meta">
+                <span class="pipeline-step-label">03 // STEP</span>
+              </div>
+              <h3 class="kju-step-heading">Understand Your Options</h3>
+              <p class="kju-step-copy">We'll help you better understand your credit and discuss potential strategies based on your situation.</p>
+            </div>
+          </article>
+
+          <!-- STEP 04 -->
+          <article class="kju-how-card-step pipeline-step is-destination" data-step="4">
+            <div class="pipeline-node-wrapper">
+              <div class="kju-step-badge pipeline-node">
+                <span class="kju-step-num pipeline-node-num">04</span>
+              </div>
+              <span class="pipeline-stage-tag">OBJECTIVE</span>
+            </div>
+            <div class="pipeline-card">
+              <div class="pipeline-card-meta">
+                <span class="pipeline-step-label">04 // STEP</span>
+                <span class="pipeline-status-pill is-destination">OUTCOME</span>
+              </div>
+              <h3 class="kju-step-heading">Decide What's Right for You</h3>
+              <p class="kju-step-copy">If KJU offers a service that may be appropriate for your needs, we'll explain how it works. You decide whether you'd like to move forward.</p>
+            </div>
+          </article>
         </div>
       </div>
 
       <div class="kju-center-cta-wrap kju-reveal kju-delay-2">
-        <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check>
+        <button type="button" class="kju-btn kju-btn-primary" id="kjuPipelineCta" data-open-fit-check>
           <span>STEP 1: CHECK YOUR CONSULTATION FIT</span>
           <i class="fa-solid fa-arrow-right"></i>
         </button>
@@ -713,56 +1218,92 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 10 — WHY CHOOSE KJU? (AUTHORITY NAVY EDITORIAL GRID)
+       SECTION 10 — WHY CHOOSE KJU? (EXECUTIVE INSTITUTIONAL BENTO GRID)
        ========================================================================== -->
-  <section class="kju-why-section">
+  <section class="kju-why-section" id="kjuWhySection">
     <div class="kju-container">
-      <div class="kju-section-header kju-reveal">
-        <h2 class="kju-section-title" style="color: #FFFFFF;">Why Choose Kenny Johnson University?</h2>
+      <div class="kju-section-header kju-why-header kju-reveal">
+        <h2 class="kju-section-title kju-why-title">Why Choose Kenny Johnson University?</h2>
       </div>
 
-      <div class="kju-why-editorial-grid">
-        <!-- Hero Feature Card -->
-        <div class="kju-why-card is-featured kju-reveal kju-delay-1">
-          <div>
-            <div class="kju-badge is-light" style="margin-bottom: 14px;">PRIMARY PHILOSOPHY</div>
-            <h3 class="kju-heading-display" style="font-size: 2.2rem; color: #FFFFFF; margin-bottom: 16px;">
+      <div class="kju-why-editorial-grid" id="kjuWhyGrid">
+        <!-- Hero Primary Philosophy Card (Spans 3 Rows) -->
+        <article class="kju-why-card is-featured kju-reveal kju-delay-1" tabindex="0">
+          <div class="kju-philosophy-top">
+            <div class="kju-philosophy-badge">PRIMARY PHILOSOPHY</div>
+            <h3 class="kju-philosophy-title">
               EDUCATION FIRST
             </h3>
-            <p class="kju-why-card-desc" style="font-size: 1.12rem;">
+            <p class="kju-philosophy-quote">
               We don't just want to tell you what to do.<br><br>
               We want you to understand why you're doing it.
             </p>
           </div>
-          <div style="margin-top: 24px; font-family: var(--font-display); font-size: 1.4rem; color: var(--kju-gold);">
-            EDUCATION IS KEY.
+          <div class="kju-philosophy-seal-bar">
+            <i class="fa-solid fa-gem" aria-hidden="true"></i>
+            <span>EDUCATION IS KEY.</span>
           </div>
-        </div>
+        </article>
 
-        <div class="kju-why-card kju-reveal kju-delay-1">
-          <h3 class="kju-why-card-title"><i class="fa-solid fa-user-check"></i> Personalized Approach</h3>
+        <!-- Tile 01: Personalized Approach -->
+        <article class="kju-why-card kju-reveal kju-delay-1" tabindex="0">
+          <div class="kju-why-card-header">
+            <span class="kju-why-index">01</span>
+            <div class="kju-why-icon-badge" aria-hidden="true">
+              <i class="fa-solid fa-sliders"></i>
+            </div>
+          </div>
+          <h3 class="kju-why-card-title">Personalized Approach</h3>
           <p class="kju-why-card-desc">There's no universal solution for every credit situation. We take the time to understand yours.</p>
-        </div>
+        </article>
 
-        <div class="kju-why-card kju-reveal kju-delay-2">
-          <h3 class="kju-why-card-title"><i class="fa-solid fa-award"></i> Experience</h3>
+        <!-- Tile 02: Experience -->
+        <article class="kju-why-card kju-reveal kju-delay-2" tabindex="0">
+          <div class="kju-why-card-header">
+            <span class="kju-why-index">02</span>
+            <div class="kju-why-icon-badge" aria-hidden="true">
+              <i class="fa-solid fa-award"></i>
+            </div>
+          </div>
+          <h3 class="kju-why-card-title">Experience</h3>
           <p class="kju-why-card-desc">KJU has helped more than 10,000 clients with their credit.</p>
-        </div>
+        </article>
 
-        <div class="kju-why-card kju-reveal kju-delay-2">
-          <h3 class="kju-why-card-title"><i class="fa-solid fa-scale-balanced"></i> Transparency</h3>
+        <!-- Tile 03: Transparency -->
+        <article class="kju-why-card kju-reveal kju-delay-2" tabindex="0">
+          <div class="kju-why-card-header">
+            <span class="kju-why-index">03</span>
+            <div class="kju-why-icon-badge" aria-hidden="true">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+          </div>
+          <h3 class="kju-why-card-title">Transparency</h3>
           <p class="kju-why-card-desc">We explain the process and what you can realistically expect without promising specific results.</p>
-        </div>
+        </article>
 
-        <div class="kju-why-card kju-reveal kju-delay-3">
-          <h3 class="kju-why-card-title"><i class="fa-solid fa-map-location-dot"></i> Canadian Credit Knowledge</h3>
+        <!-- Tile 04: Canadian Credit Knowledge -->
+        <article class="kju-why-card kju-reveal kju-delay-3" tabindex="0">
+          <div class="kju-why-card-header">
+            <span class="kju-why-index">04</span>
+            <div class="kju-why-icon-badge" aria-hidden="true">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+          </div>
+          <h3 class="kju-why-card-title">Canadian Credit Knowledge</h3>
           <p class="kju-why-card-desc">Our services are designed around the Canadian credit system, including Equifax Canada and TransUnion Canada.</p>
-        </div>
+        </article>
 
-        <div class="kju-why-card kju-reveal kju-delay-3" style="grid-column: span 2;">
-          <h3 class="kju-why-card-title"><i class="fa-solid fa-headset"></i> Support</h3>
+        <!-- Tile 05: Support (Spans 2 Columns under tiles 01-04) -->
+        <article class="kju-why-card is-span-2 kju-reveal kju-delay-3" tabindex="0">
+          <div class="kju-why-card-header">
+            <span class="kju-why-index">05</span>
+            <div class="kju-why-icon-badge" aria-hidden="true">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+          </div>
+          <h3 class="kju-why-card-title">Support</h3>
           <p class="kju-why-card-desc">You don't have to spend hours trying to figure everything out by yourself. Our team is here to help guide you through the process.</p>
-        </div>
+        </article>
       </div>
 
       <div class="kju-center-cta-wrap kju-reveal">
@@ -775,89 +1316,95 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 11 — MEET KENNY JOHNSON (STRATEGIC BLACK AUTHORITY MOMENT)
+       SECTION 11 — MEET KENNY JOHNSON (EXECUTIVE EDITORIAL PROFILE SPREAD)
        ========================================================================== -->
-  <section class="kju-meet-section">
+  <section class="kju-meet-section" id="kjuMeetSection">
     <div class="kju-container">
-      <div class="kju-meet-box">
-        <div class="kju-meet-grid">
-          <div class="kju-founder-card-wrapper kju-reveal">
-            <div class="kju-founder-ambient-glow"></div>
-            <div class="kju-founder-card">
+      <div class="kju-meet-editorial-spread">
+        
+        <!-- LEFT COLUMN: Architectural Portrait Frame -->
+        <div class="kju-founder-dossier-card kju-reveal">
+          <div class="kju-founder-frame">
+            <div class="kju-founder-photo-wrap">
               <img src="images/Kenny-Johnson-CEO.jpg" alt="Kenny Johnson - Founder and CEO of Kenny Johnson University" class="kju-founder-photo">
-              <div class="kju-founder-badge-overlay">
-                <span class="kju-founder-name">Kenny Johnson</span>
-                <span class="kju-founder-role">Founder &amp; CEO, KJU</span>
+              <div class="kju-founder-photo-vignette" aria-hidden="true"></div>
+            </div>
+
+            <div class="kju-founder-info-plate">
+              <div class="kju-founder-name-group">
+                <span class="kju-founder-name">KENNY JOHNSON</span>
+                <span class="kju-founder-role">FOUNDER &amp; CEO, KJU</span>
+              </div>
+
+              <!-- Architectural Utility Links Row -->
+              <div class="kju-founder-directory-links">
+                <a href="https://instagram.com/KennyJohnsonUniversity" target="_blank" rel="noopener noreferrer" class="kju-directory-link" aria-label="Follow Kenny Johnson University on Instagram">
+                  <span>↗ @KennyJohnsonUniversity</span>
+                </a>
+                <a href="https://tiktok.com/@A1KennyJ" target="_blank" rel="noopener noreferrer" class="kju-directory-link" aria-label="Follow Kenny on TikTok">
+                  <span>↗ @A1KennyJ</span>
+                </a>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="kju-meet-content kju-reveal kju-delay-1">
-            <h2 class="kju-section-title">Meet Kenny Johnson</h2>
-            <p class="kju-section-subhead" style="color: var(--kju-gold); font-weight: 700; margin-bottom: 22px;">
-              Founder and CEO of Kenny Johnson University
-            </p>
+        <!-- RIGHT COLUMN: The Academy Narrative -->
+        <div class="kju-meet-narrative kju-reveal kju-delay-1">
+          <div class="kju-meet-title-lockup">
+            <h2 class="kju-section-title kju-meet-headline">MEET KENNY JOHNSON</h2>
+            <p class="kju-meet-role-subtitle">FOUNDER AND CEO OF KENNY JOHNSON UNIVERSITY</p>
+          </div>
 
-            <p style="font-size: 1.25rem; color: #FFFFFF; margin-bottom: 16px;">
-              Kenny Johnson built KJU around one core belief:<br>
-              <strong style="color: var(--kju-gold); font-size: 1.4rem;">Education Is Key.</strong>
-            </p>
+          <!-- Philosophy Accent: Editorial Centerpiece -->
+          <div class="kju-meet-belief-block">
+            <p class="kju-meet-belief-lead">Kenny Johnson built KJU around one core belief:</p>
+            <div class="kju-meet-creed-callout">“EDUCATION IS KEY.”</div>
+          </div>
 
-            <p style="font-size: 1.08rem; margin-bottom: 18px; color: var(--kju-white);">Credit can be confusing.</p>
+          <p class="kju-meet-lead-text">Credit can be confusing.</p>
 
-            <div class="kju-meet-taglines">
-              <span>Credit scores.</span>
-              <span>Collections.</span>
-              <span>Utilization.</span>
-              <span>Inquiries.</span>
-              <span>Equifax.</span>
-              <span>TransUnion.</span>
-              <span>Lenders.</span>
-            </div>
-
-            <p style="font-size: 1.02rem; color: var(--kju-grey-neutral); margin-bottom: 16px;">
-              And thousands of different opinions online telling you what you should and shouldn't do.
-            </p>
-
-            <p style="font-size: 1.15rem; color: #FFFFFF; font-weight: 600; margin-bottom: 18px;">
-              It shouldn't be that difficult to understand your own credit.<br>
-              Kenny created KJU to help simplify that process.
-            </p>
-
-            <p style="font-size: 1.02rem; color: var(--kju-grey-neutral); margin-bottom: 22px;">
-              Today, Kenny and the KJU team educate Canadians about credit and help clients better understand their credit profiles and the potential steps they can take moving forward.
-            </p>
-
-            <p style="font-size: 1.1rem; font-weight: 700; color: #FFFFFF; margin-bottom: 16px;">
-              You've probably seen Kenny's credit education content online.<br>
-              Now it's time to talk about your credit.
-            </p>
-
-            <div class="kju-social-handles">
-              <a href="https://instagram.com/KennyJohnsonUniversity" target="_blank" rel="noopener noreferrer" class="kju-social-badge" aria-label="Follow Kenny Johnson University on Instagram">
-                <i class="fa-brands fa-instagram"></i>
-                <span class="kju-social-meta">
-                  <span class="kju-social-handle">@KennyJohnsonUniversity</span>
-                  <span class="kju-social-counter"><span class="kju-rollup-counter" data-target="50">0</span>K+ Followers</span>
-                </span>
-              </a>
-              <a href="https://tiktok.com/@A1KennyJ" target="_blank" rel="noopener noreferrer" class="kju-social-badge" aria-label="Follow Kenny on TikTok">
-                <i class="fa-brands fa-tiktok"></i>
-                <span class="kju-social-meta">
-                  <span class="kju-social-handle">@A1KennyJ</span>
-                  <span class="kju-social-counter"><span class="kju-rollup-counter" data-target="85">0</span>K+ Followers</span>
-                </span>
-              </a>
-            </div>
-
-            <div style="margin-top: 32px;">
-              <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check>
-                <span>REQUEST A CONSULTATION WITH KENNY'S TEAM</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </button>
+          <!-- System Frictions: Official Registry Rail -->
+          <div class="kju-editorial-friction-rail">
+            <span class="kju-friction-label">SYSTEM FRICTIONS:</span>
+            <div class="kju-friction-items" role="list">
+              <span class="kju-friction-item" role="listitem">CREDIT SCORES</span>
+              <span class="kju-friction-dot" aria-hidden="true">•</span>
+              <span class="kju-friction-item" role="listitem">COLLECTIONS</span>
+              <span class="kju-friction-dot" aria-hidden="true">•</span>
+              <span class="kju-friction-item" role="listitem">UTILIZATION</span>
+              <span class="kju-friction-dot" aria-hidden="true">•</span>
+              <span class="kju-friction-item" role="listitem">INQUIRIES</span>
+              <span class="kju-friction-dot" aria-hidden="true">•</span>
+              <span class="kju-friction-item" role="listitem">EQUIFAX</span>
+              <span class="kju-friction-dot" aria-hidden="true">•</span>
+              <span class="kju-friction-item" role="listitem">TRANSUNION</span>
+              <span class="kju-friction-dot" aria-hidden="true">•</span>
+              <span class="kju-friction-item" role="listitem">LENDERS</span>
             </div>
           </div>
+
+          <p class="kju-meet-para">
+            And thousands of different opinions online telling you what you should and shouldn't do.
+          </p>
+
+          <p class="kju-meet-para">
+            It shouldn't be that difficult to understand your own credit. Kenny created KJU to help simplify that process. Today, Kenny and the KJU team educate Canadians about credit and help clients better understand their credit profiles and the potential steps they can take moving forward.
+          </p>
+
+          <div class="kju-meet-closing-plate">
+            <p class="kju-meet-closing-lead">You've probably seen Kenny's credit education content online.</p>
+            <p class="kju-meet-closing-action">Now it's time to talk about your credit.</p>
+          </div>
+
+          <div class="kju-meet-cta-wrap">
+            <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check>
+              <span>REQUEST A CONSULTATION WITH KENNY'S TEAM</span>
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -875,92 +1422,83 @@
       </div>
 
       <div class="kju-goal-selector-layout kju-reveal kju-delay-1">
-        <!-- Interactive Goal Selector Tiles -->
-        <div class="kju-goal-tiles-grid" role="tablist" aria-label="Select Financial Goal">
-          <div class="kju-goal-tile is-active" data-goal="home" role="tab" aria-selected="true" tabindex="0">
-            <div class="kju-goal-tile-icon">
-              <i class="fa-solid fa-house"></i>
+        <!-- LEFT: 6 Compact Selector Strips -->
+        <div class="kju-milestone-catalog" role="tablist" aria-label="Select Financial Goal">
+          <div class="kju-milestone-strip is-active" data-goal="home" role="tab" aria-selected="true" tabindex="0">
+            <div class="kju-milestone-index">01</div>
+            <div class="kju-milestone-info">
+              <h3 class="kju-milestone-name">Buying a Home</h3>
             </div>
-            <div class="kju-goal-tile-content">
-              <h3>Buying a Home</h3>
-              <p>Your credit can play an important role when lenders evaluate a mortgage application.</p>
-            </div>
-          </div>
-
-          <div class="kju-goal-tile" data-goal="auto" role="tab" aria-selected="false" tabindex="0">
-            <div class="kju-goal-tile-icon">
-              <i class="fa-solid fa-car"></i>
-            </div>
-            <div class="kju-goal-tile-content">
-              <h3>Financing a Vehicle</h3>
-              <p>A stronger credit profile may give you access to more borrowing options.</p>
+            <div class="kju-milestone-arrow" aria-hidden="true">
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
 
-          <div class="kju-goal-tile" data-goal="cards" role="tab" aria-selected="false" tabindex="0">
-            <div class="kju-goal-tile-icon">
-              <i class="fa-solid fa-credit-card"></i>
+          <div class="kju-milestone-strip" data-goal="auto" role="tab" aria-selected="false" tabindex="0">
+            <div class="kju-milestone-index">02</div>
+            <div class="kju-milestone-info">
+              <h3 class="kju-milestone-name">Financing a Vehicle</h3>
             </div>
-            <div class="kju-goal-tile-content">
-              <h3>Better Credit Products</h3>
-              <p>Your credit history can influence which cards and credit products you qualify for.</p>
-            </div>
-          </div>
-
-          <div class="kju-goal-tile" data-goal="borrowing" role="tab" aria-selected="false" tabindex="0">
-            <div class="kju-goal-tile-icon">
-              <i class="fa-solid fa-percent"></i>
-            </div>
-            <div class="kju-goal-tile-content">
-              <h3>Better Borrowing Options</h3>
-              <p>Creditworthiness can influence the rates and terms lenders are willing to offer.</p>
+            <div class="kju-milestone-arrow" aria-hidden="true">
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
 
-          <div class="kju-goal-tile" data-goal="profile" role="tab" aria-selected="false" tabindex="0">
-            <div class="kju-goal-tile-icon">
-              <i class="fa-solid fa-shield"></i>
+          <div class="kju-milestone-strip" data-goal="cards" role="tab" aria-selected="false" tabindex="0">
+            <div class="kju-milestone-index">03</div>
+            <div class="kju-milestone-info">
+              <h3 class="kju-milestone-name">Better Credit Products</h3>
             </div>
-            <div class="kju-goal-tile-content">
-              <h3>Building a Stronger Profile</h3>
-              <p>Maybe you don't need financing today. You simply want to put yourself in a stronger position for the future.</p>
+            <div class="kju-milestone-arrow" aria-hidden="true">
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
 
-          <div class="kju-goal-tile" data-goal="options" role="tab" aria-selected="false" tabindex="0">
-            <div class="kju-goal-tile-icon">
-              <i class="fa-solid fa-door-open"></i>
+          <div class="kju-milestone-strip" data-goal="borrowing" role="tab" aria-selected="false" tabindex="0">
+            <div class="kju-milestone-index">04</div>
+            <div class="kju-milestone-info">
+              <h3 class="kju-milestone-name">Better Borrowing Options</h3>
             </div>
-            <div class="kju-goal-tile-content">
-              <h3>Creating Financial Options</h3>
-              <p>Credit isn't everything. But when you need it, you want your credit working for you, not against you.</p>
+            <div class="kju-milestone-arrow" aria-hidden="true">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div class="kju-milestone-strip" data-goal="profile" role="tab" aria-selected="false" tabindex="0">
+            <div class="kju-milestone-index">05</div>
+            <div class="kju-milestone-info">
+              <h3 class="kju-milestone-name">Building a Stronger Profile</h3>
+            </div>
+            <div class="kju-milestone-arrow" aria-hidden="true">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div class="kju-milestone-strip" data-goal="options" role="tab" aria-selected="false" tabindex="0">
+            <div class="kju-milestone-index">06</div>
+            <div class="kju-milestone-info">
+              <h3 class="kju-milestone-name">Creating Financial Options</h3>
+            </div>
+            <div class="kju-milestone-arrow" aria-hidden="true">
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
         </div>
 
-        <!-- Dynamic Financial Impact Console -->
-        <div class="kju-goal-preview-console" id="kjuGoalPreviewConsole" role="tabpanel">
-          <div>
+        <!-- RIGHT: DOCKED STRATEGY VAULT / EXECUTIVE MILESTONE BRIEFING -->
+        <div class="kju-goal-preview-console kju-milestone-vault" id="kjuGoalPreviewConsole" role="tabpanel">
+          <div class="kju-vault-watermark" aria-hidden="true">“</div>
+
+          <div class="kju-vault-stage" id="kjuVaultStage">
             <span class="kju-goal-preview-badge" id="kjuGoalBadge">MORTGAGE READINESS &amp; PRIME LENDING</span>
-            <h3 class="kju-goal-preview-title" id="kjuGoalTitle">
-              <i class="fa-solid fa-house"></i> Buying a Home
-            </h3>
+            <h3 class="kju-goal-preview-title" id="kjuGoalTitle">Buying a Home</h3>
             <p class="kju-goal-preview-approved-text" id="kjuGoalApprovedText">
               “Your credit can play an important role when lenders evaluate a mortgage application.”
             </p>
-
-            <div class="kju-goal-metrics-box">
-              <div class="kju-goal-metrics-header">Strategic Financial Impact Preview:</div>
-              <ul class="kju-goal-metrics-list" id="kjuGoalMetricsList">
-                <li><i class="fa-solid fa-chart-pie"></i> <strong>Interest Variance:</strong> A 1.0%–2.5% rate delta on standard Canadian mortgages</li>
-                <li><i class="fa-solid fa-coins"></i> <strong>Amortization Impact:</strong> Up to $80,000–$120,000+ in potential lifetime interest savings</li>
-                <li><i class="fa-solid fa-building-columns"></i> <strong>Lender Access:</strong> Qualifying with Canadian prime A-lenders vs. costly alternative debt</li>
-              </ul>
-            </div>
           </div>
 
-          <div>
-            <button type="button" class="kju-btn kju-btn-primary" id="kjuGoalCtaBtn" data-open-fit-check style="width: 100%;">
+          <div class="kju-vault-cta-wrap">
+            <button type="button" class="kju-btn kju-btn-primary" id="kjuGoalCtaBtn" data-open-fit-check>
               <span>DISCUSS MY HOME FINANCING GOAL</span>
               <i class="fa-solid fa-arrow-right"></i>
             </button>
@@ -973,52 +1511,69 @@
   <!-- ==========================================================================
        SECTION 13 — FINAL OBJECTION HANDLING (HIGH-CONTRAST 2-COLUMN EMPATHY CARD)
        ========================================================================== -->
-  <section class="kju-objection-section">
+  <section class="kju-objection-section" id="kjuObjectionSection">
     <div class="kju-container">
       <div class="kju-section-header kju-reveal">
-        <h2 class="kju-section-title">Still Wondering Whether You Should Book?</h2>
+        <h2 class="kju-section-title kju-objection-title">Still Wondering Whether You Should Book?</h2>
       </div>
 
       <div class="kju-empathy-card kju-reveal kju-delay-1">
         <!-- Left Column: The Pain & Information Overload Loop -->
         <div class="kju-empathy-pain-col">
           <div>
-            <span class="kju-empathy-badge-pain"><i class="fa-solid fa-circle-question"></i> THE INFORMATION OVERLOAD LOOP</span>
+            <div class="kju-empathy-col-header">
+              <span class="kju-empathy-badge-pain"><i class="fa-solid fa-arrows-rotate"></i> THE INFORMATION OVERLOAD LOOP</span>
+              <span class="kju-docket-tag">[ CYCLE AUDIT // INERTIA ]</span>
+            </div>
+
             <ul class="kju-empathy-pain-list">
-              <li><i class="fa-solid fa-xmark"></i> Maybe you've been putting this off.</li>
-              <li><i class="fa-solid fa-xmark"></i> Maybe you've watched dozens of credit videos.</li>
-              <li><i class="fa-solid fa-xmark"></i> Maybe you've downloaded Credit Karma.</li>
-              <li><i class="fa-solid fa-xmark"></i> Maybe you've checked Borrowell.</li>
-              <li><i class="fa-solid fa-xmark"></i> Maybe you've searched Google.</li>
-              <li><i class="fa-solid fa-xmark"></i> Maybe you've tried figuring everything out yourself.</li>
+              <li><span class="kju-audit-idx">01 //</span> Maybe you've been putting this off.</li>
+              <li><span class="kju-audit-idx">02 //</span> Maybe you've watched dozens of credit videos.</li>
+              <li><span class="kju-audit-idx">03 //</span> Maybe you've downloaded Credit Karma.</li>
+              <li><span class="kju-audit-idx">04 //</span> Maybe you've checked Borrowell.</li>
+              <li><span class="kju-audit-idx">05 //</span> Maybe you've searched Google.</li>
+              <li><span class="kju-audit-idx">06 //</span> Maybe you've tried figuring everything out yourself.</li>
             </ul>
           </div>
+
           <div class="kju-empathy-pain-punchline">
-            And you're still asking the same question:<br>
-            “What should I actually do next?”
+            <span class="kju-punchline-pre">And you're still asking the same question:</span>
+            <span class="kju-punchline-quote">“What should I actually do next?”</span>
+          </div>
+
+          <!-- Divider Nexus Node -->
+          <div class="kju-empathy-nexus" aria-hidden="true">
+            <i class="fa-solid fa-arrow-right"></i>
           </div>
         </div>
 
         <!-- Right Column: The KJU Diagnostic Solution & Roadmap -->
         <div class="kju-empathy-solution-col">
           <div>
-            <span class="kju-empathy-badge-solution"><i class="fa-solid fa-compass"></i> THE PERSONALIZED ROADMAP</span>
+            <div class="kju-empathy-col-header">
+              <span class="kju-empathy-badge-solution"><i class="fa-solid fa-compass"></i> THE PERSONALIZED ROADMAP</span>
+              <span class="kju-docket-tag">[ THE REMEDY // DIRECT ACCESS ]</span>
+            </div>
+
             <div class="kju-empathy-solution-core">
               That's exactly what the consultation is designed to help you understand.
             </div>
+
             <ul class="kju-empathy-solution-points">
-              <li><i class="fa-solid fa-check"></i> You don't need to know everything about credit before speaking with us.</li>
-              <li><i class="fa-solid fa-check"></i> You don't need to have the perfect credit report.</li>
-              <li><i class="fa-solid fa-check"></i> You don't need to know exactly what's wrong.</li>
+              <li><i class="fa-solid fa-check"></i> <span>You don't need to know everything about credit before speaking with us.</span></li>
+              <li><i class="fa-solid fa-check"></i> <span>You don't need to have the perfect credit report.</span></li>
+              <li><i class="fa-solid fa-check"></i> <span>You don't need to know exactly what's wrong.</span></li>
             </ul>
+
             <div class="kju-empathy-solution-closing">
               Tell us where you are.<br>
               Tell us where you're trying to go.<br>
               We'll help you better understand the potential road between the two.
             </div>
           </div>
-          <div>
-            <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check style="width: 100%;">
+
+          <div class="kju-empathy-cta-wrap">
+            <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check>
               <span>START MY DIAGNOSTIC ROADMAP</span>
               <i class="fa-solid fa-arrow-right"></i>
             </button>
@@ -1029,90 +1584,148 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 16 — FINAL CTA SECTION (AUTHORITY NAVY)
+       SECTION 16 — FINAL CTA: EXECUTIVE ADVISORY CONVOCATION (AUTHORITY NAVY)
        ========================================================================== -->
-  <section class="kju-final-cta-section">
+  <section class="kju-final-cta-section" id="kjuFinalCtaSection">
+    <!-- KJU Shield Logo Watermark (Right Side) -->
+    <div class="kju-final-cta-watermark" aria-hidden="true">
+      <img src="images/favicon.png" alt="" class="kju-watermark-logo">
+    </div>
     <div class="kju-container">
-      <div class="kju-final-cta-box kju-reveal">
-        <h2 class="kju-section-title" style="color: #FFFFFF; font-size: 3.2rem;">
-          Your Credit Doesn't Have to Remain a Mystery.
+      <div class="kju-final-cta-content kju-reveal">
+
+        <!-- Master Headline -->
+        <h2 class="kju-final-cta-title">
+          Your Credit Doesn't Have to<br>Remain a Mystery.
         </h2>
-        <p style="font-size: 1.25rem; color: var(--kju-white); line-height: 1.7; margin-bottom: 24px;">
-          You've read the advice.<br>
-          You've watched the videos.<br>
-          You've looked at the numbers.<br>
-          Now let's talk about YOUR situation.
-        </p>
 
-        <p style="font-size: 1.15rem; color: #FFFFFF; font-weight: 600; margin-bottom: 28px;">
-          Join thousands of Canadians who have turned to Kenny Johnson University for credit guidance.
-        </p>
-
-        <div class="kju-four-points">
-          <span><i class="fa-solid fa-check"></i> Get Answers.</span>
-          <span><i class="fa-solid fa-check"></i> Understand Your Options.</span>
-          <span><i class="fa-solid fa-check"></i> Create a Strategy.</span>
-          <span><i class="fa-solid fa-check"></i> Start With a Conversation.</span>
+        <!-- Narrative Reading Cadence -->
+        <div class="kju-final-cta-narrative">
+          <p class="kju-final-cta-lead">
+            You've read the advice. You've watched the videos. You've looked at the numbers.
+          </p>
+          <p class="kju-final-cta-pivot">
+            Now let's talk about YOUR situation.
+          </p>
+          <p class="kju-final-cta-trust">
+            "Join thousands of Canadians who have turned to Kenny Johnson University for credit guidance."
+          </p>
         </div>
 
-        <div style="margin-top: 36px;">
-          <button type="button" class="kju-btn kju-btn-primary" data-open-fit-check>
+        <!-- 4 Protocol Deliverables Horizontal Verification Rail -->
+        <div class="kju-final-cta-rail" role="list" aria-label="Four Consultation Deliverables">
+          <div class="kju-final-rail-item" role="listitem">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <span>GET ANSWERS.</span>
+          </div>
+          <span class="kju-final-rail-dot" aria-hidden="true">•</span>
+          <div class="kju-final-rail-item" role="listitem">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <span>UNDERSTAND YOUR OPTIONS.</span>
+          </div>
+          <span class="kju-final-rail-dot" aria-hidden="true">•</span>
+          <div class="kju-final-rail-item" role="listitem">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <span>CREATE A STRATEGY.</span>
+          </div>
+          <span class="kju-final-rail-dot" aria-hidden="true">•</span>
+          <div class="kju-final-rail-item" role="listitem">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <span>START WITH A CONVERSATION.</span>
+          </div>
+        </div>
+
+        <!-- Primary Action Lockup -->
+        <div class="kju-final-cta-action">
+          <button type="button" class="kju-btn kju-btn-primary kju-final-btn" data-open-fit-check>
             <span>GET STARTED: FREE CREDIT ELIGIBILITY CHECK</span>
-            <i class="fa-solid fa-arrow-right"></i>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </button>
+          <div class="kju-final-seal-caption">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            <span>OFFICIAL ADVISORY ENROLLMENT · CONFIDENTIAL &amp; CANADIAN-BASED</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       SECTION 17 — FOOTER & LEGAL DISCLAIMER (BLACK)
+       SECTION 17 — MULTI-COLUMN INSTITUTIONAL LEDGER FOOTER
        ========================================================================== -->
-  <footer class="kju-footer">
+  <footer class="kju-footer kju-footer-institutional">
     <div class="kju-container">
-      <div class="kju-footer-inner">
-        <a href="index.html" class="kju-brand-lockup" aria-label="Kenny Johnson University Home">
-          <img src="images/favicon.png" alt="KJU Shield Logo" class="kju-brand-shield">
-          <div class="kju-brand-text">
-            <span class="kju-brand-name">Kenny Johnson University</span>
-            <span class="kju-brand-tagline">EDUCATION IS KEY.</span>
+      <div class="kju-footer-grid">
+
+        <!-- Column 1: Brand Identity & Authority Seal -->
+        <div class="kju-footer-col kju-footer-col-brand">
+          <a href="index.html" class="kju-brand-logo" aria-label="Kenny Johnson University Home">
+            <img src="images/favicon.png" alt="KJU Shield Logo" height="46">
+            <div class="kju-brand-text">
+              <span class="kju-brand-name">Kenny Johnson University</span>
+              <span class="kju-brand-tagline">EDUCATION IS KEY.</span>
+            </div>
+          </a>
+
+          <div class="kju-footer-trust-pill">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            <span>10,000+ Clients Helped</span>
           </div>
-        </a>
 
-        <div style="font-family: var(--font-ui); font-size: 1rem; font-weight: 700; color: var(--kju-gold);">
-          10,000+ Clients Helped
-        </div>
-
-        <div class="kju-footer-social">
-          <a href="https://instagram.com/KennyJohnsonUniversity" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-instagram" style="color: var(--kju-gold);"></i> Instagram: @KennyJohnsonUniversity
-          </a>
-          <span>•</span>
-          <a href="https://tiktok.com/@A1KennyJ" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-tiktok" style="color: var(--kju-gold);"></i> TikTok: @A1KennyJ
-          </a>
-          <span>•</span>
-          <a href="faqs.html">FAQs</a>
-          <span>•</span>
-          <a href="privacy.html">Privacy Policy</a>
-        </div>
-
-        <!-- Clean Legal Compliance Typography (Card Removed) -->
-        <div class="kju-footer-legal-clean">
-          <div class="kju-legal-title">IMPORTANT INFORMATION</div>
-          <div class="kju-footer-legal-grid">
-            <p>
-              Kenny Johnson University provides credit education, consultation, and related services. Credit outcomes vary based on each individual's unique circumstances.
-            </p>
-            <p>
-              KJU does not guarantee specific credit-score increases, credit approvals, lending decisions, interest rates, or the removal of specific information from a consumer's credit report. Past client experiences and testimonials are not guarantees of future results.
-            </p>
+          <div class="kju-footer-sub-tagline">
+            Chartered Canadian Credit Consultation &amp; Strategic Advisory Protocol
           </div>
         </div>
 
-        <p style="font-size: 0.82rem; color: var(--text-light-muted); margin-top: 14px;">
-          &copy; 2026 Kenny Johnson University. All rights reserved. Montreal, Quebec, Canada.
-        </p>
+        <!-- Column 2: Regulatory & Canadian Jurisdiction -->
+        <div class="kju-footer-col kju-footer-col-compliance">
+          <div class="kju-footer-ledger-heading">
+            <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
+            <span>CANADIAN COMPLIANCE NOTICE</span>
+          </div>
+          <p class="kju-footer-compliance-text">
+            Kenny Johnson University provides educational guidance, credit information, and strategy consulting for Canadian consumers. We operate in full compliance with Canadian consumer protection legislation and provincial credit reporting acts. Results vary by individual credit profile and history. KJU does not guarantee specific score increases or removal of accurate and verified reporting information.
+          </p>
+        </div>
+
+        <!-- Column 3: Directory & Official Channels -->
+        <div class="kju-footer-col kju-footer-col-directory">
+          <div class="kju-footer-ledger-heading">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+            <span>DIRECTORY</span>
+          </div>
+          <ul class="kju-footer-link-list">
+            <li><a href="faqs.html" class="kju-footer-link"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> FAQs</a></li>
+            <li><a href="privacy.html" class="kju-footer-link"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Privacy Policy</a></li>
+          </ul>
+
+          <div class="kju-footer-ledger-heading" style="margin-top: 24px;">
+            <i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i>
+            <span>OFFICIAL CHANNELS</span>
+          </div>
+          <ul class="kju-footer-link-list">
+            <li>
+              <a href="https://instagram.com/KennyJohnsonUniversity" target="_blank" rel="noopener noreferrer" class="kju-footer-channel-link">
+                <span><i class="fa-brands fa-instagram" style="color: var(--kju-gold);" aria-hidden="true"></i> @KennyJohnsonUniversity</span>
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://tiktok.com/@A1KennyJ" target="_blank" rel="noopener noreferrer" class="kju-footer-channel-link">
+                <span><i class="fa-brands fa-tiktok" style="color: var(--kju-gold);" aria-hidden="true"></i> @A1KennyJ</span>
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Basemark Rule -->
+      <div class="kju-footer-basemark">
+        <div class="kju-footer-copyright">
+          &copy; 2026 Kenny Johnson University. All Rights Reserved. Education Is Key.
+        </div>
       </div>
     </div>
   </footer>
@@ -1318,8 +1931,8 @@
       <!-- Embedded Calendly Step -->
       <div class="kju-step-container" id="step_calendly">
         <div class="kju-result-box" style="margin-bottom: 16px;">
-          <h3 class="kju-result-title">Choose Your Free Consultation Time</h3>
-          <p style="font-size: 0.94rem; color: var(--text-dark-secondary);">
+          <h3 class="kju-result-title" id="kjuCalendlyTitle">Choose Your Free Consultation Time</h3>
+          <p id="kjuCalendlySubtitle" style="font-size: 0.94rem; color: var(--text-dark-secondary);">
             Select an available time slot below to complete your booking.
           </p>
         </div>
@@ -1337,10 +1950,10 @@
             <!-- Dynamically populated reason -->
           </div>
           <div class="kju-result-actions">
-            <a href="#" target="_blank" class="kju-btn kju-btn-primary" id="kjuPaidConsultBtn">
+            <button type="button" class="kju-btn kju-btn-primary" id="kjuPaidConsultBtn">
               <span>Book a Paid Consultation With Kenny</span>
               <i class="fa-solid fa-calendar"></i>
-            </a>
+            </button>
             <button type="button" class="kju-btn kju-btn-secondary" id="kjuExitResultBtn">
               <span>Leave / Exit</span>
             </button>
@@ -1362,6 +1975,11 @@
 
     </div>
   </div>
+
+  <!-- Floating Back to Top Direct Button -->
+  <button type="button" class="kju-back-to-top" id="kjuBackToTop" aria-label="Direct to top of page">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
 
   <!-- Campaign JS -->
   <script src="js/script.js"></script>

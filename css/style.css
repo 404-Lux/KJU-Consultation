@@ -2,7 +2,7 @@
    KENNY JOHNSON UNIVERSITY (KJU) — META ADS CAMPAIGN LANDING PAGE
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Poppins:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@500&family=JetBrains+Mono:wght@500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,600;1,6..72,700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* Brand Hex Colors (Source of Truth) */
@@ -68,10 +68,61 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  scroll-padding-top: 86px;
   background-color: var(--kju-white);
   color: var(--text-dark-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: thin;
+  scrollbar-color: var(--kju-authority-navy, #1F2A44) var(--kju-white, #E8E4DC);
+}
+
+/* ==========================================================================
+   CUSTOM INSTITUTIONAL SCROLLBAR (THEME HARMONY)
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kju-white, #E8E4DC);
+  border-left: 1px solid rgba(31, 42, 68, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kju-authority-navy, #1F2A44);
+  border-radius: 9999px;
+  border: 2px solid var(--kju-white, #E8E4DC);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--kju-gold, #B8860B);
+  border-color: var(--kju-white, #E8E4DC);
+  box-shadow: 0 0 10px rgba(184, 134, 11, 0.4);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--kju-white, #E8E4DC);
+}
+
+/* Modal and dark surface scrollbar override */
+.kju-modal-overlay::-webkit-scrollbar-track,
+.kju-modal-card::-webkit-scrollbar-track {
+  background: #0E1624;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.kju-modal-overlay::-webkit-scrollbar-thumb,
+.kju-modal-card::-webkit-scrollbar-thumb {
+  background: var(--kju-gold, #B8860B);
+  border: 2px solid #0E1624;
+}
+
+.kju-modal-overlay::-webkit-scrollbar-thumb:hover,
+.kju-modal-card::-webkit-scrollbar-thumb:hover {
+  background: var(--kju-gold-hover, #D4AF37);
 }
 
 body {
@@ -139,10 +190,10 @@ a {
 }
 
 .kju-btn-primary {
-  background: linear-gradient(135deg, #CA931A 0%, #B8860B 60%, #9B7007 100%);
+  background: linear-gradient(135deg, #D4AF37 0%, #C59A27 45%, #9E740A 100%);
   color: #FFFFFF;
-  border-color: #B8860B;
-  box-shadow: 0 4px 18px var(--kju-gold-glow);
+  border: 1px solid rgba(255, 230, 160, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 18px var(--kju-gold-glow);
   position: relative;
   overflow: hidden;
 }
@@ -170,10 +221,10 @@ a {
 }
 
 .kju-btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #D69E2E 0%, #C89617 60%, #A87B0A 100%);
-  border-color: #C89617;
+  background: linear-gradient(135deg, #E2BF50 0%, #D4AF37 45%, #AA7D0E 100%);
+  border-color: rgba(255, 240, 190, 0.65);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 8px 25px rgba(184, 134, 11, 0.42);
   color: #FFFFFF;
 }
 
@@ -299,47 +350,110 @@ a {
   justify-content: space-between;
 }
 
-.kju-brand-lockup {
+/* Navbar logo slot */
+.kju-navbar-logo-slot {
   display: flex;
   align-items: center;
-  gap: 14px;
+  min-width: fit-content;
+  height: 46px;
+  flex-shrink: 0;
+}
+
+/* Logo anchor */
+.kju-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   text-decoration: none;
 }
 
-.kju-brand-shield {
-  width: 38px;
-  height: 38px;
+/* Shield icon */
+.kju-brand-logo img {
+  height: 46px;
+  width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
 }
 
+/* Text stack */
 .kju-brand-text {
   display: flex;
   flex-direction: column;
 }
 
+/* Brand name — gold gradient */
 .kju-brand-name {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  letter-spacing: 0.05em;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.38em;
   line-height: 1;
-  color: #FFFFFF;
+  background: linear-gradient(90deg, #B06B14 0%, #EBBF6D 50%, #9E570A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* Tagline — silver gradient */
 .kju-brand-tagline {
-  font-family: var(--font-ui);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: 'Cinzel', serif;
+  font-size: 0.48rem;
+  font-weight: 500;
+  letter-spacing: 0.58em;
   text-transform: uppercase;
-  color: var(--kju-gold);
-  margin-top: 3px;
+  background: linear-gradient(90deg, #C2C8D0 0%, #FFFFFF 50%, #C4CAD2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 5px;
 }
 
 .kju-header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+}
+
+.kju-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.kju-header-nav-link,
+.kju-header-privacy-link {
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(232, 228, 220, 0.82);
+  padding: 6px 10px;
+  border-radius: var(--radius-xs);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  text-decoration: none;
+  position: relative;
+  white-space: nowrap;
+}
+
+.kju-header-nav-link:hover,
+.kju-header-nav-link.is-active,
+.kju-header-privacy-link:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.kju-header-nav-link.is-active {
+  color: var(--kju-gold, #B8860B);
+}
+
+.kju-header-nav-link.is-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: var(--kju-gold, #B8860B);
+  border-radius: 2px;
 }
 
 .kju-header-cta-btn {
@@ -359,6 +473,7 @@ a {
   gap: 8px;
   box-shadow: 0 2px 10px rgba(184, 134, 11, 0.35);
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .kju-header-cta-btn:hover {
@@ -367,23 +482,86 @@ a {
   transform: translateY(-1px);
 }
 
-.kju-header-nav-link,
-.kju-header-privacy-link {
-  font-family: var(--font-ui);
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--kju-white);
-  padding: 6px 12px;
+/* Mobile Nav Toggle */
+.kju-nav-toggle {
+  display: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-xs);
-  transition: color var(--transition-fast), background var(--transition-fast);
-  text-decoration: none;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-.kju-header-nav-link:hover,
-.kju-header-nav-link.is-active,
-.kju-header-privacy-link:hover {
+.kju-nav-toggle:hover {
+  border-color: var(--kju-gold);
   color: var(--kju-gold);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 991px) {
+  .kju-nav-toggle {
+    display: inline-flex;
+  }
+
+  .kju-header-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--kju-authority-navy, #1F2A44);
+    border-top: 1px solid rgba(184, 134, 11, 0.3);
+    border-bottom: 2px solid rgba(184, 134, 11, 0.4);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px 24px 20px;
+    gap: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .kju-header-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .kju-header-nav-link {
+    padding: 12px 16px;
+    font-size: 0.94rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .kju-header-nav-link.is-active::after {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .kju-brand-name {
+    font-size: 1.14rem;
+  }
+  .kju-brand-tagline {
+    font-size: 0.62rem;
+  }
+  .kju-header-cta-btn {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    gap: 5px;
+  }
+  .kju-header-cta-btn span {
+    display: inline-block;
+  }
 }
 
 /* ==========================================================================
@@ -423,6 +601,7 @@ a {
   filter: blur(80px);
   pointer-events: none;
   z-index: 1;
+  animation: kjuHeroSpotlightBloom 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Architectural Vertical Margin Guidelines */
@@ -434,6 +613,8 @@ a {
   background: linear-gradient(180deg, transparent 0%, rgba(31, 42, 68, 0.08) 15%, rgba(31, 42, 68, 0.08) 85%, transparent 100%);
   pointer-events: none;
   z-index: 2;
+  transform-origin: top;
+  animation: kjuHeroLineDraw 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .kju-hero-guideline.left {
@@ -460,6 +641,7 @@ a {
   color: var(--kju-gold-hover);
   margin-bottom: 8px;
   letter-spacing: 0.01em;
+  animation: kjuHeroFadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
 }
 
 .kju-hero-title {
@@ -469,6 +651,7 @@ a {
   color: var(--kju-black);
   position: relative;
   z-index: 3;
+  animation: kjuHeroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
 }
 
 .kju-hero-subhead {
@@ -482,6 +665,7 @@ a {
   margin-right: auto;
   position: relative;
   z-index: 3;
+  animation: kjuHeroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
 }
 
 .kju-hero-subhead em {
@@ -500,6 +684,7 @@ a {
   margin: 0 auto 36px;
   position: relative;
   z-index: 4;
+  animation: kjuHeroStageEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
 }
 
 /* Architectural Double-Border Bezel */
@@ -529,6 +714,93 @@ a {
   z-index: 30;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 16px var(--kju-gold-glow);
   transition: all var(--transition-normal);
+  animation: kjuHeroStampDrop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.82s both;
+}
+
+/* Hero Entrance Keyframes */
+@keyframes kjuHeroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kjuHeroFadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kjuHeroStageEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.985);
+    box-shadow: 0 10px 24px rgba(18, 28, 43, 0.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 20px 50px rgba(18, 28, 43, 0.14), 0 0 32px rgba(184, 134, 11, 0.08);
+  }
+}
+
+@keyframes kjuHeroSpotlightBloom {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30%) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -30%) scale(1);
+  }
+}
+
+@keyframes kjuHeroLineDraw {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes kjuHeroStampDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.88);
+  }
+  65% {
+    transform: translateY(2px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kju-hero-ambient-spotlight,
+  .kju-hero-guideline,
+  .kju-hero-editorial-kicker,
+  .kju-hero-title,
+  .kju-hero-subhead,
+  .kju-hero-video-stage,
+  .kju-video-docked-stamp {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .kju-video-docked-stamp.is-unlocked {
@@ -1053,214 +1325,749 @@ a {
   z-index: 3;
 }
 
-/* Editorial Trust Rail */
+/* ==========================================================================
+   AUTHENTIC INSTITUTIONAL TRUST BAR
+   ========================================================================== */
 .kju-trust-rail {
-  background: var(--kju-white-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  padding: 24px 32px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  position: relative;
+  background: #FDFCFB;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 100%);
+  border: 1px solid #C8BCA8;
+  border-radius: 16px;
+  padding: 36px 28px 26px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 16px 36px -12px rgba(0, 0, 0, 0.08),
+    0 4px 14px rgba(0, 0, 0, 0.02);
+  margin: 0 auto;
+  max-width: 860px;
+  box-sizing: border-box;
 }
 
-.kju-trust-rail-label {
+/* Docked Security & Credential Header Badge (Breaking Top Border) */
+.kju-trust-docked-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #0E1624;
+  border: 1px solid rgba(200, 188, 168, 0.6);
+  border-radius: 999px;
+  padding: 4px 16px;
+  box-shadow: 
+    0 4px 14px rgba(14, 22, 36, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+  z-index: 4;
+}
+
+.kju-trust-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  color: #D32F2F; /* Canadian Maple Crimson */
+  font-size: 0.88rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.kju-trust-badge-text {
   font-family: var(--font-ui);
-  font-size: 0.82rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--kju-gold);
-  margin-bottom: 10px;
-  text-align: center;
+  color: #E8D8C4;
+  line-height: 1;
 }
 
+.kju-trust-badge-check {
+  display: inline-flex;
+  align-items: center;
+  color: #C89D5C; /* Warm Authority Gold */
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+/* 3-Column Ledger Grid */
 .kju-trust-rail-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
   align-items: center;
-  text-align: center;
+  position: relative;
 }
 
-.kju-trust-rail-item {
+/* Crisp Vertical Hairline Dividers (Height ~60%, Ledger Aesthetic) */
+.kju-trust-rail-divider {
+  width: 1px;
+  height: 56px;
+  background: rgba(200, 188, 168, 0.45);
+  align-self: center;
+  transform-origin: top center;
+  transform: scaleY(0);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, background 0.3s ease;
+}
+
+.kju-trust-rail.is-assembled .kju-trust-rail-divider {
+  transform: scaleY(1);
+}
+
+/* Column Architecture */
+.kju-trust-rail-col {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px 14px;
+  border-radius: 12px;
+  cursor: default;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, opacity 0.25s ease;
+}
+
+.kju-trust-rail.is-assembled .kju-trust-rail-col {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sibling Dimming on Hover */
+.kju-trust-rail-grid:hover .kju-trust-rail-col:not(:hover) {
+  opacity: 0.62;
+}
+
+/* Radial Hover Spotlight Bloom Behind Number */
+.kju-trust-rail-col::before {
+  content: '';
+  position: absolute;
+  inset: -6px 6px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 36%, rgba(184, 134, 11, 0.09) 0%, rgba(184, 134, 11, 0) 72%);
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.kju-trust-rail-col:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.kju-trust-rail-col:hover .kju-trust-rail-num {
+  transform: translateY(-2px);
+}
+
+/* Divider Brighten State */
+.kju-trust-rail:has(.kju-trust-rail-col:hover) .kju-trust-rail-divider {
+  background: rgba(184, 134, 11, 0.4);
+}
+
+/* Metric Typographic Craft */
+.kju-trust-num-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 5px;
+  position: relative;
 }
 
 .kju-trust-rail-num {
   font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--kju-authority-navy-dark);
-  line-height: 1;
-  margin-bottom: 4px;
+  font-size: 2.15rem;
+  font-weight: 700;
+  line-height: 1.05;
+  background: linear-gradient(180deg, #000000 0%, #0D1821 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.kju-trust-rail-desc {
-  font-family: var(--font-ui);
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--text-dark-primary);
+/* Accent Copper Tint on Symbols (+, %) */
+.kju-trust-num-sym {
+  color: #B8860B;
+  -webkit-text-fill-color: #B8860B;
+  font-size: 0.85em;
+  font-weight: 700;
+  margin-left: 2px;
+  display: inline-block;
 }
+
+/* Spring Bounce for 1-on-1 */
+.kju-spring-target.is-bounced {
+  animation: kjuSpringBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes kjuSpringBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(6px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06) translateY(-2px);
+  }
+  85% {
+    transform: scale(0.98) translateY(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Sub-labels Typography */
+.kju-trust-rail-label-text {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(13, 24, 33, 0.9);
+  line-height: 1.35;
+  margin-bottom: 2px;
+}
+
+.kju-trust-rail-subtext {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.65);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
 
 /* ==========================================================================
-   03 — PROBLEM / PAIN RECOGNITION (WARM WHITE EDITORIAL)
+   03 — PROBLEM / PAIN RECOGNITION (CREDIT DOSSIER / AUDIT LEDGER)
    ========================================================================== */
 .kju-pain-section {
-  padding: 96px 0 84px;
+  padding: 88px 0 80px;
   background: var(--kju-white-pure);
   border-bottom: 1px solid var(--border-light);
-}
-
-.kju-pain-editorial-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: 48px;
-  align-items: start;
-}
-
-.kju-pain-editorial-left {
-  position: sticky;
-  top: 100px;
-}
-
-.kju-pain-lead-card {
-  background: var(--kju-white-card);
-  border-left: 4px solid var(--kju-gold);
-  border-radius: var(--radius-xs);
-  padding: 28px 24px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  margin-top: 24px;
-}
-
-.kju-pain-lead-card p {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--text-dark-primary);
-  line-height: 1.7;
-}
-
-.kju-pain-lead-card p span.highlight {
-  color: var(--kju-gold);
-  font-weight: 700;
-}
-
-/* Interactive Stacked Horizontal Rows */
-.kju-problem-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.kju-problem-row {
-  background: var(--kju-white-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xs);
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  transition: all var(--transition-normal);
-  cursor: default;
-}
-
-.kju-problem-row:hover {
-  border-color: var(--kju-authority-navy);
-  transform: translateX(6px);
-  box-shadow: 0 4px 14px rgba(31, 42, 68, 0.12);
-}
-
-.kju-problem-row-left {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.kju-problem-idx {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  color: var(--kju-authority-navy);
-  min-width: 24px;
-}
-
-.kju-problem-text {
-  font-family: var(--font-ui);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-dark-primary);
-}
-
-.kju-problem-arrow {
-  color: var(--text-dark-muted);
-  font-size: 0.9rem;
-  transition: transform var(--transition-fast), color var(--transition-fast);
-}
-
-.kju-problem-row:hover .kju-problem-arrow {
-  color: var(--kju-gold);
-  transform: translateX(4px);
-}
-
-.kju-pain-conclusion-bar {
-  grid-column: 1 / -1;
-  background: var(--kju-white-card);
-  border: 1.5px solid var(--kju-authority-navy);
-  border-radius: var(--radius-sm);
-  padding: 22px 30px;
-  text-align: center;
-  margin-top: 36px;
-}
-
-.kju-pain-conclusion-bar p {
-  font-size: 1.12rem;
-  font-weight: 600;
-  color: var(--text-dark-primary);
-}
-
-/* ==========================================================================
-   04 — KJU INTRODUCTION SECTION (AUTHORITY NAVY)
-   ========================================================================== */
-.kju-intro-section {
-  padding: 100px 0;
-  background-color: var(--kju-authority-navy);
-  color: #FFFFFF;
   position: relative;
   overflow: hidden;
 }
 
+.kju-friction-wrapper {
+  max-width: 940px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.kju-friction-header {
+  margin-bottom: 24px;
+}
+
+/* Authority Navy Editorial Lead Banner */
+.kju-friction-lead-banner {
+  background: #0E1624;
+  border: 1.5px solid var(--border-gold);
+  border-radius: var(--radius-xs);
+  padding: 24px 34px;
+  box-shadow: 0 12px 34px rgba(14, 22, 36, 0.26);
+  margin: 0 auto 34px;
+  max-width: 700px;
+  text-align: center;
+}
+
+.kju-friction-lead-text {
+  font-family: var(--font-ui);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #F8F6F0;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.kju-friction-lead-text span.highlight {
+  color: #E2AD27;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* Diagnostic Inventory Bar */
+.kju-friction-grid-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.kju-friction-inventory-badge {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--kju-authority-navy-dark);
+  color: #FFFFFF;
+  padding: 5px 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.kju-friction-label-text {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-dark-secondary);
+}
+
+/* ==========================================================================
+   INFINITE DUAL-AXIS MARQUEE (TELEMETRY TICKER) WITH 3D CYLINDER ARC & INSPECT
+   ========================================================================== */
+.kju-marquee-wrapper {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  padding: 16px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 42px;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 15%,
+    rgba(0, 0, 0, 1) 85%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 15%,
+    rgba(0, 0, 0, 1) 85%,
+    transparent 100%
+  );
+}
+
+/* 3D Curved Cylinder Ribbons with Cross-Diagonal Tilt */
+.kju-marquee-row {
+  display: flex;
+  width: 100%;
+  overflow: visible;
+  user-select: none;
+  padding: 4px 0;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+}
+
+.kju-marquee-row:nth-child(1) {
+  transform: rotate(-1.5deg) scale(1.02);
+  transform-origin: center center;
+}
+
+.kju-marquee-row:nth-child(2) {
+  transform: rotate(1.5deg) scale(1.02);
+  transform-origin: center center;
+}
+
+.kju-marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.kju-marquee-track.track-left {
+  animation: kjuMarqueeLeft 42s linear infinite;
+}
+
+.kju-marquee-track.track-right {
+  animation: kjuMarqueeRight 45s linear infinite;
+}
+
+/* Global Marquee Pause on Hover */
+.kju-marquee-wrapper:hover .kju-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes kjuMarqueeLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes kjuMarqueeRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.kju-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 16px;
+  flex-shrink: 0;
+  transform-style: preserve-3d;
+}
+
+/* Sleek Normalized Horizontal Telemetry Chips */
+.kju-telemetry-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(200, 188, 168, 0.65);
+  border-radius: 10px;
+  padding: 10px 18px;
+  height: 60px;
+  min-height: 60px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              opacity 0.25s ease;
+  will-change: transform, opacity;
+  flex-shrink: 0;
+}
+
+/* Card Focus & Lift on Hover */
+.kju-telemetry-chip:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: #B8860B;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 0 16px -2px rgba(184, 134, 11, 0.2);
+  opacity: 1 !important;
+  z-index: 10;
+}
+
+/* Inactive Cards Dim Across BOTH Rows on Inspection */
+.kju-marquee-wrapper:hover .kju-telemetry-chip:not(:hover) {
+  opacity: 0.45;
+}
+
+/* Crisp Fixed-Size Official Audit Tag */
+.kju-telemetry-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #0D1821;
+  border: 1px solid rgba(184, 134, 11, 0.45);
+  color: #E2AD27;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0 9px;
+  height: 28px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(13, 24, 33, 0.22);
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.kju-telemetry-flag i {
+  color: #FF4D6D;
+  font-size: 9.5px;
+}
+
+.kju-telemetry-chip:hover .kju-telemetry-flag {
+  background: #8C2347;
+  border-color: #FF4D6D;
+  color: #FFFFFF;
+}
+
+/* Normalized Capped Typography (Max 2 Lines, Max 240px) */
+.kju-telemetry-text {
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  max-width: 240px;
+  white-space: normal;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .kju-marquee-wrapper {
+    padding: 8px 0 16px;
+    gap: 12px;
+    margin-bottom: 30px;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 1) 8%,
+      rgba(0, 0, 0, 1) 92%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 1) 8%,
+      rgba(0, 0, 0, 1) 92%,
+      transparent 100%
+    );
+  }
+  .kju-marquee-row:nth-child(1) {
+    transform: rotate(-0.8deg) scale(1.01);
+  }
+  .kju-marquee-row:nth-child(2) {
+    transform: rotate(0.8deg) scale(1.01);
+  }
+  .kju-telemetry-chip {
+    padding: 8px 14px;
+    height: 54px;
+    min-height: 54px;
+    gap: 10px;
+  }
+  .kju-telemetry-text {
+    font-size: 12px;
+    max-width: 190px;
+    line-height: 1.2;
+  }
+  .kju-marquee-track.track-left {
+    animation-duration: 30s;
+  }
+  .kju-marquee-track.track-right {
+    animation-duration: 34s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kju-marquee-row:nth-child(1),
+  .kju-marquee-row:nth-child(2) {
+    transform: none !important;
+  }
+  .kju-marquee-track {
+    animation: none !important;
+  }
+  .kju-marquee-wrapper {
+    overflow-x: auto;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+}
+
+/* Concluding Editorial Anchor Between Two Clean Hairline Rules */
+.kju-friction-conclusion {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.kju-friction-rule {
+  width: 100%;
+  height: 1px;
+  background: rgba(200, 188, 168, 0.6);
+}
+
+.kju-friction-rule.top {
+  margin-bottom: 18px;
+}
+
+.kju-friction-rule.bottom {
+  margin-top: 18px;
+}
+
+.kju-friction-conclusion-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--kju-authority-navy-dark);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0 12px;
+}
+
+/* ==========================================================================
+   04 — KJU INTRODUCTION SECTION (AUTHORITY NAVY BREAKOUT)
+   ========================================================================== */
+.kju-intro-section {
+  padding: 110px 0 100px;
+  background: radial-gradient(circle at 50% 45%, #1F2A44 0%, #121C2B 80%, #0A101A 100%);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Atmospheric Ambient Vignette Spotlight */
+.kju-intro-ambient-spotlight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 920px;
+  height: 520px;
+  background: radial-gradient(ellipse at center, rgba(184, 134, 11, 0.16) 0%, rgba(31, 42, 68, 0.5) 45%, transparent 72%);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Architectural Stroked Watermark (Depth Layer) */
 .kju-watermark-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-display);
-  font-size: 14vw;
-  color: rgba(255, 255, 255, 0.04);
+  font-size: clamp(4.5rem, 13.5vw, 13.5rem);
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.085);
+  letter-spacing: 0.08em;
   white-space: nowrap;
   pointer-events: none;
+  user-select: none;
   z-index: 1;
-  letter-spacing: 0.05em;
+  will-change: transform, opacity;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
 }
 
 .kju-intro-inner {
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 840px;
+  max-width: 820px;
   margin: 0 auto;
 }
 
-.kju-intro-inner h2 {
-  font-size: 3.2rem;
-  color: #FFFFFF;
-  margin-bottom: 22px;
+/* Gold Turning Point Micro-Label */
+.kju-intro-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--kju-gold);
+  margin-bottom: 18px;
+  background: rgba(184, 134, 11, 0.12);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  padding: 5px 16px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.kju-intro-inner p {
-  font-size: 1.25rem;
-  color: var(--kju-white);
+.kju-intro-kicker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--kju-gold);
+  box-shadow: 0 0 8px var(--kju-gold);
+}
+
+.kju-intro-title {
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  color: #FFFFFF;
+  line-height: 1.08;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+}
+
+.kju-intro-lead-p {
+  font-family: var(--font-body);
+  font-size: 1.14rem;
+  color: rgba(232, 228, 220, 0.88);
   line-height: 1.7;
-  margin-bottom: 36px;
+  max-width: 580px;
+  margin: 0 auto 34px;
+}
+
+.kju-intro-action-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+/* Magnetic Flare CTA Button with Diagonal Sheen */
+.kju-intro-cta-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #C28F17 0%, #9B7007 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45);
+  padding: 18px 36px;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 18px rgba(184, 134, 11, 0.25);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.kju-intro-cta-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: left 0.75s ease;
+}
+
+.kju-intro-cta-btn:hover::after {
+  left: 140%;
+}
+
+.kju-intro-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -4px rgba(184, 134, 11, 0.55), 0 0 24px rgba(184, 134, 11, 0.35);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.kju-intro-cta-btn i {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kju-intro-cta-btn:hover i {
+  transform: translateX(4px);
+}
+
+.kju-intro-cta-btn:active {
+  transform: scale(0.98);
 }
 
 
@@ -1488,349 +2295,1750 @@ a {
 /* ==========================================================================
    06 — TESTIMONIALS SECTION (WARM WHITE)
    ========================================================================== */
+/* ==========================================================================
+   06 — TESTIMONIALS SECTION (WARM WHITE CANVAS)
+   ========================================================================== */
 .kju-testimonial-section {
-  padding: 96px 0 84px;
+  padding: 56px 0 52px;
   background: var(--kju-white);
   border-bottom: 1px solid var(--border-light);
+  position: relative;
+  overflow: hidden;
 }
 
-.kju-featured-testimonial-box {
-  background: var(--kju-white-card);
-  border-left: 6px solid var(--kju-authority-navy);
-  border-radius: var(--radius-xs);
-  padding: 36px 32px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.05);
-  margin-bottom: 40px;
+.kju-testimonial-header {
+  margin-bottom: 24px;
+  text-align: center;
 }
 
-.kju-featured-quote {
-  font-size: 1.35rem;
+.kju-testimonial-title {
+  font-family: var(--font-ui);
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #0D1821;
+  margin: 0 0 6px;
+  line-height: 1.15;
+}
+
+.kju-testimonial-subhead-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.kju-testimonial-kicker {
+  display: block;
+  font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 600;
-  color: var(--text-dark-primary);
-  line-height: 1.6;
-  margin-bottom: 16px;
+  font-size: 1.22rem;
+  font-weight: 500;
+  color: #B8860B;
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
 }
 
-.kju-featured-author-row {
+.kju-testimonial-subtext {
+  font-family: var(--font-ui);
+  font-size: 0.96rem;
+  color: rgba(13, 24, 33, 0.75);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   06 — 3D COVERFLOW / PERSPECTIVE DEPTH STACK
+   ========================================================================== */
+.kju-coverflow-wrapper {
+  position: relative;
+  max-width: 1140px;
+  margin: 8px auto 0;
+  padding: 0;
+}
+
+/* 3D Perspective Stage */
+.kju-coverflow-stage {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  min-height: 380px;
+  height: 380px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  outline: none;
+  padding: 0;
+}
+
+/* Radial Stage Atmosphere Spotlight */
+.kju-coverflow-stage::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 860px;
+  height: 360px;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 50%,
+    rgba(184, 134, 11, 0.08) 0%,
+    rgba(90, 122, 85, 0.04) 40%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Faint Floor Shadow / Horizon Line */
+.kju-coverflow-stage::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  height: 24px;
+  background: radial-gradient(ellipse 260px 12px at 50% 50%, rgba(0, 0, 0, 0.12) 0%, transparent 80%);
+  filter: blur(12px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 3D Preserved Track */
+.kju-coverflow-track {
+  transform-style: preserve-3d;
+  position: relative;
+  width: 100%;
+  height: 330px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Individual 3D Coverflow Cards */
+.kju-coverflow-card {
+  transform-style: preserve-3d;
+  position: absolute;
+  width: 92%;
+  max-width: 590px;
+  min-height: 285px;
+  background: #FFFFFF;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 100%);
+  border: 1px solid rgba(200, 188, 168, 0.45);
+  border-radius: 16px;
+  padding: 30px 32px 24px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  opacity: 0.35;
+  filter: blur(2.5px);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s ease,
+              filter 0.5s ease,
+              box-shadow 0.35s ease,
+              border-color 0.3s ease;
+}
+
+/* Active Center Card State */
+.kju-coverflow-card.is-active {
+  cursor: default;
+  opacity: 1;
+  filter: blur(0px);
+  border: 1px solid rgba(184, 134, 11, 0.45);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 35px -5px rgba(184, 134, 11, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Interactive Cursor-Follow Glare Overlay */
+.kju-card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+}
+
+/* Typography Watermark Quotation Mark (Top-Left 5% Opacity) */
+.kju-card-watermark {
+  position: absolute;
+  left: 20px;
+  top: 8px;
+  font-family: var(--font-serif);
+  font-size: 8.5rem;
+  line-height: 0.8;
+  color: rgba(13, 24, 33, 0.05);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+/* Card Header */
+.kju-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 3;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(200, 188, 168, 0.25);
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.kju-author-name {
+.kju-card-author-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.kju-card-author-name {
   font-family: var(--font-ui);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--kju-authority-navy-dark);
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -0.02em;
 }
 
-.kju-testimonial-filter-nav {
+/* Minimalist Micro-Indicator Verified Review Badge */
+.kju-verified-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #15803D;
+  background: rgba(22, 101, 52, 0.06);
+  border: 1px solid rgba(22, 101, 52, 0.22);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 6px;
+}
+
+.kju-verified-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #16A34A;
+  display: inline-block;
+  box-shadow: 0 0 5px rgba(22, 163, 74, 0.6);
+}
+
+/* Vector Stars Tinted in Warm Copper-Gold */
+.kju-stars {
+  color: #B8860B;
+  font-size: 0.84rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.kju-stars i {
+  filter: drop-shadow(0 1px 1px rgba(184, 134, 11, 0.15));
+}
+
+/* Authoritative Editorial Card Quote */
+.kju-card-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.22rem, 1.8vw, 1.34rem);
+  font-style: normal;
+  font-weight: 500;
+  color: #0D1821;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  position: relative;
+  z-index: 3;
+  letter-spacing: -0.01em;
+}
+
+/* Card Footer */
+.kju-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 3;
+  margin-top: auto;
+}
+
+/* Category Hashtag Pill */
+.kju-coverflow-topic-tag {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #5A7A55;
+  background: rgba(90, 122, 85, 0.08);
+  border: 1px solid rgba(90, 122, 85, 0.2);
+  border-radius: 4px;
+  padding: 6px 12px;
+}
+
+.kju-topic-hash {
+  color: #5A7A55;
+  font-weight: 800;
+  margin-right: 2px;
+}
+
+/* ==========================================================================
+   CUSTOM MECHANICAL TIMELINE SCRUBBER
+   ========================================================================== */
+.kju-coverflow-scrubber-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 32px 0 36px;
+  gap: 22px;
+  margin-top: 18px;
+  position: relative;
+  z-index: 10;
 }
 
-.kju-filter-tab-btn {
-  font-family: var(--font-ui);
-  font-size: 0.86rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 10px 20px;
-  border-radius: var(--radius-pill);
-  background: var(--kju-white-pure);
-  border: 1.5px solid var(--border-light);
-  color: var(--text-dark-secondary);
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+.kju-scrubber-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 188, 168, 0.6);
+  background: #FFFFFF;
+  color: #0D1821;
+  font-size: 0.9rem;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.kju-scrubber-nav-btn:hover {
+  background: #0D1821;
+  border-color: #0D1821;
+  color: #FFFFFF;
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(13, 24, 33, 0.2);
+}
+
+.kju-scrubber-center {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 8px;
 }
 
-.kju-filter-tab-btn:hover {
-  border-color: var(--kju-authority-navy);
+.kju-scrubber-track {
+  width: 300px;
+  height: 16px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.kju-scrubber-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(200, 188, 168, 0.4);
+  border-radius: 999px;
+  transform-origin: center center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kju-coverflow-wrapper.is-revealed .kju-scrubber-track::before {
+  animation: kjuTrackDraw 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes kjuTrackDraw {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.kju-scrubber-progress {
+  position: absolute;
+  left: 0;
+  height: 3px;
+  background: #B8860B;
+  border-radius: 999px;
+  pointer-events: none;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kju-scrubber-pill {
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 12px;
+  border-radius: 999px;
+  background: #B8860B;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.45);
+  transform: translate(-50%, -50%) scaleX(1);
+  transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.kju-scrubber-pill.is-sliding {
+  transform: translate(-50%, -50%) scaleX(1.35);
+}
+
+.kju-scrubber-readout {
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   color: var(--kju-authority-navy-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-}
-
-.kju-filter-tab-btn.is-active {
-  background: var(--kju-authority-navy);
-  border-color: var(--kju-authority-navy);
-  color: #FFFFFF;
-  box-shadow: 0 6px 18px rgba(31, 42, 68, 0.28);
-}
-
-.kju-reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-  margin-bottom: 28px;
-  transition: opacity 0.3s ease;
-}
-
-.kju-review-card {
-  background: var(--kju-white-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xs);
-  padding: 26px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, opacity 0.3s ease;
-}
-
-.kju-review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  border-color: rgba(31, 42, 68, 0.25);
-}
-
-.kju-review-card.is-filtered-out {
-  display: none !important;
-}
-
-.kju-review-meta-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
+  gap: 6px;
 }
 
-.kju-review-category-tag {
+.kju-readout-num {
   display: inline-block;
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--kju-authority-navy);
-  background: rgba(31, 42, 68, 0.08);
-  padding: 3px 10px;
-  border-radius: var(--radius-pill);
+  min-width: 18px;
+  text-align: center;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
 }
 
-.kju-review-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
+.kju-readout-num.is-flipping {
+  transform: translateY(-6px);
+  opacity: 0;
 }
 
-.kju-reviewer-name {
-  font-family: var(--font-ui);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-dark-primary);
+.kju-readout-sep {
+  color: rgba(200, 188, 168, 0.8);
 }
 
-.kju-review-badge {
-  font-family: var(--font-ui);
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: var(--kju-gold);
-  text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+.kju-readout-total {
+  color: rgba(13, 24, 33, 0.5);
 }
 
-.kju-stars {
-  color: #FFB800;
-  font-size: 0.85rem;
-  margin-bottom: 12px;
+/* Closing Section CTA Docking */
+.kju-testimonial-cta-wrap {
+  text-align: center;
+  margin-top: 34px;
 }
 
-.kju-review-quote {
-  font-size: 0.98rem;
-  font-style: italic;
-  color: var(--text-dark-secondary);
-  line-height: 1.6;
+.kju-btn-prestige {
+  background: linear-gradient(180deg, #E2AD27 0%, #B8860B 100%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 14px 30px -6px rgba(184, 134, 11, 0.42);
+  transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.kju-btn-prestige:hover {
+  background: linear-gradient(180deg, #ECC045 0%, #C49214 100%);
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 18px 36px -4px rgba(184, 134, 11, 0.52);
 }
 
 .kju-review-disclaimer {
   text-align: center;
-  font-size: 0.84rem;
-  color: var(--text-dark-muted);
-  margin-top: 20px;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 14px auto 0;
+}
+
+/* Responsive Adaptations */
+@media (max-width: 768px) {
+  .kju-testimonial-section {
+    padding: 44px 0 40px;
+  }
+  .kju-coverflow-stage {
+    min-height: 380px;
+    height: 380px;
+    overflow: hidden;
+  }
+  .kju-coverflow-card {
+    padding: 24px 22px 20px;
+    min-height: 270px;
+  }
+  .kju-card-quote {
+    font-size: 1.08rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  .kju-scrubber-track {
+    width: 220px;
+  }
+  .kju-testimonial-cta-wrap {
+    margin-top: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kju-testimonial-section {
+    padding: 38px 0 36px;
+  }
+  .kju-coverflow-stage {
+    min-height: 360px;
+    height: 360px;
+  }
+  .kju-coverflow-track {
+    height: 300px;
+  }
+  .kju-coverflow-card {
+    padding: 20px 18px 16px;
+    min-height: 250px;
+  }
+  .kju-card-quote {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .kju-scrubber-track {
+    width: 170px;
+  }
+  .kju-coverflow-scrubber-wrap {
+    gap: 12px;
+  }
+  .kju-sub-br {
+    display: none;
+  }
 }
 
 /* ==========================================================================
-   07 — PERSONALIZED STRATEGY & CONSULTATION (WARM WHITE)
+   07 — PERSONALIZED STRATEGY & CONSULTATION (SPLIT-SCREEN COMMAND TERMINAL)
    ========================================================================== */
 .kju-strategy-section {
-  padding: 96px 0 84px;
+  padding: 84px 0 80px;
   background: var(--kju-white-pure);
   border-bottom: 1px solid var(--border-light);
+  position: relative;
 }
 
-.kju-strategy-overview {
-  background: var(--kju-white-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  padding: 38px 34px;
-  max-width: 880px;
-  margin: 0 auto 56px;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+/* Split-Screen Command Center Layout */
+.kju-terminal-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.18fr;
+  gap: 36px;
+  align-items: start;
+  max-width: 1140px;
+  margin: 44px auto 0;
 }
 
-.kju-strategy-overview p {
-  font-size: 1.15rem;
-  color: var(--text-dark-primary);
+/* Left Panel: Authority Navy Command Card */
+.kju-dossier-panel {
+  background: var(--kju-authority-navy-dark);
+  background: linear-gradient(155deg, #1F2A44 0%, #162234 50%, #121C2B 100%);
+  border: 1px solid rgba(184, 134, 11, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 20px 40px rgba(0, 0, 0, 0.18);
+  border-radius: 14px;
+  padding: 38px 34px 34px;
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kju-dossier-panel > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Cursor-Tracking Dynamic Metallic Glow */
+.kju-dossier-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle 380px at var(--dossier-mouse-x, 50%) var(--dossier-mouse-y, 30%), rgba(184, 134, 11, 0.15) 0%, rgba(90, 122, 85, 0.08) 40%, transparent 65%);
+  opacity: var(--dossier-glare-opacity, 0);
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+/* Revealed State for Left Card */
+.kju-dossier-panel.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+  background: linear-gradient(155deg, #1F2A44 0%, #162234 50%, #121C2B 100%);
+}
+
+.kju-dossier-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #E2AD27;
   margin-bottom: 16px;
 }
 
-.kju-strategy-bullets {
-  list-style: none;
+.kju-dossier-kicker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #E2AD27;
+  box-shadow: 0 0 8px rgba(226, 173, 39, 0.8);
+}
+
+.kju-dossier-lead-text {
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: #E8E4DC;
+  margin: 0 0 24px;
+}
+
+.kju-dossier-lead-text strong {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.kju-dossier-checklist-title {
+  font-family: var(--font-ui);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.75);
+  margin-bottom: 16px;
+}
+
+/* The Living Checklist with 1.5px Vertical Line Track */
+.kju-dossier-timeline {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  text-align: left;
-  max-width: 520px;
-  margin: 22px auto;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding-left: 2px;
 }
 
-.kju-strategy-bullets li {
+.kju-dossier-timeline::before {
+  content: '';
+  position: absolute;
+  left: 13.25px;
+  top: 14px;
+  bottom: 14px;
+  width: 1.5px;
+  background: linear-gradient(180deg, #B8860B 0%, rgba(184, 134, 11, 0.45) 60%, rgba(184, 134, 11, 0.2) 100%);
+  z-index: 1;
+}
+
+.kju-dossier-step {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 1.08rem;
-  font-weight: 600;
-  color: var(--text-dark-primary);
+  gap: 14px;
+  z-index: 2;
 }
 
-.kju-strategy-bullets li i {
-  color: var(--kju-authority-navy);
+/* Copper-Gold Illuminated Check Indicator */
+.kju-step-tick {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: linear-gradient(140deg, #D4AF37 0%, #B8860B 70%, #8A6405 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  box-shadow: 0 0 14px rgba(184, 134, 11, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+  opacity: 0;
+  transform: scale(0.65);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
-/* Topics Grid */
-.kju-topics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+.kju-dossier-step:hover .kju-step-tick {
+  transform: scale(1.08);
+  box-shadow: 0 0 18px rgba(184, 134, 11, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
-.kju-topic-card {
-  background: var(--kju-white-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xs);
-  padding: 26px 22px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+/* Phase 2: Sequential Checklist Illumination */
+.kju-dossier-panel.is-revealed .kju-dossier-step:nth-child(1) .kju-step-tick {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.20s;
 }
 
-.kju-topic-title {
+.kju-dossier-panel.is-revealed .kju-dossier-step:nth-child(2) .kju-step-tick {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.35s;
+}
+
+.kju-dossier-panel.is-revealed .kju-dossier-step:nth-child(3) .kju-step-tick {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.50s;
+}
+
+.kju-step-label {
   font-family: var(--font-ui);
-  font-size: 1.12rem;
-  font-weight: 700;
-  color: var(--text-dark-primary);
-  margin-bottom: 10px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #F8F6F0;
+  line-height: 1.4;
+}
+
+/* The "And most importantly" Frame: Dedicated Accent Callout Plate */
+.kju-dossier-clincher {
+  background: rgba(184, 134, 11, 0.08);
+  border-left: 3px solid #B8860B;
+  border-top: 1px solid rgba(184, 134, 11, 0.2);
+  border-right: 1px solid rgba(184, 134, 11, 0.2);
+  border-bottom: 1px solid rgba(184, 134, 11, 0.2);
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-bottom: 28px;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.kju-topic-title i {
-  color: var(--kju-gold);
+.kju-clincher-prefix {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.75);
 }
 
-.kju-topic-desc {
+.kju-clincher-text {
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+
+.kju-dossier-cta-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 16px 24px;
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+}
+
+/* Right Panel: Integrated Syllabus Track */
+.kju-syllabus-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 20px;
+}
+
+/* Vertical Process Pipeline Guideline */
+.kju-syllabus-container::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 26px;
+  bottom: 26px;
+  width: 1.5px;
+  background: linear-gradient(180deg, #B8860B 0%, rgba(184, 134, 11, 0.35) 60%, rgba(184, 134, 11, 0.12) 100%);
+  border-radius: 1px;
+}
+
+/* Pipeline Connector Tether for Each Card */
+.kju-syllabus-row::after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 32px;
+  width: 17px;
+  height: 1.5px;
+  background: rgba(184, 134, 11, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kju-syllabus-row:hover::after {
+  left: -28px;
+  width: 28px;
+  background: #B8860B;
+}
+
+/* Syllabus Card Surface Craft */
+.kju-syllabus-row {
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 188, 168, 0.5);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  border-radius: 12px;
+  padding: 22px 26px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease,
+              opacity 0.3s ease,
+              filter 0.3s ease,
+              border-color 0.3s ease;
+}
+
+/* 3px Vertical Accent Bar in KJU Gold (#B8860B) on Left Edge */
+.kju-syllabus-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 12px 0 0 12px;
+  background: #B8860B;
+  opacity: 0;
+  transform: scaleY(0.4);
+  transform-origin: center;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The Left Numeral Spine */
+.kju-syllabus-index {
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, 'Roboto Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #B8860B;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 8px 10px;
+  background: rgba(184, 134, 11, 0.06);
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  border-radius: 8px;
+  flex-shrink: 0;
+  min-width: 44px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.kju-syllabus-body {
+  flex: 1;
+}
+
+/* Typographic Contrast */
+.kju-syllabus-heading {
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  margin: 0 0 6px;
+}
+
+.kju-syllabus-desc {
+  font-family: var(--font-body);
   font-size: 0.96rem;
-  color: var(--text-dark-secondary);
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Focus Spotlight Micro-Interactions */
+.kju-syllabus-row:hover,
+.kju-syllabus-row:focus-visible {
+  transform: translateX(8px);
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.08);
+  border-color: rgba(184, 134, 11, 0.4);
+  outline: none;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.kju-syllabus-row:hover::before,
+.kju-syllabus-row:focus-visible::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.kju-syllabus-row:hover .kju-syllabus-index {
+  background: rgba(184, 134, 11, 0.12);
+  border-color: rgba(184, 134, 11, 0.45);
+  box-shadow: 0 0 10px rgba(184, 134, 11, 0.2);
+}
+
+/* Siblings Dim Effect */
+@media (hover: hover) {
+  .kju-syllabus-container:hover .kju-syllabus-row:not(:hover) {
+    opacity: 0.45;
+    filter: blur(0.5px);
+    transition: all 0.3s ease;
+  }
+}
+
+/* Phase 3: Entrance Choreography Cascade */
+.kju-syllabus-container .kju-syllabus-row {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s ease,
+              box-shadow 0.3s ease,
+              filter 0.3s ease,
+              border-color 0.3s ease;
+}
+
+.kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(1) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.06s;
+}
+
+.kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(2) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.12s;
+}
+
+.kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(3) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.18s;
+}
+
+.kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(4) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.24s;
+}
+
+.kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(5) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.30s;
+}
+
+.kju-syllabus-container.is-revealed .kju-syllabus-row:hover,
+.kju-syllabus-container.is-revealed .kju-syllabus-row:focus-visible {
+  transform: translateX(8px);
+  transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kju-dossier-panel,
+  .kju-step-tick,
+  .kju-syllabus-container .kju-syllabus-row {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Responsive Terminal Adaptations */
+@media (max-width: 960px) {
+  .kju-terminal-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 36px;
+  }
+  .kju-dossier-panel {
+    position: static;
+    padding: 30px 24px 28px;
+  }
+  .kju-syllabus-container {
+    padding-left: 16px;
+  }
+  .kju-syllabus-row {
+    padding: 18px 20px;
+    gap: 16px;
+  }
+  .kju-syllabus-heading {
+    font-size: 1.05rem;
+  }
+  .kju-syllabus-desc {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kju-dossier-panel {
+    padding: 24px 18px 22px;
+  }
+  .kju-dossier-lead-text {
+    font-size: 0.98rem;
+  }
+  .kju-step-label {
+    font-size: 0.9rem;
+  }
+  .kju-syllabus-container {
+    padding-left: 0;
+  }
+  .kju-syllabus-container::before,
+  .kju-syllabus-row::after {
+    display: none;
+  }
+  .kju-syllabus-row {
+    padding: 16px 16px;
+    gap: 12px;
+  }
+  .kju-syllabus-index {
+    min-width: 38px;
+    padding: 6px 8px;
+    font-size: 1rem;
+  }
 }
 
 /* ==========================================================================
-   08 — EDUCATION IS KEY: 5 PILLARS (AUTHORITY NAVY)
+   08 — EDUCATION IS KEY: HORIZON BLADES ACCORDION
    ========================================================================== */
 .kju-pillars-section {
-  padding: 96px 0;
+  padding: 96px 0 100px;
   background-color: var(--kju-authority-navy);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Atmospheric noise layer */
+.kju-pillars-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.kju-pillars-section .kju-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* === SECTION HEADER === */
+.kju-pillars-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 52px;
+}
+
+.kju-pillar-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #E2AD27;
+  background: rgba(184, 134, 11, 0.1);
+  border: 1px solid rgba(184, 134, 11, 0.35);
+  padding: 5px 16px;
+  border-radius: 999px;
+  margin-bottom: 22px;
+}
+
+.kju-pillar-hero-dot {
+  font-size: 0.78rem;
+  color: #E2AD27;
+}
+
+.kju-pillars-title {
+  color: #FFFFFF !important;
+  font-size: clamp(1.75rem, 3.5vw, 2.55rem);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.kju-pillars-subhead {
+  color: rgba(232, 228, 220, 0.85) !important;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* "EDUCATION IS KEY." — Editorial Gold Underline Treatment */
+.kju-pillars-motto {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #E2AD27;
+  letter-spacing: 0.04em;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.kju-pillars-motto::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #B8860B 30%, #E2AD27 60%, transparent 100%);
+  border-radius: 1px;
+}
+
+/* =========================================================
+   SECTION 10 — FLIPPABLE CARD DECK (5 PILLARS OF KJU)
+   ========================================================= */
+.horizon-track.kju-card-deck {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  border: none;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.horizon-track.kju-card-deck.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Deck Toolbar (Hint & Multi-Card Flip Action) --- */
+.kju-deck-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(19, 29, 45, 0.65);
+  border: 1px solid rgba(184, 134, 11, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.kju-deck-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #D4AF37;
+  text-transform: uppercase;
+}
+
+.kju-deck-hint i {
+  font-size: 0.85rem;
+  color: #D4AF37;
+  animation: kjuDeckIconSpin 6s linear infinite;
+}
+
+@keyframes kjuDeckIconSpin {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.kju-deck-flip-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(26, 40, 62, 0.85);
+  border: 1px solid rgba(184, 134, 11, 0.45);
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #E8E4DC;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.kju-deck-flip-all-btn i {
+  font-size: 0.8rem;
+  color: #D4AF37;
+  transition: transform 0.3s ease;
+}
+
+.kju-deck-flip-all-btn:hover {
+  background: rgba(184, 134, 11, 0.18);
+  border-color: #D4AF37;
+  color: #FFFFFF;
+  box-shadow: 0 6px 18px rgba(184, 134, 11, 0.25);
+  transform: translateY(-1px);
+}
+
+.kju-deck-flip-all-btn:hover i {
+  transform: scale(1.15);
+}
+
+/* --- Deck Grid (5 Cards Side-by-Side) --- */
+.kju-deck-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+/* --- Individual Flip Card Container --- */
+.kju-flip-card {
+  perspective: 1200px;
+  height: 420px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.kju-flip-card:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 4px;
+  border-radius: 16px;
+}
+
+/* --- 3D Flipping Stage Inner Box --- */
+.kju-flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  border-radius: 16px;
+}
+
+/* Trigger flip on desktop hover */
+.kju-flip-card:hover .kju-flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Trigger flip on click/touch/toggle */
+.kju-flip-card.is-flipped .kju-flip-card-inner {
+  transform: rotateY(180deg) !important;
+}
+
+/* Global flip-all staggered wave */
+.horizon-track.kju-card-deck.is-all-flipped .kju-flip-card:nth-child(1) .kju-flip-card-inner {
+  transform: rotateY(180deg);
+  transition-delay: 0.04s;
+}
+.horizon-track.kju-card-deck.is-all-flipped .kju-flip-card:nth-child(2) .kju-flip-card-inner {
+  transform: rotateY(180deg);
+  transition-delay: 0.1s;
+}
+.horizon-track.kju-card-deck.is-all-flipped .kju-flip-card:nth-child(3) .kju-flip-card-inner {
+  transform: rotateY(180deg);
+  transition-delay: 0.16s;
+}
+.horizon-track.kju-card-deck.is-all-flipped .kju-flip-card:nth-child(4) .kju-flip-card-inner {
+  transform: rotateY(180deg);
+  transition-delay: 0.22s;
+}
+.horizon-track.kju-card-deck.is-all-flipped .kju-flip-card:nth-child(5) .kju-flip-card-inner {
+  transform: rotateY(180deg);
+  transition-delay: 0.28s;
+}
+
+/* --- Common Face Styles --- */
+.kju-flip-card-front,
+.kju-flip-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px 18px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Subtle corner accent brackets (Authority Docket feel) */
+.kju-card-corner-accent {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.kju-card-corner-accent.top-left {
+  top: 7px;
+  left: 7px;
+  border-top: 1.5px solid rgba(212, 175, 55, 0.65);
+  border-left: 1.5px solid rgba(212, 175, 55, 0.65);
+}
+
+.kju-card-corner-accent.bottom-right {
+  bottom: 7px;
+  right: 7px;
+  border-bottom: 1.5px solid rgba(212, 175, 55, 0.65);
+  border-right: 1.5px solid rgba(212, 175, 55, 0.65);
+}
+
+/* =========================================================
+   FRONT FACE — Authority Navy Docket Card
+   ========================================================= */
+.kju-flip-card-front {
+  transform: rotateY(0deg);
+  background: linear-gradient(168deg, #1A273C 0%, #101927 100%);
+  border: 1px solid rgba(184, 134, 11, 0.32);
+  box-shadow: 0 12px 28px -6px rgba(5, 10, 18, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.kju-flip-card:hover .kju-flip-card-front {
+  border-color: rgba(212, 175, 55, 0.7);
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(184, 134, 11, 0.2);
+}
+
+/* Watermark Numeral in Background */
+.kju-card-watermark {
+  position: absolute;
+  right: 10px;
+  top: 36px;
+  font-family: var(--font-display);
+  font-size: 4.8rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(184, 134, 11, 0.06);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+/* Card Header */
+.kju-card-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kju-card-idx {
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #D4AF37;
+  text-transform: uppercase;
+}
+
+.kju-card-pillar-tag {
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(232, 228, 220, 0.75);
+  background: rgba(184, 134, 11, 0.12);
+  border: 1px solid rgba(184, 134, 11, 0.28);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+/* Icon Container & Badge */
+.kju-card-icon-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 14px 0 10px;
+}
+
+.kju-card-icon-badge {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(26, 40, 62, 0.9) 0%, rgba(13, 22, 34, 0.95) 100%);
+  border: 1.5px solid rgba(184, 134, 11, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #D4AF37;
+  font-size: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+}
+
+.kju-flip-card:hover .kju-card-icon-badge {
+  transform: scale(1.06);
+  border-color: #D4AF37;
   color: #FFFFFF;
 }
 
-.kju-pillar-hero-stat {
-  font-family: var(--font-display);
-  font-size: 2.4rem;
-  color: #FFFFFF;
-  letter-spacing: 0.05em;
+/* Front Content */
+.kju-card-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.kju-card-kicker {
+  display: block;
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #D4AF37;
+  text-transform: uppercase;
   margin-bottom: 8px;
 }
 
-.kju-pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 22px;
-  margin-top: 44px;
-}
-
-.kju-pillar-card {
-  background: var(--kju-authority-navy-dark);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius-xs);
-  padding: 30px 24px;
-  transition: transform var(--transition-normal);
-}
-
-.kju-pillar-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--kju-gold);
-}
-
-.kju-pillar-title {
+.kju-card-title {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.08rem;
+  font-weight: 900;
+  line-height: 1.3;
   color: #FFFFFF;
-  margin-bottom: 10px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0;
 }
 
-.kju-pillar-desc {
-  font-size: 0.96rem;
-  color: var(--kju-white);
-  line-height: 1.6;
+/* Card Footer */
+.kju-card-footer {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(184, 134, 11, 0.2);
+  padding-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.kju-card-action {
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(232, 228, 220, 0.7);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.kju-card-action i {
+  font-size: 0.72rem;
+  color: #D4AF37;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kju-flip-card:hover .kju-card-action {
+  color: #FFFFFF;
+}
+
+.kju-flip-card:hover .kju-card-action i {
+  transform: rotate(180deg);
+}
+
+/* =========================================================
+   BACK FACE — Institutional Inspection Docket
+   ========================================================= */
+.kju-flip-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(168deg, #1E2D44 0%, #121E31 100%);
+  border: 1.5px solid #D4AF37;
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.75), inset 0 2px 0 #D4AF37, 0 0 22px rgba(184, 134, 11, 0.25);
+}
+
+.kju-card-reticle {
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #D4AF37;
+  text-transform: uppercase;
+}
+
+.kju-card-back-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 10px 0;
+}
+
+.kju-card-back-kicker {
+  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #D4AF37;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.kju-card-back-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.25;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.kju-card-gold-rule {
+  width: 32px;
+  height: 2px;
+  background: #D4AF37;
+  border-radius: 1px;
+  margin-bottom: 12px;
+}
+
+.kju-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  line-height: 1.62;
+  color: #E8E4DC;
+  margin: 0;
+}
+
+.kju-card-hallmark {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #D4AF37;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   RESPONSIVE — Flippable Card Deck
+   ========================================================= */
+@media (max-width: 1100px) {
+  .kju-deck-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .kju-flip-card:nth-child(4) {
+    grid-column: 1 / 2;
+  }
+  .kju-flip-card:nth-child(5) {
+    grid-column: 2 / 3;
+  }
+  .kju-flip-card {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .kju-deck-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .kju-deck-flip-all-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .kju-deck-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .kju-flip-card:nth-child(4) {
+    grid-column: auto;
+  }
+  .kju-flip-card:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: 380px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .kju-flip-card {
+    height: 390px;
+  }
+}
+
+@media (max-width: 520px) {
+  .kju-deck-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .kju-flip-card:nth-child(5) {
+    max-width: 100%;
+  }
+  .kju-flip-card {
+    height: 360px;
+  }
+  .kju-card-watermark {
+    font-size: 3.8rem;
+    top: 30px;
+  }
+  .kju-card-title,
+  .kju-card-back-title {
+    font-size: 1rem;
+  }
+  .kju-card-desc {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .horizon-track.kju-card-deck,
+  .kju-flip-card-inner,
+  .kju-deck-hint i {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
 
 /* ==========================================================================
-   09 — HOW DOES IT WORK? (WARM WHITE HORIZONTAL TIMELINE)
+   09 — HOW DOES IT WORK? (SEQUENTIAL PROTOCOL PIPELINE)
    ========================================================================== */
 .kju-how-section {
-  padding: 96px 0 84px;
+  padding: 96px 0 88px;
   background: var(--kju-white);
   border-bottom: 1px solid var(--border-light);
-}
-
-.kju-timeline-container {
   position: relative;
-  margin-top: 36px;
 }
 
-.kju-timeline-progress-track {
+/* Editorial Header System for How Does It Work */
+.kju-how-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 16px;
+}
+
+.kju-section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #B8860B;
+  padding: 5px 14px;
+  background: rgba(184, 134, 11, 0.08);
+  border: 1px solid rgba(184, 134, 11, 0.28);
+  border-radius: 999px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.06);
+}
+
+.kju-kicker-hash {
+  color: #B8860B;
+  opacity: 0.8;
+}
+
+.kju-how-title {
+  font-family: 'Plus Jakarta Sans', var(--font-ui), sans-serif;
+  font-size: clamp(2.1rem, 4.2vw, 2.85rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.kju-how-title .how-title-lead {
+  color: #0D1821;
+}
+
+.kju-how-title .how-title-accent {
+  color: #B8860B;
+  display: inline-block;
+}
+
+.kju-how-subhead {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-dark-secondary, #4A5568);
+  line-height: 1.6;
+  max-width: 580px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+.kju-pipeline-container {
+  position: relative;
+  margin-top: 50px;
+}
+
+/* Dynamic Sequential Progression Spine (Top Track) */
+.pipeline-spine-wrapper {
   position: absolute;
-  top: 56px;
-  left: 10%;
-  right: 10%;
-  height: 4px;
-  background: rgba(31, 42, 68, 0.12);
+  top: 24px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
   z-index: 1;
-  border-radius: var(--radius-pill);
+  pointer-events: none;
 }
 
-.kju-timeline-progress-fill {
+.pipeline-spine-base {
+  position: absolute;
+  inset: 0;
+  background: rgba(200, 188, 168, 0.4);
+  border-radius: 2px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kju-pipeline-container.is-revealed .pipeline-spine-base {
+  transform: scaleX(1);
+}
+
+.pipeline-spine-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--kju-authority-navy) 0%, var(--kju-gold) 100%);
-  border-radius: var(--radius-pill);
-  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 0 12px var(--kju-gold-glow);
+  width: var(--pipeline-fill, 0%);
+  background: linear-gradient(90deg, #B8860B 0%, #E2AD27 100%);
+  box-shadow: 0 0 12px rgba(184, 134, 11, 0.6);
+  border-radius: 2px;
+  transition: width 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.kju-timeline-track {
+/* 4-Step Grid */
+.kju-pipeline-track {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
@@ -1838,347 +4046,836 @@ a {
   z-index: 2;
 }
 
-.kju-how-card-step {
-  background: var(--kju-white-card);
-  border: 1.5px solid var(--border-light);
-  border-radius: var(--radius-xs);
-  padding: 30px 22px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+/* Protocol Step Container & Scroll Reveal */
+.pipeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.35s ease;
+}
+
+.kju-pipeline-container.is-revealed .pipeline-step {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kju-pipeline-container.is-revealed .pipeline-step:nth-child(1) {
+  transition-delay: 0.15s;
+}
+.kju-pipeline-container.is-revealed .pipeline-step:nth-child(2) {
+  transition-delay: 0.27s;
+}
+.kju-pipeline-container.is-revealed .pipeline-step:nth-child(3) {
+  transition-delay: 0.39s;
+}
+.kju-pipeline-container.is-revealed .pipeline-step:nth-child(4) {
+  transition-delay: 0.51s;
+}
+
+/* Precision Terminal Node Badges */
+.pipeline-node-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
   position: relative;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 3;
 }
 
-.kju-how-card-step:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-}
-
-.kju-step-badge {
-  width: 52px;
-  height: 52px;
+.pipeline-node {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: var(--kju-white-pure);
-  border: 2px solid var(--kju-authority-navy-light);
+  padding: 3px;
+  background: #FAF8F5;
+  border: 1px solid rgba(184, 134, 11, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
-  transition: all 0.4s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
 }
 
-.kju-step-badge .kju-step-num {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: var(--kju-authority-navy-dark);
+.pipeline-node-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--kju-authority-navy-dark, #121C2B);
+  color: #E8D8C8;
+  font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
   line-height: 1;
-  margin-bottom: 0;
+  transition: all 0.35s ease;
+}
+
+.pipeline-stage-tag {
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  color: #8A92A0;
+  text-transform: uppercase;
   transition: color 0.3s ease;
 }
 
-.kju-how-card-step.is-active-step {
-  border-color: rgba(184, 134, 11, 0.5);
-  box-shadow: 0 8px 24px rgba(184, 134, 11, 0.12);
+/* Active & Illuminated Node State */
+.pipeline-step.is-active .pipeline-node,
+.pipeline-step.is-illuminated .pipeline-node,
+.pipeline-step:hover .pipeline-node {
+  border-color: #B8860B;
+  box-shadow: 0 0 16px rgba(184, 134, 11, 0.45);
+  transform: scale(1.06);
 }
 
-.kju-how-card-step.is-active-step .kju-step-badge {
-  background: var(--kju-authority-navy);
-  border-color: var(--kju-gold);
-  box-shadow: 0 0 18px var(--kju-gold-glow);
+.pipeline-step.is-active .pipeline-node-num,
+.pipeline-step.is-illuminated .pipeline-node-num,
+.pipeline-step:hover .pipeline-node-num {
+  background: var(--kju-authority-navy, #1F2A44);
+  color: #E2AD27;
 }
 
-.kju-how-card-step.is-active-step .kju-step-num {
-  color: var(--kju-gold);
+.pipeline-step.is-active .pipeline-stage-tag,
+.pipeline-step.is-illuminated .pipeline-stage-tag,
+.pipeline-step:hover .pipeline-stage-tag {
+  color: #B8860B;
 }
 
-.kju-step-heading {
-  font-family: var(--font-ui);
-  font-size: 1.12rem;
+/* Proportions & Card Surface Craft */
+.pipeline-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: var(--radius-xs, 6px);
+  padding: 28px 24px;
+  box-shadow: 0 4px 14px rgba(31, 42, 68, 0.04);
+  border: 1px solid rgba(200, 188, 168, 0.5);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease,
+              opacity 0.35s ease,
+              filter 0.35s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Step 01 (Starting Step Surface Highlight) */
+.pipeline-step.is-start .pipeline-card {
+  background: #FAF8F5;
+  box-shadow: inset 0 2px 0 #B8860B, 0 4px 16px rgba(184, 134, 11, 0.06);
+  border-color: rgba(184, 134, 11, 0.35);
+}
+
+/* Cards 02 & 03 (Clean Neutral Bridge) */
+.pipeline-step:not(.is-start):not(.is-destination) .pipeline-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 188, 168, 0.5);
+}
+
+/* Card 04 (Destination / Outcome Accent) */
+.pipeline-step.is-destination .pipeline-card {
+  background: #FFFFFF;
+  box-shadow: inset 0 2px 0 var(--kju-authority-navy, #1F2A44), 0 4px 16px rgba(31, 42, 68, 0.06);
+  border-color: rgba(31, 42, 68, 0.3);
+}
+
+/* Card Header Meta */
+.pipeline-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 8px;
+  min-height: 22px;
+}
+
+.pipeline-step-label {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--text-dark-primary);
+  letter-spacing: 0.1em;
+  color: rgba(31, 42, 68, 0.5);
+  text-transform: uppercase;
+}
+
+.pipeline-status-pill {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.pipeline-status-pill.is-start {
+  background: rgba(184, 134, 11, 0.12);
+  color: #B8860B;
+  border: 1px solid rgba(184, 134, 11, 0.3);
+}
+
+.pipeline-status-pill.is-destination {
+  background: rgba(31, 42, 68, 0.08);
+  color: var(--kju-authority-navy, #1F2A44);
+  border: 1px solid rgba(31, 42, 68, 0.22);
+}
+
+/* Step Headings & Copy */
+.kju-step-heading {
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-dark-primary, #121C2B);
   margin-bottom: 10px;
 }
 
 .kju-step-copy {
-  font-size: 0.94rem;
-  color: var(--text-dark-secondary);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.92rem;
+  color: var(--text-dark-secondary, #4A5568);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Interactive Hover Elevation & Focus */
+.pipeline-step:hover .pipeline-card {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(184, 134, 11, 0.14), 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: rgba(184, 134, 11, 0.6);
+}
+
+/* Sibling Dimming for Sequence Integrity */
+.pipeline-step.is-dimmed {
+  opacity: 0.45;
+  filter: grayscale(25%);
+}
+
+/* Coordinated CTA Button Pulse on Card 01 */
+@keyframes kjuStepPulse {
+  0% {
+    transform: translateY(0);
+    box-shadow: inset 0 2px 0 #B8860B, 0 4px 16px rgba(184, 134, 11, 0.06);
+    border-color: rgba(184, 134, 11, 0.35);
+  }
+  100% {
+    transform: translateY(-6px);
+    box-shadow: inset 0 2px 0 #B8860B, 0 18px 40px rgba(184, 134, 11, 0.25);
+    border-color: #B8860B;
+  }
+}
+
+.pipeline-step.is-btn-pulsing .pipeline-card {
+  animation: kjuStepPulse 0.9s infinite alternate ease-in-out;
+}
+
+.pipeline-step.is-btn-pulsing .pipeline-node {
+  border-color: #B8860B;
+  box-shadow: 0 0 18px rgba(184, 134, 11, 0.5);
+  transform: scale(1.08);
 }
 
 /* ==========================================================================
-   10 — WHY CHOOSE KJU? (AUTHORITY NAVY EDITORIAL)
+   10 — WHY CHOOSE KJU? (WARM CREAM BENTO GRID)
    ========================================================================== */
 .kju-why-section {
-  padding: 96px 0;
-  background-color: var(--kju-authority-navy);
-  color: #FFFFFF;
+  padding: 104px 0 96px;
+  background-color: var(--kju-white);
+  color: var(--text-dark-primary);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
+.kju-why-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 52px;
+}
+
+.kju-section-kicker.is-light.is-pill-solid {
+  background: #FFFFFF;
+  border: 1px solid rgba(184, 134, 11, 0.4);
+  color: var(--kju-gold);
+  padding: 5px 16px;
+  border-radius: 999px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  letter-spacing: 0.25em;
+}
+
+.kju-kicker-dash {
+  color: var(--kju-gold);
+  opacity: 0.85;
+  margin: 0 2px;
+}
+
+.kju-why-title {
+  font-family: 'Plus Jakarta Sans', var(--font-ui), sans-serif;
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--kju-authority-navy-dark, #121C2B);
+  line-height: 1.16;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+
+/* 3-Column Asymmetrical Command Grid */
 .kju-why-editorial-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: 1.28fr 1fr 1fr;
+  grid-auto-rows: auto;
+  gap: 22px;
+  position: relative;
 }
 
+/* Solid Architectural Plates (No Frosted Glass) */
 .kju-why-card {
-  background: var(--kju-authority-navy-dark);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius-xs);
-  padding: 30px 24px;
+  background: #172236;
+  border: 1px solid rgba(200, 188, 168, 0.2);
+  border-radius: var(--radius-xs, 6px);
+  padding: 28px 24px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 10px 28px rgba(10, 16, 26, 0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+  cursor: pointer;
+  outline: none;
 }
 
+/* Wide Span for Tile 05 (Support) across columns 2 & 3 */
+.kju-why-card.is-span-2 {
+  grid-column: 2 / span 2;
+  grid-row: 3;
+}
+
+/* Hero Primary Philosophy Card (Spans all 3 rows in Column 1) */
 .kju-why-card.is-featured {
-  grid-row: span 2;
-  background: #000000;
-  border-color: var(--border-gold);
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  background: linear-gradient(170deg, #263858 0%, #152033 100%);
+  border: 1px solid rgba(184, 134, 11, 0.45);
+  box-shadow: 0 20px 48px -12px rgba(10, 16, 26, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 38px 32px;
 }
 
-.kju-why-card-title {
-  font-family: var(--font-ui);
-  font-size: 1.2rem;
+/* Hero Card Philosophy Content Elements */
+.kju-philosophy-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.kju-philosophy-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--kju-gold);
+  padding: 4px 10px;
+  background: rgba(184, 134, 11, 0.12);
+  border: 1px solid rgba(184, 134, 11, 0.32);
+  border-radius: 4px;
+  margin-bottom: 22px;
+}
+
+.kju-philosophy-title {
+  font-family: 'Plus Jakarta Sans', var(--font-display), sans-serif;
+  font-size: clamp(2rem, 2.7vw, 2.5rem);
+  font-weight: 900;
   color: #FFFFFF;
-  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.kju-philosophy-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: rgba(240, 236, 228, 0.96);
+  margin: 0;
+}
+
+/* Embossed Gold Accent Bar at Base of Hero Card */
+.kju-philosophy-seal-bar {
+  margin-top: 28px;
+  padding: 14px 18px;
+  background: rgba(184, 134, 11, 0.12);
+  border-left: 3px solid var(--kju-gold);
+  border-top: 1px solid rgba(184, 134, 11, 0.25);
+  border-right: 1px solid rgba(184, 134, 11, 0.25);
+  border-bottom: 1px solid rgba(184, 134, 11, 0.25);
+  border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--kju-gold);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
-.kju-why-card-title i {
+.kju-philosophy-seal-bar i {
+  font-size: 0.95rem;
   color: var(--kju-gold);
 }
 
+/* Supporting Bento Tile Header & Badges */
+.kju-why-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.kju-why-index {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--kju-gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.kju-why-icon-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: rgba(184, 134, 11, 0.12);
+  border: 1px solid rgba(184, 134, 11, 0.32);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kju-gold);
+  font-size: 0.95rem;
+  transition: transform 0.3s ease, filter 0.3s ease, border-color 0.3s ease;
+}
+
+/* High-Contrast Tile Typography */
+.kju-why-card-title {
+  font-family: var(--font-ui);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 2;
+}
+
 .kju-why-card-desc {
-  font-size: 0.98rem;
-  color: var(--kju-white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(232, 228, 220, 0.88);
   line-height: 1.65;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Solid Mechanical Hover (No Transparency Shifts, Siblings Stay 1.0) */
+.kju-why-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(184, 134, 11, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 16px 36px rgba(10, 16, 26, 0.45);
+}
+
+.kju-why-card:hover .kju-why-icon-badge {
+  filter: drop-shadow(0 0 6px rgba(184, 134, 11, 0.5));
+  border-color: rgba(184, 134, 11, 0.55);
 }
 
 /* ==========================================================================
-   11 — MEET KENNY JOHNSON (STRATEGIC BLACK AUTHORITY MOMENT)
+   11 — MEET KENNY JOHNSON (ARCHITECTURAL EXECUTIVE EDITORIAL SPREAD)
    ========================================================================== */
 .kju-meet-section {
-  padding: 100px 0;
-  background-color: var(--kju-black);
+  padding: 110px 0 105px;
+  background: radial-gradient(circle at 35% 35%, rgba(184, 134, 11, 0.07) 0%, transparent 65%), #0F1A24;
   color: #FFFFFF;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(200, 188, 168, 0.15);
+  border-bottom: 1px solid rgba(200, 188, 168, 0.15);
 }
 
-.kju-meet-box {
-  background: #0C1017;
-  border: 1.5px solid var(--border-gold);
-  border-radius: var(--radius-sm);
-  padding: 56px 48px;
-  max-width: 1060px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
-}
-
-.kju-meet-grid {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.kju-founder-card-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.kju-founder-ambient-glow {
+.kju-meet-section::before {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140%;
-  height: 140%;
-  background: radial-gradient(circle, rgba(184, 134, 11, 0.45) 0%, rgba(31, 42, 68, 0.5) 45%, transparent 70%);
-  filter: blur(60px);
-  opacity: 0.85;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 134, 11, 0.35) 30%, rgba(184, 134, 11, 0.65) 50%, rgba(184, 134, 11, 0.35) 70%, transparent 100%);
   z-index: 1;
 }
 
-.kju-founder-card {
+.kju-meet-editorial-spread {
+  display: grid;
+  grid-template-columns: 4.8fr 7.2fr;
+  gap: clamp(40px, 5vw, 68px);
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
   position: relative;
   z-index: 2;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  border: 2px solid var(--border-gold);
-  background: #121722;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px var(--kju-gold-glow);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.kju-founder-card:hover {
-  border-color: #E2AD27;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7), 0 0 35px rgba(184, 134, 11, 0.4);
+/* --- Left Column: Architectural Portrait Frame --- */
+.kju-founder-dossier-card {
+  position: relative;
+  background: #141E2E;
+  border: 1px solid rgba(184, 134, 11, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+              0 24px 60px -12px rgba(0, 0, 0, 0.55);
+  transform-style: preserve-3d;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kju-founder-dossier-card:hover {
+  border-color: rgba(184, 134, 11, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+              0 28px 70px -10px rgba(0, 0, 0, 0.65),
+              0 0 30px rgba(184, 134, 11, 0.15);
+}
+
+/* Slide in from left entrance */
+.kju-founder-dossier-card.kju-reveal {
+  transform: translateX(-30px);
+  opacity: 0;
+}
+
+.kju-founder-dossier-card.kju-reveal.is-revealed {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.kju-founder-frame {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.kju-founder-photo-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #141E2E;
 }
 
 .kju-founder-photo {
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1;
+  display: block;
   object-fit: cover;
   object-position: top center;
-  display: block;
-  transition: transform var(--transition-normal);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.kju-founder-card:hover .kju-founder-photo {
-  transform: scale(1.03);
+.kju-founder-dossier-card:hover .kju-founder-photo {
+  transform: scale(1.02);
 }
 
-.kju-founder-badge-overlay {
+/* Seamless vignette fade dissolving grey background into dark frame */
+.kju-founder-photo-vignette {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 16px 18px 12px;
-  background: linear-gradient(180deg, transparent 0%, rgba(10, 13, 10, 0.88) 40%, rgba(10, 13, 10, 0.98) 100%);
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, #141E2E 0%, rgba(20, 30, 46, 0.85) 14%, rgba(20, 30, 46, 0.2) 32%, transparent 55%),
+              linear-gradient(to bottom, rgba(20, 30, 46, 0.35) 0%, transparent 18%);
+}
+
+.kju-founder-info-plate {
+  padding: 22px 24px 24px;
+  background: #141E2E;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.kju-founder-name-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   text-align: left;
 }
 
 .kju-founder-name {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  letter-spacing: 0.04em;
-  color: #FFFFFF;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: #E8E4DC;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .kju-founder-role {
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.18em;
   font-weight: 700;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--kju-gold);
+  color: var(--kju-gold, #B8860B);
 }
 
-.kju-meet-content {
+/* Architectural Utility Links Row */
+.kju-founder-directory-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
+  margin-top: 2px;
+}
+
+.kju-directory-link {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(232, 228, 220, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.kju-directory-link:hover {
+  color: var(--kju-gold, #B8860B);
+  transform: translateX(2px);
+}
+
+/* --- Right Column: The Academy Narrative --- */
+.kju-meet-narrative {
+  display: flex;
+  flex-direction: column;
   text-align: left;
 }
 
-.kju-meet-content h2 {
-  color: #FFFFFF;
-  margin-bottom: 6px;
+.kju-meet-title-lockup {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 18px;
+  margin-bottom: 24px;
 }
 
-.kju-meet-taglines {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 10px;
-  margin: 20px 0;
-  font-family: var(--font-ui);
-  font-size: 0.88rem;
+.kju-meet-headline {
+  font-family: var(--font-ui), sans-serif !important;
+  font-size: clamp(2.5rem, 4vw, 3.4rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.05 !important;
+  text-transform: uppercase !important;
+  color: #FFFFFF !important;
+  margin: 0 0 8px !important;
+  display: block;
+}
+
+.kju-meet-role-subtitle {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
   font-weight: 700;
-  color: var(--kju-gold);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--kju-gold, #B8860B);
+  margin: 0;
 }
 
-.kju-meet-taglines span {
-  background: rgba(184, 134, 11, 0.12);
-  padding: 7px 16px;
-  border-radius: var(--radius-pill);
-  border: 1px solid rgba(184, 134, 11, 0.35);
-  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-  cursor: default;
-  display: inline-flex;
-  align-items: center;
+.kju-meet-belief-block {
+  margin-bottom: 22px;
 }
 
-.kju-meet-taglines span:hover {
-  background: rgba(184, 134, 11, 0.28);
-  border-color: var(--kju-gold);
+.kju-meet-belief-lead {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(232, 228, 220, 0.75);
+  margin: 0 0 6px;
+}
+
+.kju-meet-creed-callout {
+  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(26px, 3.2vw, 32px);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--kju-gold, #B8860B);
+  text-transform: uppercase;
+  line-height: 1.25;
+  margin: 6px 0 0 0;
+  display: block;
+}
+
+.kju-meet-lead-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
   color: #FFFFFF;
-  transform: translateY(-2px) scale(1.06);
-  box-shadow: 0 0 18px rgba(184, 134, 11, 0.45);
+  margin: 0 0 14px;
 }
 
-.kju-social-handles {
+/* Official Registry Rail (System Frictions) */
+.kju-editorial-friction-rail {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(200, 188, 168, 0.18);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 16px 0 22px;
+}
+
+.kju-friction-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--kju-gold, #B8860B);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.kju-friction-items {
   display: flex;
-  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 16px;
-  margin: 24px 0 0;
-}
-
-.kju-social-badge {
-  display: inline-flex;
   align-items: center;
-  gap: 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(184, 134, 11, 0.3);
-  padding: 10px 18px;
-  border-radius: var(--radius-xs);
-  transition: all 0.3s ease;
-  text-decoration: none;
+  gap: 6px 10px;
 }
 
-.kju-social-badge i {
-  font-size: 1.5rem;
-  color: var(--kju-gold);
+.kju-friction-item {
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #E8E4DC;
 }
 
-.kju-social-meta {
-  display: flex;
-  flex-direction: column;
+.kju-friction-dot {
+  color: rgba(184, 134, 11, 0.6);
+  font-size: 9px;
+  user-select: none;
 }
 
-.kju-social-handle {
-  font-family: var(--font-ui);
-  font-size: 0.92rem;
+.kju-meet-para {
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: rgba(232, 228, 220, 0.85);
+  margin: 0 0 18px;
+}
+
+.kju-meet-closing-plate {
+  margin: 10px 0 24px;
+  padding: 0;
+}
+
+.kju-meet-closing-lead {
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.6;
+  font-weight: 600;
+  color: rgba(232, 228, 220, 0.95);
+  margin: 0 0 4px;
+}
+
+.kju-meet-closing-action {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
   font-weight: 700;
   color: #FFFFFF;
+  margin: 0;
 }
 
-.kju-social-counter {
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--kju-gold);
-  letter-spacing: 0.04em;
+.kju-meet-cta-wrap {
+  margin-top: 6px;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.kju-social-badge:hover {
-  background: rgba(184, 134, 11, 0.14);
-  border-color: var(--kju-gold);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+.kju-meet-cta-wrap .kju-btn {
+  padding: 18px 36px;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
 }
 
-.kju-social-handles a:hover {
-  color: var(--kju-gold);
-}
-
-@media (max-width: 900px) {
-  .kju-meet-grid {
+/* Responsive Editorial Layout */
+@media (max-width: 991px) {
+  .kju-meet-editorial-spread {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 46px;
   }
-  
-  .kju-founder-card {
-    max-width: 280px;
+
+  .kju-founder-dossier-card {
+    max-width: 460px;
     margin: 0 auto;
+    width: 100%;
   }
-  
-  .kju-meet-content {
-    text-align: center;
+
+  .kju-founder-dossier-card.kju-reveal {
+    transform: translateY(24px);
   }
-  
-  .kju-meet-taglines,
-  .kju-social-handles {
+
+  .kju-founder-dossier-card.kju-reveal.is-revealed {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .kju-meet-section {
+    padding: 72px 0;
+  }
+
+  .kju-founder-info-plate {
+    padding: 20px 20px 24px;
+  }
+
+  .kju-founder-directory-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .kju-meet-creed-callout {
+    font-size: 1.45rem;
+  }
+
+  .kju-meet-cta-wrap .kju-btn {
+    width: 100%;
     justify-content: center;
+    padding: 16px 22px;
   }
 }
 
@@ -2194,461 +4891,935 @@ a {
 .kju-goal-selector-layout {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  gap: 32px;
+  gap: 36px;
   align-items: stretch;
-  margin-top: 36px;
+  margin-top: 40px;
 }
 
-.kju-goal-tiles-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-.kju-goal-tile {
-  background: var(--kju-white-card);
-  border: 1.5px solid var(--border-light);
-  border-radius: var(--radius-xs);
-  padding: 22px 18px;
-  cursor: pointer;
+/* --- Left: 6 Compact Selector Strips --- */
+.kju-milestone-catalog {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  text-align: left;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
 }
 
-.kju-goal-tile:hover {
-  border-color: var(--kju-authority-navy);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(31, 42, 68, 0.08);
-}
-
-.kju-goal-tile.is-active {
-  border-color: var(--kju-gold);
-  background: #FFFFFF;
-  box-shadow: 0 8px 24px rgba(184, 134, 11, 0.16);
-}
-
-.kju-goal-tile.is-active::after {
-  content: '';
-  position: absolute;
-  right: -8px;
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
-  width: 14px;
-  height: 14px;
-  background: #FFFFFF;
-  border-top: 1.5px solid var(--kju-gold);
-  border-right: 1.5px solid var(--kju-gold);
-  display: block;
-  z-index: 5;
-}
-
-.kju-goal-tile-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-xs);
-  background: rgba(31, 42, 68, 0.06);
-  color: var(--kju-authority-navy);
+.kju-milestone-strip {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
+  gap: 16px;
+  padding: 16px 22px;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 188, 168, 0.4);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  text-align: left;
+  flex: 1;
 }
 
-.kju-goal-tile.is-active .kju-goal-tile-icon {
-  background: var(--kju-authority-navy);
-  color: var(--kju-gold);
+.kju-milestone-strip:hover:not(.is-active) {
+  transform: translateX(4px);
+  border-color: rgba(31, 42, 68, 0.25);
+  box-shadow: 0 6px 20px rgba(31, 42, 68, 0.06);
 }
 
-.kju-goal-tile-content h3 {
-  font-family: var(--font-ui);
-  font-size: 1.05rem;
+.kju-milestone-strip.is-active {
+  background: var(--kju-authority-navy, #1F2A44);
+  border-color: var(--kju-authority-navy, #1F2A44);
+  border-left: 3px solid var(--kju-gold);
+  transform: translateX(4px);
+  box-shadow: 0 12px 30px rgba(31, 42, 68, 0.25);
+}
+
+.kju-milestone-index {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: var(--text-dark-primary);
-  margin-bottom: 4px;
+  color: var(--kju-gold);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  min-width: 24px;
 }
 
-.kju-goal-tile-content p {
-  font-size: 0.86rem;
-  color: var(--text-dark-secondary);
-  line-height: 1.45;
+.kju-milestone-info {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex: 1;
 }
 
-/* Dynamic Goal Preview Console (Right Column) */
-.kju-goal-preview-console {
-  background: var(--kju-authority-navy-dark);
+.kju-milestone-name {
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0D1821;
+  margin: 0;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.kju-milestone-strip.is-active .kju-milestone-name {
+  color: #FFFFFF;
+}
+
+.kju-milestone-arrow {
+  font-size: 13px;
+  color: var(--kju-gold);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.kju-milestone-strip.is-active .kju-milestone-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.kju-milestone-strip:hover:not(.is-active) .kju-milestone-arrow {
+  opacity: 0.55;
+  transform: translateX(0);
+}
+
+/* --- Right: Docked Strategy Vault (Equal Height to Catalog) --- */
+.kju-milestone-vault {
+  background: var(--kju-authority-navy, #1F2A44);
   color: #FFFFFF;
   border: 1.5px solid var(--border-gold);
   border-radius: var(--radius-sm);
-  padding: 36px 32px;
+  padding: 30px 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 16px 40px rgba(18, 28, 43, 0.35);
+  box-shadow: 0 16px 40px rgba(31, 42, 68, 0.32);
   position: relative;
   overflow: hidden;
-  transition: opacity 0.25s ease;
+  height: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
 }
 
-.kju-goal-preview-console::before {
-  content: '';
+.kju-vault-watermark {
   position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 140px;
-  height: 140px;
-  background: radial-gradient(circle, var(--kju-gold-glow) 0%, transparent 70%);
-  border-radius: 50%;
+  right: 20px;
+  top: -15px;
+  font-size: 180px;
+  font-family: 'Playfair Display', serif;
+  color: rgba(255, 255, 255, 0.04);
+  line-height: 1;
   pointer-events: none;
+  user-select: none;
+  font-style: italic;
+  z-index: 1;
+}
+
+.kju-vault-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: 1;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+  padding-bottom: 8px;
 }
 
 .kju-goal-preview-badge {
   display: inline-block;
-  font-family: var(--font-ui);
-  font-size: 0.74rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.16em;
   color: var(--kju-gold);
-  background: rgba(184, 134, 11, 0.15);
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
+  background: rgba(184, 134, 11, 0.12);
   border: 1px solid rgba(184, 134, 11, 0.3);
-  margin-bottom: 16px;
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin-bottom: 12px;
   align-self: flex-start;
 }
 
 .kju-goal-preview-title {
   font-family: var(--font-ui);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: clamp(1.3rem, 1.6vw, 1.52rem);
+  font-weight: 800;
   color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
   margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.kju-goal-preview-title i {
-  color: var(--kju-gold);
+  line-height: 1.2;
 }
 
 .kju-goal-preview-approved-text {
-  font-size: 1.05rem;
-  color: var(--kju-white);
-  line-height: 1.6;
-  margin-bottom: 22px;
+  font-family: var(--font-body);
+  font-size: clamp(0.96rem, 1.2vw, 1.15rem);
+  line-height: 1.5;
+  color: #E8E4DC;
   font-style: italic;
-  border-left: 3px solid var(--kju-gold);
-  padding-left: 14px;
+  font-weight: 500;
+  margin-bottom: 0;
+  padding: 0;
+  border-left: none;
+  transition: font-size 0.25s ease, line-height 0.25s ease;
 }
 
-.kju-goal-metrics-box {
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-xs);
-  padding: 20px;
-  margin-bottom: 26px;
+.kju-vault-cta-wrap {
+  margin-top: auto;
+  padding-top: 14px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
-.kju-goal-metrics-header {
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
+.kju-vault-cta-wrap .kju-btn,
+#kjuGoalCtaBtn {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: clamp(0.62rem, 0.74vw, 0.70rem);
   font-weight: 700;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1;
+  box-sizing: border-box;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--kju-gold);
-  margin-bottom: 12px;
+  border-radius: var(--radius-xs);
+  background: linear-gradient(135deg, #D4AF37 0%, #C59A27 45%, #9E740A 100%);
+  border: 1px solid rgba(255, 230, 160, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 20px rgba(0, 0, 0, 0.28);
+  transition: all 0.25s ease;
+  overflow: hidden;
 }
 
-.kju-goal-metrics-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.kju-vault-cta-wrap .kju-btn:hover,
+#kjuGoalCtaBtn:hover {
+  background: linear-gradient(135deg, #E2BF50 0%, #D4AF37 45%, #AA7D0E 100%);
+  border-color: rgba(255, 240, 190, 0.65);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 8px 25px rgba(184, 134, 11, 0.42);
+  transform: translateY(-2px);
 }
 
-.kju-goal-metrics-list li {
-  font-size: 0.92rem;
-  color: var(--text-light-secondary);
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.45;
+.kju-vault-cta-wrap .kju-btn span,
+#kjuGoalCtaBtn span {
+  white-space: nowrap;
+  display: inline-block;
+  font-size: clamp(0.62rem, 0.74vw, 0.70rem);
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  transition: font-size 0.2s ease, letter-spacing 0.2s ease;
 }
 
-.kju-goal-metrics-list li i {
-  color: var(--kju-gold);
-  margin-top: 3px;
-  font-size: 0.85rem;
+.kju-vault-cta-wrap .kju-btn i,
+#kjuGoalCtaBtn i {
+  font-size: 0.76rem;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.kju-vault-cta-wrap .kju-btn:hover i,
+#kjuGoalCtaBtn:hover i {
+  transform: translateX(4px);
 }
 
 /* ==========================================================================
-   13 — FINAL OBJECTION HANDLING (HIGH-CONTRAST 2-COLUMN EMPATHY CARD)
+   13 — FINAL OBJECTION HANDLING (EXECUTIVE DIAGNOSTIC DIVERGENCE DOCKET)
    ========================================================================== */
 .kju-objection-section {
-  padding: 96px 0 84px;
-  background: var(--kju-white-pure);
+  padding: 104px 0 92px;
+  background: var(--kju-white);
   border-bottom: 1px solid var(--border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.kju-section-overline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--kju-gold);
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.kju-objection-title {
+  font-family: 'Plus Jakarta Sans', var(--font-ui), sans-serif;
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #0D1821;
+  text-transform: uppercase;
+  line-height: 1.12;
+  margin-bottom: 12px;
 }
 
 .kju-empathy-card {
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   gap: 0;
-  max-width: 1060px;
-  margin: 36px auto 0;
+  max-width: 1220px;
+  margin: 44px auto 0;
   border-radius: var(--radius-sm);
-  overflow: hidden;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.1);
-  border: 1.5px solid var(--border-light);
+  overflow: visible;
+  box-shadow: 0 20px 50px rgba(18, 28, 43, 0.16);
+  border: 1px solid rgba(200, 188, 168, 0.45);
+  background: #0E151B;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
+.kju-empathy-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.kju-docket-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(200, 188, 168, 0.5);
+}
+
+/* Left Panel: The Friction Loop (Analysis Trap) */
 .kju-empathy-pain-col {
-  background: #18202C;
+  background: #0E151B;
   color: #FFFFFF;
-  padding: 44px 38px;
+  padding: 48px 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  position: relative;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
 .kju-empathy-badge-pain {
-  display: inline-block;
-  font-family: var(--font-ui);
-  font-size: 0.74rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #F87171;
-  background: rgba(239, 68, 68, 0.14);
-  border: 1px solid rgba(239, 68, 68, 0.35);
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  margin-bottom: 22px;
-  align-self: flex-start;
+  background: rgba(140, 35, 71, 0.22);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  padding: 5px 12px;
+  border-radius: 4px;
 }
 
 .kju-empathy-pain-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 26px;
+  gap: 14px;
+  margin: 6px 0 28px;
+  padding: 0;
 }
 
 .kju-empathy-pain-list li {
-  font-size: 1.02rem;
-  color: #CBD5E1;
+  font-size: 15px;
+  color: rgba(200, 188, 168, 0.85);
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 12px;
-  line-height: 1.45;
+  line-height: 1.6;
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
-.kju-empathy-pain-list li i {
-  color: #F87171;
-  font-size: 0.85rem;
+.kju-audit-idx {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--kju-gold);
+  flex-shrink: 0;
 }
 
+.kju-empathy-pain-list li:hover {
+  color: #FFFFFF;
+  transform: translateX(3px);
+}
+
+/* Clincher Box: Dedicated Diagnostic Plate */
 .kju-empathy-pain-punchline {
+  background: rgba(184, 134, 11, 0.07);
+  border-left: 3px solid var(--kju-gold);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  padding: 16px 20px;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kju-punchline-pre {
   font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #C8BCA8;
+}
+
+.kju-punchline-quote {
+  font-family: var(--font-serif), Georgia, serif;
   font-size: 1.25rem;
   font-weight: 700;
+  font-style: italic;
   color: #FFFFFF;
-  line-height: 1.4;
-  border-left: 3px solid #F87171;
-  padding-left: 16px;
-  margin-top: 14px;
+  line-height: 1.35;
 }
 
+/* Center Seam Nexus Node */
+.kju-empathy-nexus {
+  position: absolute;
+  top: 50%;
+  right: -16px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--kju-authority-navy, #1F2A44);
+  border: 1.5px solid var(--kju-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kju-gold);
+  font-size: 11px;
+  z-index: 10;
+  box-shadow: 0 0 16px rgba(184, 134, 11, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kju-empathy-card:hover .kju-empathy-nexus {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 22px rgba(184, 134, 11, 0.55);
+}
+
+/* Right Panel: The Diagnostic Clearing (Personalized Roadmap) */
 .kju-empathy-solution-col {
-  background: var(--kju-authority-navy-dark);
+  background: var(--kju-authority-navy, #1F2A44);
   color: #FFFFFF;
-  padding: 44px 38px;
+  padding: 48px 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: inset 0 1px 0 rgba(184, 134, 11, 0.3), inset 0 0 0 1px rgba(184, 134, 11, 0.15);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .kju-empathy-badge-solution {
-  display: inline-block;
-  font-family: var(--font-ui);
-  font-size: 0.74rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--kju-gold);
   background: rgba(184, 134, 11, 0.15);
   border: 1px solid rgba(184, 134, 11, 0.35);
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  margin-bottom: 22px;
-  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 4px;
 }
 
+/* Lead Affirmation: Prominent Thesis Statement */
 .kju-empathy-solution-core {
-  font-size: 1.15rem;
+  font-family: var(--font-ui);
+  font-size: clamp(1.15rem, 1.4vw, 1.32rem);
   font-weight: 700;
   color: #FFFFFF;
-  margin-bottom: 18px;
-  line-height: 1.5;
+  margin-bottom: 22px;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
 }
 
+/* Institutional Relief Points */
 .kju-empathy-solution-points {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 22px;
+  padding: 0;
 }
 
 .kju-empathy-solution-points li {
-  font-size: 0.98rem;
-  color: var(--kju-white);
+  font-size: 15px;
+  color: rgba(232, 228, 220, 0.92);
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  line-height: 1.45;
+  gap: 12px;
+  line-height: 1.55;
 }
 
 .kju-empathy-solution-points li i {
   color: var(--kju-gold);
-  margin-top: 3px;
+  font-size: 11px;
+  margin-top: 4px;
+  flex-shrink: 0;
+  background: rgba(184, 134, 11, 0.15);
+  border: 1px solid rgba(184, 134, 11, 0.35);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Triad Cadence */
 .kju-empathy-solution-closing {
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-size: 15px;
   font-weight: 600;
-  color: var(--kju-white-pure);
-  line-height: 1.6;
+  color: #FFFFFF;
+  line-height: 1.65;
   margin-bottom: 26px;
-  border-left: 3px solid var(--kju-gold);
-  padding-left: 14px;
+  border-left: 2.5px solid var(--kju-gold);
+  padding-left: 16px;
+}
+
+.kju-empathy-cta-wrap {
+  width: 100%;
+}
+
+.kju-empathy-cta-wrap .kju-btn {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: clamp(0.74rem, 0.9vw, 0.84rem);
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Hover Interaction Dynamic Shift */
+.kju-empathy-card:hover .kju-empathy-solution-col {
+  box-shadow: inset 0 1px 0 rgba(184, 134, 11, 0.45), 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 0 30px rgba(184, 134, 11, 0.15);
 }
 
 /* ==========================================================================
-   14 — FAQ ACCORDION (WARM WHITE EDITORIAL)
+   14 — FAQ MASTER LEDGER DOCKET (INSTITUTIONAL ADVISORY ARCHIVE)
    ========================================================================== */
 .kju-faq-section {
   padding: 96px 0 84px;
-  background: var(--kju-white);
-  border-bottom: 1px solid var(--border-light);
+  background: var(--kju-white, #E8E4DC);
+  border-bottom: 1px solid var(--border-light, rgba(200, 188, 168, 0.4));
 }
 
+.kju-faq-page-hero {
+  padding: 84px 0 52px;
+  text-align: center;
+  background: var(--kju-white, #E8E4DC);
+  border-bottom: 1px solid var(--border-light, rgba(200, 188, 168, 0.4));
+}
+
+.kju-faq-page-hero .kju-badge {
+  margin-bottom: 20px;
+}
+
+.kju-faq-page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  color: var(--kju-black, #121C2B);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 18px;
+}
+
+.kju-faq-page-subhead {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: var(--text-dark-secondary, rgba(18, 28, 43, 0.8));
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.kju-faq-page-body {
+  padding: 68px 0 96px;
+  background: var(--kju-white, #E8E4DC);
+}
+
+/* Master Docket Surface (Single Monolithic Card) */
 .kju-faq-accordion {
-  max-width: 860px;
+  max-width: 920px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 188, 168, 0.45);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(18, 28, 43, 0.05),
+              0 2px 6px rgba(18, 28, 43, 0.02);
+  overflow: hidden;
 }
 
 .kju-faq-item {
-  background: var(--kju-white-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xs);
+  background: #FFFFFF;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(200, 188, 168, 0.35);
+  border-left: 4px solid transparent;
   overflow: hidden;
-  transition: border-color var(--transition-fast);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.kju-faq-item:last-child {
+  border-bottom: none;
+}
+
+.kju-faq-item:hover,
+.kju-faq-item.is-open {
+  border-left: 4px solid var(--kju-gold, #B8860B);
+  background-color: rgba(184, 134, 11, 0.025);
 }
 
 .kju-faq-header {
   width: 100%;
-  padding: 22px 26px;
+  padding: 24px 28px;
   background: transparent;
   border: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 20px;
   text-align: left;
   cursor: pointer;
 }
 
-.kju-faq-header span {
-  font-family: var(--font-ui);
-  font-size: 1.1rem;
+.kju-faq-header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+}
+
+.kju-faq-num {
+  font-family: var(--font-mono, monospace);
   font-weight: 700;
-  color: var(--text-dark-primary);
+  font-size: 0.95rem;
+  color: var(--kju-gold, #B8860B);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  min-width: 48px;
+  user-select: none;
 }
 
-.kju-faq-header i {
-  color: var(--kju-authority-navy);
-  font-size: 1rem;
-  transition: transform var(--transition-fast);
+.kju-faq-question {
+  font-family: var(--font-ui);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #121C2B;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
 }
 
-.kju-faq-item.is-open .kju-faq-header i {
-  transform: rotate(45deg);
+/* Micro Chevron Circular Toggle Indicator */
+.kju-faq-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(18, 28, 43, 0.04);
+  border: 1px solid rgba(200, 188, 168, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--kju-authority-navy, #1F2A44);
+  font-size: 0.78rem;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              color 0.25s ease,
+              border-color 0.25s ease;
+}
+
+.kju-faq-item.is-open .kju-faq-icon {
+  transform: rotate(180deg);
+  background: var(--kju-authority-navy, #1F2A44);
+  color: #FFFFFF;
+  border-color: var(--kju-authority-navy, #1F2A44);
 }
 
 .kju-faq-body {
   display: none;
-  padding: 0 26px 24px;
+  padding: 0 28px 26px 94px;
+}
+
+.kju-faq-body p {
+  font-family: var(--font-body);
   font-size: 0.98rem;
-  color: var(--text-dark-secondary);
-  line-height: 1.7;
+  color: rgba(18, 28, 43, 0.78);
+  line-height: 1.72;
+  margin: 0;
+}
+
+.kju-faq-body p + p {
+  margin-top: 10px;
 }
 
 .kju-faq-item.is-open .kju-faq-body {
   display: block;
 }
 
+@media (max-width: 680px) {
+  .kju-faq-header {
+    padding: 18px 20px;
+    gap: 14px;
+  }
+  .kju-faq-header-left {
+    gap: 12px;
+  }
+  .kju-faq-num {
+    min-width: 38px;
+    font-size: 0.88rem;
+  }
+  .kju-faq-question {
+    font-size: 0.98rem;
+  }
+  .kju-faq-body {
+    padding: 0 20px 20px 20px;
+  }
+}
+
 /* ==========================================================================
-   15 — FINAL CTA SECTION (AUTHORITY NAVY)
+   15 — FINAL CTA: OPEN ARCHITECTURE (DARK TO NAVY GRADIENT)
    ========================================================================== */
 .kju-final-cta-section {
-  padding: 100px 0;
-  background-color: var(--kju-authority-navy);
+  padding: 110px 0 90px;
+  background: linear-gradient(180deg, #0A101A 0%, #152033 100%);
+  position: relative;
+  overflow: hidden;
   color: #FFFFFF;
 }
 
-.kju-final-cta-box {
-  max-width: 860px;
+.kju-final-cta-section .kju-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Watermark of KJU Logo on Right Side */
+.kju-final-cta-watermark {
+  position: absolute;
+  top: 50%;
+  right: -25px;
+  transform: translateY(-50%);
+  width: clamp(340px, 36vw, 540px);
+  height: clamp(340px, 36vw, 540px);
+  pointer-events: none;
+  opacity: 0.048;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  filter: brightness(0) invert(1);
+}
+
+.kju-final-cta-watermark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 860px) {
+  .kju-final-cta-watermark {
+    right: -40px;
+    width: 280px;
+    height: 280px;
+    opacity: 0.035;
+  }
+}
+
+/* Open Content Layout (No Box Card Wrapper) */
+.kju-final-cta-content {
+  max-width: 920px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
 }
 
-.kju-final-cta-box h2 {
+/* Master Headline */
+.kju-final-cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+  line-height: 1.12;
+  letter-spacing: 0.01em;
   color: #FFFFFF;
+  text-transform: uppercase;
+  margin: 0 auto 24px;
+  max-width: 860px;
 }
 
-.kju-four-points {
+/* Narrative Reading Cadence */
+.kju-final-cta-narrative {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.kju-final-cta-lead {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: rgba(232, 228, 220, 0.88);
+  margin: 0 0 12px;
+}
+
+.kju-final-cta-pivot {
+  font-family: var(--font-ui);
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 18px;
+  letter-spacing: 0.01em;
+}
+
+.kju-final-cta-trust {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: #E2AD27;
+  margin: 0 0 4px;
+}
+
+/* --- 4 Protocol Deliverables Horizontal Rail --- */
+.kju-final-cta-rail {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 18px 24px;
+  margin: 38px auto 40px;
   display: flex;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 16px 28px;
-  margin: 34px 0;
+  gap: 16px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 999px;
+  max-width: 900px;
+}
+
+.kju-final-rail-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-ui);
-  font-size: 1.1rem;
+  font-size: 0.86rem;
   font-weight: 700;
+  letter-spacing: 0.06em;
   color: #FFFFFF;
   text-transform: uppercase;
 }
 
-.kju-four-points span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.kju-final-rail-item i {
+  color: #E2AD27;
+  font-size: 0.95rem;
 }
 
-.kju-four-points span i {
-  color: var(--kju-gold);
+.kju-final-rail-dot {
+  color: rgba(200, 188, 168, 0.4);
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+/* --- Primary Action Lockup --- */
+.kju-final-cta-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.kju-final-btn {
+  padding: 18px 46px !important;
+  font-size: 0.98rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 999px !important;
+  box-shadow: 0 12px 28px -6px rgba(184, 134, 11, 0.45) !important;
+  transition: all 0.3s ease !important;
+}
+
+.kju-final-btn:hover {
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 16px 36px -6px rgba(184, 134, 11, 0.6) !important;
+}
+
+.kju-final-seal-caption {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(232, 228, 220, 0.75);
+  text-transform: uppercase;
+}
+
+.kju-final-seal-caption i {
+  color: #E2AD27;
+  font-size: 0.85rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 860px) {
+  .kju-final-cta-section {
+    padding: 76px 0 68px;
+  }
+  .kju-final-cta-rail {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 20px;
+    gap: 12px;
+    border-radius: 12px;
+  }
+  .kju-final-rail-dot {
+    display: none;
+  }
+  .kju-final-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 24px !important;
+    font-size: 0.9rem !important;
+  }
 }
 
 /* ==========================================================================
-   16 — FOOTER & LEGAL DISCLAIMER (BLACK)
+   16 — FOOTER: SEAMLESS GRADIENT CONTINUATION TO AUTHORITY NAVY
    ========================================================================== */
 .kju-footer {
   padding: 64px 0 44px;
-  background-color: var(--kju-black);
+  background: linear-gradient(180deg, #152033 0%, var(--kju-authority-navy, #1F2A44) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   color: #FFFFFF;
 }
 
@@ -2681,7 +5852,7 @@ a {
   max-width: 920px;
   margin: 16px auto 0;
   text-align: left;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(184, 134, 11, 0.22);
   padding-top: 26px;
   width: 100%;
 }
@@ -2704,8 +5875,195 @@ a {
 
 .kju-footer-legal-grid p {
   font-size: 13px;
-  color: #94A3B8;
+  color: rgba(232, 228, 220, 0.78);
   line-height: 1.65;
+}
+
+/* ==========================================================================
+   DOCKED PRE-FOOTER CTA (SEAMLESS AUTHORITY TRANSITION)
+   ========================================================================== */
+.kju-faq-docked-cta {
+  width: 100%;
+  background: linear-gradient(180deg, #101925 0%, #172236 100%);
+  border-top: 1px solid rgba(184, 134, 11, 0.3);
+  padding: 84px 0 80px;
+  text-align: center;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.kju-faq-docked-cta .kju-container {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+}
+
+.kju-faq-docked-cta h2,
+.kju-faq-docked-cta h3 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 0 0 16px;
+}
+
+.kju-faq-docked-cta p {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: rgba(232, 228, 220, 0.85);
+  max-width: 620px;
+  margin: 0 auto 30px;
+}
+
+.kju-faq-docked-cta .kju-btn {
+  padding: 18px 44px;
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  box-shadow: 0 12px 28px -6px rgba(184, 134, 11, 0.45);
+}
+
+/* ==========================================================================
+   MULTI-COLUMN INSTITUTIONAL LEDGER FOOTER
+   ========================================================================== */
+.kju-footer-institutional {
+  padding: 72px 0 38px;
+  background: linear-gradient(180deg, #172236 0%, var(--kju-authority-navy, #1F2A44) 100%);
+  border-top: 1px solid rgba(184, 134, 11, 0.25);
+  color: #FFFFFF;
+}
+
+.kju-footer-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1.45fr 1.1fr;
+  gap: clamp(32px, 4vw, 56px);
+  align-items: flex-start;
+}
+
+.kju-footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.kju-footer-col-brand .kju-brand-logo {
+  margin-bottom: 20px;
+}
+
+.kju-footer-trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--kju-gold, #B8860B);
+  background: rgba(184, 134, 11, 0.1);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  width: fit-content;
+  margin-bottom: 14px;
+}
+
+.kju-footer-sub-tagline {
+  font-size: 0.8rem;
+  color: rgba(232, 228, 220, 0.6);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.kju-footer-ledger-heading {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--kju-gold, #B8860B);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.kju-footer-compliance-text {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(232, 228, 220, 0.78);
+  border-left: 2px solid rgba(184, 134, 11, 0.35);
+  padding-left: 16px;
+  margin: 0;
+}
+
+.kju-footer-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kju-footer-link,
+.kju-footer-channel-link {
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  color: rgba(232, 228, 220, 0.85);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.kju-footer-channel-link {
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+}
+
+.kju-footer-channel-link:hover,
+.kju-footer-link:hover {
+  color: var(--kju-gold, #B8860B);
+}
+
+.kju-footer-channel-link:hover {
+  background: rgba(184, 134, 11, 0.08);
+  border-color: rgba(184, 134, 11, 0.3);
+}
+
+.kju-footer-basemark {
+  margin-top: 48px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: rgba(232, 228, 220, 0.6);
+}
+
+.kju-footer-jurisdiction {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--kju-gold, #B8860B);
+}
+
+@media (max-width: 900px) {
+  .kju-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
 }
 
 /* ==========================================================================
@@ -2893,23 +6251,49 @@ a {
   color: #FFFFFF;
 }
 
-/* Select Control */
+/* ==========================================================================
+   THEMED INSTITUTIONAL DROPDOWN (SELECT CONTROL)
+   ========================================================================== */
 .kju-select-control {
   width: 100%;
-  padding: 16px 20px;
-  background: var(--kju-white-pure);
-  border: 1.5px solid var(--border-light);
+  padding: 16px 44px 16px 20px;
+  background-color: #FFFFFF;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23B8860B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 18px) center;
+  background-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1.5px solid rgba(31, 42, 68, 0.22);
   border-radius: var(--radius-xs);
-  color: var(--text-dark-primary);
+  color: var(--kju-authority-navy-dark, #121C2B);
   font-family: var(--font-ui);
-  font-size: 1rem;
+  font-size: 1.02rem;
   font-weight: 600;
+  letter-spacing: 0.01em;
   margin-bottom: 28px;
   outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(31, 42, 68, 0.04);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.kju-select-control:hover {
+  border-color: var(--kju-gold, #B8860B);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(184, 134, 11, 0.12);
 }
 
 .kju-select-control:focus {
-  border-color: var(--kju-authority-navy);
+  border-color: var(--kju-authority-navy, #1F2A44);
+  box-shadow: 0 0 0 3.5px rgba(31, 42, 68, 0.15), 0 6px 20px rgba(31, 42, 68, 0.08);
+}
+
+.kju-select-control option {
+  padding: 12px 18px;
+  background-color: #FFFFFF;
+  color: #121C2B;
+  font-weight: 600;
 }
 
 /* Form Nav */
@@ -3031,10 +6415,42 @@ a {
   gap: 12px;
 }
 
-/* Calendly Wrap */
+/* Calendly Modal Integration */
+.kju-modal-card.is-calendly-active {
+  max-width: 960px;
+  padding: 32px 30px 36px;
+  transition: max-width var(--transition-normal), padding var(--transition-normal);
+}
+
 .kju-calendly-frame-wrap {
-  min-height: 600px;
+  min-height: 700px;
   width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.kju-calendly-frame-wrap iframe {
+  display: block;
+  width: 100%;
+  min-height: 700px;
+  border: none;
+  background: #FFFFFF;
+}
+
+@media (max-width: 640px) {
+  .kju-modal-card.is-calendly-active {
+    padding: 24px 14px 28px;
+    max-width: 100%;
+  }
+  .kju-calendly-frame-wrap {
+    min-height: 600px;
+  }
+  .kju-calendly-frame-wrap iframe {
+    min-height: 600px;
+  }
 }
 
 /* ==========================================================================
@@ -3060,6 +6476,85 @@ a {
   transform: translateY(100%);
   opacity: 0;
   pointer-events: none;
+}
+
+/* ==========================================================================
+   DIRECT BACK TO TOP FLOATING BUTTON
+   ========================================================================== */
+.kju-back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--kju-authority-navy, #1F2A44);
+  border: 1.5px solid var(--kju-gold, #B8860B);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 850;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45),
+              0 0 14px rgba(184, 134, 11, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              visibility 0.3s;
+  pointer-events: none;
+}
+
+.kju-back-to-top i {
+  font-size: 1.05rem;
+  color: #E2AD27;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.kju-back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.kju-back-to-top:hover {
+  background: #121C2B;
+  border-color: #E2AD27;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55),
+              0 0 20px rgba(226, 173, 39, 0.4);
+  transform: translateY(-3px);
+}
+
+.kju-back-to-top:hover i {
+  transform: translateY(-2px);
+  color: #FFFFFF;
+}
+
+.kju-back-to-top:active {
+  transform: translateY(-1px);
+}
+
+.kju-back-to-top:focus-visible {
+  outline: 2px solid var(--kju-gold, #B8860B);
+  outline-offset: 3px;
+}
+
+@media (max-width: 680px) {
+  .kju-back-to-top {
+    bottom: 84px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+  }
+  .kju-back-to-top i {
+    font-size: 0.95rem;
+  }
 }
 
 /* ==========================================================================
@@ -3097,16 +6592,20 @@ a {
   .kju-pain-editorial-left {
     position: static;
   }
-  .kju-timeline-progress-track {
+  .kju-timeline-progress-track,
+  .pipeline-spine-wrapper {
     display: none;
   }
-  .kju-timeline-track {
+  .kju-timeline-track,
+  .kju-pipeline-track {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
   .kju-why-editorial-grid {
     grid-template-columns: 1fr 1fr;
   }
-  .kju-why-card.is-featured {
+  .kju-why-card.is-featured,
+  .kju-why-card.is-span-2 {
     grid-column: span 2;
     grid-row: auto;
   }
@@ -3116,9 +6615,10 @@ a {
   }
   .kju-goal-selector-layout {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
-  .kju-goal-tile.is-active::after {
-    display: none;
+  .kju-milestone-vault {
+    padding: 32px 24px;
   }
   .kju-empathy-card {
     grid-template-columns: 1fr;
@@ -3126,6 +6626,15 @@ a {
   .kju-empathy-pain-col {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    padding: 36px 28px;
+  }
+  .kju-empathy-solution-col {
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    padding: 36px 28px;
+  }
+  .kju-empathy-nexus {
+    display: none;
   }
   .kju-footer-legal-grid {
     grid-template-columns: 1fr;
@@ -3167,21 +6676,58 @@ a {
   .kju-section-title {
     font-size: 2rem;
   }
-  .kju-trust-rail-grid {
+  .kju-trust-rail {
+    padding: 34px 18px 22px;
+  }
+  .kju-trust-rail-num {
+    font-size: 1.85rem;
+  }
+  .kju-trust-rail-col {
+    padding: 6px 8px;
+  }
+  .kju-trust-rail-label-text {
+    font-size: 0.88rem;
+  }
+  .kju-trust-rail-subtext {
+    font-size: 0.7rem;
+  }
+  .kju-timeline-track,
+  .kju-pipeline-track {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  .kju-timeline-track {
-    grid-template-columns: 1fr;
+  .pipeline-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    column-gap: 16px;
+    align-items: start;
+    width: 100%;
+  }
+  .pipeline-node-wrapper {
+    margin-bottom: 0;
+  }
+  .pipeline-card {
+    padding: 22px 18px;
   }
   .kju-why-editorial-grid {
     grid-template-columns: 1fr;
   }
-  .kju-why-card.is-featured {
+  .kju-why-card.is-featured,
+  .kju-why-card.is-span-2 {
     grid-column: span 1;
+    grid-row: auto;
   }
   .kju-goal-tiles-grid {
     grid-template-columns: 1fr;
+  }
+  .kju-friction-lead-banner {
+    padding: 20px 20px;
+  }
+  .kju-friction-lead-text {
+    font-size: 1.05rem;
+  }
+  .kju-friction-conclusion-text {
+    font-size: 1.1rem;
   }
   .kju-empathy-pain-col,
   .kju-empathy-solution-col {
@@ -3203,3 +6749,329 @@ a {
     padding: 28px 20px;
   }
 }
+
+@media (max-width: 580px) {
+  .kju-trust-rail {
+    padding: 36px 14px 20px;
+  }
+  .kju-trust-docked-badge {
+    width: 90%;
+    max-width: 320px;
+    justify-content: center;
+    padding: 4px 10px;
+  }
+  .kju-trust-badge-text {
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+  }
+  .kju-trust-rail-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .kju-trust-rail-divider {
+    width: 60%;
+    height: 1px;
+    margin: 4px auto;
+    transform-origin: center;
+    transform: scaleX(0);
+  }
+  .kju-trust-rail.is-assembled .kju-trust-rail-divider {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kju-trust-rail-divider {
+    transform: scaleY(1) !important;
+    transition: none !important;
+  }
+  .kju-trust-rail-col {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .kju-trust-status-pulse {
+    animation: none !important;
+  }
+  .kju-spring-target.is-bounced {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   18 — PRIVACY & DATA GOVERNANCE (CANADIAN STATUTORY COMPLIANCE LEDGER)
+   ========================================================================== */
+.kju-privacy-page-hero {
+  padding: 84px 0 46px;
+  text-align: center;
+  background: var(--kju-white, #E8E4DC);
+  border-bottom: 1px solid rgba(200, 188, 168, 0.35);
+}
+
+.kju-privacy-overline {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--kju-gold, #B8860B);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.kju-privacy-title {
+  font-family: var(--font-ui), sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 4.4vw, 3.4rem);
+  letter-spacing: -0.02em;
+  color: #121C2B;
+  line-height: 1.08;
+  margin: 0 auto 10px;
+  text-transform: uppercase;
+}
+
+.kju-privacy-subtitle {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(18, 28, 43, 0.7);
+  text-transform: uppercase;
+  margin: 0 auto 24px;
+}
+
+/* Document Control Metadata Strip */
+.kju-privacy-meta-strip {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 18px;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 188, 168, 0.45);
+  border-radius: 8px;
+  padding: 10px 22px;
+  box-shadow: 0 4px 14px rgba(18, 28, 43, 0.03);
+}
+
+.kju-privacy-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+}
+
+.kju-meta-label {
+  font-weight: 700;
+  color: var(--kju-gold, #B8860B);
+  letter-spacing: 0.08em;
+}
+
+.kju-meta-val {
+  font-weight: 600;
+  color: #121C2B;
+  letter-spacing: 0.04em;
+}
+
+.kju-meta-dot {
+  color: rgba(200, 188, 168, 0.6);
+  font-size: 10px;
+}
+
+.kju-privacy-page-body {
+  padding: 68px 0 100px;
+  background: var(--kju-white, #E8E4DC);
+}
+
+/* Document Body Plate */
+.kju-privacy-ledger-plate {
+  max-width: 960px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 188, 168, 0.45);
+  border-radius: 12px;
+  padding: clamp(34px, 5.5vw, 64px);
+  box-shadow: 0 14px 44px -10px rgba(18, 28, 43, 0.05);
+}
+
+.kju-privacy-article-heading {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #121C2B;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kju-article-num {
+  font-family: var(--font-mono, monospace);
+  color: var(--kju-gold, #B8860B);
+  font-weight: 700;
+}
+
+.kju-privacy-ledger-plate p {
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: rgba(18, 28, 43, 0.85);
+  margin: 0 0 14px;
+}
+
+.kju-privacy-divider {
+  border: none;
+  border-top: 1px solid rgba(200, 188, 168, 0.3);
+  margin: 36px 0;
+}
+
+.kju-privacy-list {
+  list-style: none;
+  padding: 0 0 0 8px;
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kju-privacy-list li {
+  position: relative;
+  padding-left: 24px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.68;
+  color: rgba(18, 28, 43, 0.85);
+}
+
+.kju-privacy-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--kju-gold, #B8860B);
+  font-weight: 700;
+}
+
+/* Official Security Callout Plate */
+.kju-security-notice-callout {
+  background: rgba(31, 42, 68, 0.035);
+  border: 1px solid rgba(200, 188, 168, 0.3);
+  border-left: 4px solid var(--kju-gold, #B8860B);
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin: 22px 0 26px;
+}
+
+.kju-security-notice-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #121C2B;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.kju-security-notice-header i {
+  color: var(--kju-gold, #B8860B);
+  font-size: 0.95rem;
+}
+
+.kju-security-notice-text {
+  font-family: var(--font-body);
+  font-size: 14.5px !important;
+  line-height: 1.65 !important;
+  color: rgba(18, 28, 43, 0.88) !important;
+  margin: 0 !important;
+}
+
+/* Official Registry Contact Card */
+.kju-privacy-contact-card {
+  background: rgba(31, 42, 68, 0.025);
+  border: 1px solid rgba(200, 188, 168, 0.35);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.kju-contact-card-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.kju-contact-shield {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.kju-contact-title {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #121C2B;
+  text-transform: uppercase;
+}
+
+.kju-contact-subtitle {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: var(--kju-gold, #B8860B);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.kju-contact-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kju-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: rgba(18, 28, 43, 0.85);
+}
+
+.kju-contact-item i {
+  color: var(--kju-gold, #B8860B);
+  font-size: 13px;
+  width: 16px;
+  text-align: center;
+}
+
+.kju-legal-link {
+  color: #121C2B;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(184, 134, 11, 0.5);
+  transition: color 0.2s ease;
+}
+
+.kju-legal-link:hover {
+  color: var(--kju-gold, #B8860B);
+}
+
+@media (max-width: 768px) {
+  .kju-privacy-contact-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+

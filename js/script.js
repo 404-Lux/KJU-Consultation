@@ -384,6 +384,8 @@
     if (!modalOverlay) return;
     modalOverlay.classList.remove('is-active');
     document.body.style.overflow = '';
+    const modalCard = document.querySelector('.kju-modal-card');
+    if (modalCard) modalCard.classList.remove('is-calendly-active');
     if (mobileStickyBar && state.qualificationStatus !== 'QUALIFIED') {
       mobileStickyBar.classList.remove('is-hidden');
     }
@@ -392,6 +394,15 @@
   function renderCurrentStep() {
     state.activeStepSequence = calculateStepSequence();
     const currentStepId = state.activeStepSequence[state.currentStepIndex];
+
+    const modalCard = document.querySelector('.kju-modal-card');
+    if (modalCard) {
+      if (currentStepId === 'step_calendly') {
+        modalCard.classList.add('is-calendly-active');
+      } else {
+        modalCard.classList.remove('is-calendly-active');
+      }
+    }
 
     // Hide all steps and result screen
     document.querySelectorAll('.kju-step-container').forEach(el => el.classList.remove('is-active'));
@@ -586,6 +597,13 @@
   }
 
   function handleBack() {
+    // If returning from Calendly when in disqualified / paid state
+    const calStep = document.getElementById('step_calendly');
+    if (calStep && calStep.classList.contains('is-active') && state.qualificationStatus === 'NOT_CURRENTLY_ELIGIBLE') {
+      showDisqualificationScreen();
+      return;
+    }
+
     if (state.qualificationStatus === 'NOT_CURRENTLY_ELIGIBLE') {
       state.qualificationStatus = 'IN_PROGRESS';
       renderCurrentStep();
@@ -606,6 +624,9 @@
   }
 
   function showDisqualificationScreen() {
+    const modalCard = document.querySelector('.kju-modal-card');
+    if (modalCard) modalCard.classList.remove('is-calendly-active');
+
     document.querySelectorAll('.kju-step-container').forEach(el => el.classList.remove('is-active'));
     const resultBox = document.getElementById('step_result');
     if (!resultBox) return;
@@ -635,9 +656,22 @@
     }
 
     if (paidBtn) {
-      paidBtn.href = CONFIG.paidConsultationUrl;
-      paidBtn.onclick = () => {
+      paidBtn.onclick = (e) => {
+        e.preventDefault();
         trackEvent('paid_call_clicked', { reason: state.disqualificationReason });
+        // Embed Paid Calendly directly inside the modal card!
+        document.querySelectorAll('.kju-step-container').forEach(el => el.classList.remove('is-active'));
+        const calStep = document.getElementById('step_calendly');
+        if (calStep) calStep.classList.add('is-active');
+        loadCalendlyEmbed(
+          CONFIG.paidConsultationUrl,
+          'Schedule Paid Consultation With Kenny',
+          'Select an available time slot below to speak directly with Kenny about your credit situation.'
+        );
+        if (progressText) progressText.textContent = 'PAID CONSULTATION SCHEDULING';
+        if (progressFill) progressFill.style.width = '100%';
+        if (backBtn) backBtn.style.display = 'inline-flex';
+        if (nextBtn) nextBtn.style.display = 'none';
       };
     }
   }
@@ -659,33 +693,56 @@
     } catch (e) {}
   }
 
-  function loadCalendlyEmbed() {
+  function loadCalendlyEmbed(customUrl, titleText, subtitleText) {
     const container = document.getElementById('kjuCalendlyContainer');
     if (!container) return;
 
     trackEvent('calendly_viewed');
 
-    const nameParam = encodeURIComponent(state.contact.fullName);
-    const emailParam = encodeURIComponent(state.contact.email);
-    const phoneParam = encodeURIComponent(state.contact.phone);
+    const modalCard = document.querySelector('.kju-modal-card');
+    if (modalCard) {
+      modalCard.classList.add('is-calendly-active');
+    }
 
-    const fullCalendlyUrl = `${CONFIG.calendlyBaseUrl}?name=${nameParam}&email=${emailParam}&a1=${phoneParam}&hide_gdpr_banner=1&background_color=0c121e&text_color=e8e4dc&primary_color=b8860b`;
+    const titleEl = document.getElementById('kjuCalendlyTitle');
+    const subEl = document.getElementById('kjuCalendlySubtitle');
+    if (titleEl) {
+      titleEl.textContent = titleText || 'Choose Your Free Consultation Time';
+    }
+    if (subEl) {
+      subEl.textContent = subtitleText || 'Select an available time slot below to complete your booking.';
+    }
+
+    const nameParam = encodeURIComponent(state.contact.fullName || '');
+    const emailParam = encodeURIComponent(state.contact.email || '');
+    const phoneParam = encodeURIComponent(state.contact.phone || '');
+
+    const baseUrl = customUrl || CONFIG.calendlyBaseUrl;
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    const params = [];
+    if (state.contact.fullName) params.push(`name=${nameParam}`);
+    if (state.contact.email) params.push(`email=${emailParam}`);
+    if (state.contact.phone) params.push(`a1=${phoneParam}`);
+    params.push('hide_gdpr_banner=1');
+    params.push('primary_color=b8860b');
+
+    const fullCalendlyUrl = `${baseUrl}${separator}${params.join('&')}`;
 
     container.innerHTML = `
       <iframe
         src="${fullCalendlyUrl}"
         width="100%"
-        height="650"
+        height="700"
         frameborder="0"
-        title="KJU Free Strategy Consultation"
-        style="border-radius: 8px; background: #0C121E;"
+        title="KJU Consultation Booking"
+        style="border-radius: 8px; background: #FFFFFF; width: 100%; min-height: 700px; border: none;"
       ></iframe>
     `;
 
     // Listen for Calendly booking postMessage
     window.addEventListener('message', (e) => {
       if (e.data && e.data.event && e.data.event === 'calendly.event_scheduled') {
-        trackEvent('free_call_booked', { email: state.contact.email });
+        trackEvent('call_booked', { email: state.contact.email, isPaid: !!customUrl });
       }
     });
   }
@@ -826,6 +883,32 @@
   }
 
   // --------------------------------------------------------------------------
+  // 7b. SECTION 04 WATERMARK PARALLAX DRIFT
+  // --------------------------------------------------------------------------
+  function initWatermarkParallax() {
+    const introSection = document.getElementById('intro-section');
+    const watermark = introSection ? introSection.querySelector('.kju-watermark-text') : null;
+    if (!introSection || !watermark) return;
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const rect = introSection.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+            const shiftY = (progress - 0.5) * 36;
+            const scale = 1 + (progress - 0.5) * 0.03;
+            watermark.style.transform = `translate(-50%, calc(-50% + ${shiftY}px)) scale(${scale})`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  // --------------------------------------------------------------------------
   // 8. SCROLL-TRIGGERED REVEALS (INTERSECTION OBSERVER)
   // --------------------------------------------------------------------------
   function initScrollReveals() {
@@ -853,17 +936,83 @@
   }
 
   // --------------------------------------------------------------------------
-  // 9. TIMELINE PROGRESS & STEP ILLUMINATION
+  // 9. SEQUENTIAL PROTOCOL PIPELINE & STEPPER MECHANICS
   // --------------------------------------------------------------------------
   function initTimelineAnimation() {
     const wrapper = document.getElementById('kjuTimelineWrapper');
     const progressBar = document.getElementById('kjuTimelineProgressFill');
-    const steps = document.querySelectorAll('#kjuTimelineTrack .kju-how-card-step');
+    const track = document.getElementById('kjuTimelineTrack');
+    const steps = document.querySelectorAll('#kjuTimelineTrack .pipeline-step');
+    const ctaBtn = document.getElementById('kjuPipelineCta');
     if (!wrapper || !steps.length) return;
 
+    const stepPercentages = [0, 33.333, 66.666, 100];
+
+    function setPipelineProgress(stepIndex) {
+      const pct = stepPercentages[stepIndex] !== undefined ? stepPercentages[stepIndex] : 0;
+      if (progressBar) {
+        progressBar.style.setProperty('--pipeline-fill', `${pct}%`);
+        progressBar.style.width = `${pct}%`;
+      }
+
+      steps.forEach((step, idx) => {
+        if (idx === stepIndex) {
+          step.classList.add('is-active');
+          step.classList.remove('is-dimmed');
+          step.classList.remove('is-illuminated');
+        } else if (idx < stepIndex) {
+          step.classList.add('is-illuminated');
+          step.classList.remove('is-dimmed', 'is-active');
+        } else {
+          step.classList.add('is-dimmed');
+          step.classList.remove('is-active', 'is-illuminated');
+        }
+      });
+    }
+
+    function resetPipeline() {
+      if (progressBar) {
+        progressBar.style.setProperty('--pipeline-fill', '0%');
+        progressBar.style.width = '0%';
+      }
+      steps.forEach((step, idx) => {
+        step.classList.remove('is-dimmed', 'is-illuminated');
+        if (idx === 0) {
+          step.classList.add('is-active');
+        } else {
+          step.classList.remove('is-active');
+        }
+      });
+    }
+
+    // Interactive Hover per Step
+    steps.forEach((step, idx) => {
+      step.addEventListener('mouseenter', () => {
+        setPipelineProgress(idx);
+      });
+    });
+
+    if (track) {
+      track.addEventListener('mouseleave', () => {
+        resetPipeline();
+      });
+    }
+
+    // Coordinated Button Micro-Interaction (hovering CTA pulses Step 01)
+    if (ctaBtn) {
+      const step1 = steps[0];
+      ctaBtn.addEventListener('mouseenter', () => {
+        if (step1) step1.classList.add('is-btn-pulsing');
+      });
+      ctaBtn.addEventListener('mouseleave', () => {
+        if (step1) step1.classList.remove('is-btn-pulsing');
+      });
+    }
+
+    // Entrance Choreography (Scroll-Triggered)
     if (!('IntersectionObserver' in window)) {
-      if (progressBar) progressBar.style.width = '100%';
-      steps.forEach(s => s.classList.add('is-active-step'));
+      wrapper.classList.add('is-revealed');
+      resetPipeline();
       return;
     }
 
@@ -872,19 +1021,98 @@
       entries.forEach(entry => {
         if (entry.isIntersecting && !animated) {
           animated = true;
-          if (progressBar) {
-            progressBar.style.width = '100%';
-          }
-          steps.forEach((step, idx) => {
-            setTimeout(() => {
-              step.classList.add('is-active-step');
-            }, (idx + 1) * 260);
-          });
+          wrapper.classList.add('is-revealed');
+          resetPipeline();
         }
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.2 });
 
     observer.observe(wrapper);
+  }
+
+  // --------------------------------------------------------------------------
+  // 9b. AUTHENTIC INSTITUTIONAL TRUST BAR ANIMATION & COUNT-UP ROLLING
+  // --------------------------------------------------------------------------
+  function initTrustRailAnimation() {
+    const rail = document.getElementById('kjuTrustRail');
+    if (!rail) return;
+
+    let hasRun = false;
+
+    function runAssemblyAndCounters() {
+      if (hasRun) return;
+      hasRun = true;
+
+      // 1. Trigger Card Assembly (border, background, dividers scaleY, metrics reveal)
+      rail.classList.add('is-assembled');
+
+      // Check reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
+
+      const duration = 1200; // 1.2s ease-out curve per specification
+      const startTime = performance.now();
+
+      const countCol1 = rail.querySelector('.kju-trust-rail-col[data-col="1"] .kju-trust-count');
+      const countCol2 = rail.querySelector('.kju-trust-rail-col[data-col="2"] .kju-trust-count');
+      const col3Spring = rail.querySelector('.kju-spring-target');
+
+      // Spring bounce for 1-on-1
+      if (col3Spring) {
+        setTimeout(() => {
+          col3Spring.classList.add('is-bounced');
+        }, 380);
+      }
+
+      // Quartic ease-out: starts briskly and decelerates with high precision
+      function easeOutQuart(x) {
+        return 1 - Math.pow(1 - x, 4);
+      }
+
+      function updateRollup(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = easeOutQuart(progress);
+
+        if (countCol1) {
+          const val1 = Math.round(10000 * ease);
+          countCol1.textContent = val1.toLocaleString('en-US');
+        }
+
+        if (countCol2) {
+          const val2 = Math.round(100 * ease);
+          countCol2.textContent = val2;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(updateRollup);
+        } else {
+          if (countCol1) countCol1.textContent = (10000).toLocaleString('en-US');
+          if (countCol2) countCol2.textContent = '100';
+        }
+      }
+
+      requestAnimationFrame(updateRollup);
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      runAssemblyAndCounters();
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runAssemblyAndCounters();
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    observer.observe(rail);
   }
 
   // --------------------------------------------------------------------------
@@ -929,54 +1157,263 @@
   }
 
   // --------------------------------------------------------------------------
-  // 11. TESTIMONIAL CATEGORY FILTER TABS
+  // 11. 3D COVERFLOW / PERSPECTIVE DEPTH STACK
   // --------------------------------------------------------------------------
-  function initTestimonialFilter() {
-    const filterButtons = document.querySelectorAll('.kju-filter-tab-btn');
-    const cards = document.querySelectorAll('#kjuReviewsGrid .kju-review-card');
-    if (!filterButtons.length || !cards.length) return;
+  function initCoverflow() {
+    const stage = document.getElementById('kjuCoverflowStage');
+    const track = document.getElementById('kjuCoverflowTrack');
+    const cards = Array.from(document.querySelectorAll('.kju-coverflow-card'));
+    const prevBtn = document.getElementById('kjuCoverflowPrev');
+    const nextBtn = document.getElementById('kjuCoverflowNext');
+    const trackArea = document.getElementById('kjuScrubberTrack');
+    const progressEl = document.getElementById('kjuScrubberProgress');
+    const pillEl = document.getElementById('kjuScrubberPill');
+    const readoutNum = document.getElementById('kjuReadoutCurrent');
+    const wrapper = document.getElementById('kjuCoverflowWrapper');
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.dataset.filter;
+    if (!stage || !track || !cards.length) return;
 
-        filterButtons.forEach(btn => {
-          btn.classList.remove('is-active');
-          btn.setAttribute('aria-selected', 'false');
-        });
-        button.classList.add('is-active');
-        button.setAttribute('aria-selected', 'true');
+    let currentIndex = 0;
+    const total = cards.length;
 
-        cards.forEach(card => {
-          const category = card.dataset.category;
-          if (filter === 'all' || category === filter) {
-            card.classList.remove('is-filtered-out');
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(12px)';
-            setTimeout(() => {
-              card.style.transition = 'all 0.35s ease';
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            }, 30);
-          } else {
-            card.classList.add('is-filtered-out');
-          }
-        });
+    // Check reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Update 3D card layout based on active index
+    function updateCoverflowLayout() {
+      cards.forEach((card, idx) => {
+        let diff = idx - currentIndex;
+        // Circular wrapping for smooth infinite carousel
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
+
+        // Clear inline tilt styles from mouse parallax
+        card.style.removeProperty('rotateX');
+        card.style.removeProperty('rotateY');
+
+        const glare = card.querySelector('.kju-card-glare');
+        if (glare) glare.style.opacity = '0';
+
+        if (diff === 0) {
+          // Active Center Card (i = 0)
+          card.classList.add('is-active');
+          card.style.transform = prefersReducedMotion 
+            ? 'translateX(0%) scale(1)' 
+            : 'translateX(0%) translateZ(0px) rotateY(0deg) scale(1)';
+          card.style.zIndex = '10';
+          card.style.opacity = '1';
+          card.style.filter = 'blur(0px)';
+          card.style.pointerEvents = 'auto';
+          card.setAttribute('aria-hidden', 'false');
+        } else if (diff === -1) {
+          // Immediate Left Card (i = -1)
+          card.classList.remove('is-active');
+          card.style.transform = prefersReducedMotion 
+            ? 'translateX(-55%) scale(0.88)' 
+            : 'translateX(-65%) translateZ(-180px) rotateY(28deg) scale(0.86)';
+          card.style.zIndex = '5';
+          card.style.opacity = '0.35';
+          card.style.filter = 'blur(2.5px)';
+          card.style.pointerEvents = 'auto';
+          card.setAttribute('aria-hidden', 'true');
+        } else if (diff === 1) {
+          // Immediate Right Card (i = +1)
+          card.classList.remove('is-active');
+          card.style.transform = prefersReducedMotion 
+            ? 'translateX(55%) scale(0.88)' 
+            : 'translateX(65%) translateZ(-180px) rotateY(-28deg) scale(0.86)';
+          card.style.zIndex = '5';
+          card.style.opacity = '0.35';
+          card.style.filter = 'blur(2.5px)';
+          card.style.pointerEvents = 'auto';
+          card.setAttribute('aria-hidden', 'true');
+        } else {
+          // Outer Cards (|i| >= 2)
+          card.classList.remove('is-active');
+          const sign = diff > 0 ? 1 : -1;
+          const rot = diff > 0 ? -40 : 40;
+          card.style.transform = prefersReducedMotion 
+            ? `translateX(${sign * 95}%) scale(0.72)` 
+            : `translateX(${diff * 85}%) translateZ(-320px) rotateY(${rot}deg) scale(0.72)`;
+          card.style.zIndex = '1';
+          card.style.opacity = '0';
+          card.style.filter = 'blur(6px)';
+          card.style.pointerEvents = 'none';
+          card.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // Update Scrubber Position & Progress
+      const pct = total > 1 ? (currentIndex / (total - 1)) * 100 : 0;
+      if (progressEl) {
+        progressEl.style.width = `${pct}%`;
+      }
+      if (pillEl) {
+        pillEl.style.left = `${pct}%`;
+        pillEl.classList.add('is-sliding');
+        clearTimeout(pillEl._slideTimeout);
+        pillEl._slideTimeout = setTimeout(() => {
+          pillEl.classList.remove('is-sliding');
+        }, 220);
+      }
+
+      // Update Numeric Readout with Flip Transition
+      if (readoutNum) {
+        readoutNum.classList.add('is-flipping');
+        setTimeout(() => {
+          readoutNum.textContent = String(currentIndex + 1).padStart(2, '0');
+          readoutNum.classList.remove('is-flipping');
+        }, 110);
+      }
+    }
+
+    function goToSlide(index) {
+      if (index === currentIndex) return;
+      // Wrap around seamlessly
+      currentIndex = (index + total) % total;
+      updateCoverflowLayout();
+    }
+
+    // Direct click to center
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', () => {
+        if (idx !== currentIndex) {
+          goToSlide(idx);
+        }
       });
     });
+
+    // Arrow Controls
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    }
+
+    // Timeline Scrubber Track Click
+    if (trackArea) {
+      trackArea.addEventListener('click', (e) => {
+        const rect = trackArea.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+        const targetIndex = Math.round(ratio * (total - 1));
+        goToSlide(targetIndex);
+      });
+    }
+
+    // Interactive Mouse Parallax Tilt on Active Card (Desktop)
+    function handleMouseMove(e) {
+      if (prefersReducedMotion || window.innerWidth < 768) return;
+      const activeCard = cards[currentIndex];
+      if (!activeCard) return;
+
+      const rect = activeCard.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Mathematical formulas from blueprint:
+      // rotX = -((Y - Ycenter) / (H / 2)) * 8deg
+      // rotY = ((X - Xcenter) / (W / 2)) * 8deg
+      const rotX = -((y - centerY) / centerY) * 8;
+      const rotY = ((x - centerX) / centerX) * 8;
+
+      activeCard.style.transform = `translateX(0%) translateZ(0px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+
+      const glare = activeCard.querySelector('.kju-card-glare');
+      if (glare) {
+        glare.style.opacity = '1';
+        glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.42) 0%, transparent 60%)`;
+      }
+    }
+
+    function handleMouseLeave() {
+      if (prefersReducedMotion || window.innerWidth < 768) return;
+      const activeCard = cards[currentIndex];
+      if (!activeCard) return;
+
+      activeCard.style.transform = 'translateX(0%) translateZ(0px) rotateY(0deg) scale(1)';
+      const glare = activeCard.querySelector('.kju-card-glare');
+      if (glare) glare.style.opacity = '0';
+    }
+
+    stage.addEventListener('mousemove', (e) => {
+      const activeCard = cards[currentIndex];
+      if (activeCard && activeCard.contains(e.target)) {
+        handleMouseMove(e);
+      } else {
+        handleMouseLeave();
+      }
+    });
+
+    stage.addEventListener('mouseleave', handleMouseLeave);
+
+    // Keyboard Navigation
+    stage.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        goToSlide(currentIndex - 1);
+        e.preventDefault();
+      } else if (e.key === 'ArrowRight') {
+        goToSlide(currentIndex + 1);
+        e.preventDefault();
+      }
+    });
+
+    // Touch / Swipe Navigation
+    let touchStartX = 0;
+    let touchStartY = 0;
+    stage.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const dx = touchEndX - touchStartX;
+      const dy = touchEndY - touchStartY;
+
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
+        }
+      }
+    }, { passive: true });
+
+    // Initial Layout Setup
+    updateCoverflowLayout();
+
+    // Entrance Choreography with IntersectionObserver
+    if (wrapper && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            wrapper.classList.add('is-revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      observer.observe(wrapper);
+    }
   }
 
   // --------------------------------------------------------------------------
   // 12. INTERACTIVE GOAL SELECTOR & DYNAMIC PREVIEW CONSOLE
   // --------------------------------------------------------------------------
   function initGoalSelector() {
-    const tiles = document.querySelectorAll('.kju-goal-tile');
+    const tiles = document.querySelectorAll('.kju-milestone-strip, .kju-goal-tile');
     const badgeEl = document.getElementById('kjuGoalBadge');
     const titleEl = document.getElementById('kjuGoalTitle');
     const approvedTextEl = document.getElementById('kjuGoalApprovedText');
-    const metricsListEl = document.getElementById('kjuGoalMetricsList');
     const ctaBtnEl = document.getElementById('kjuGoalCtaBtn');
-    const consoleEl = document.getElementById('kjuGoalPreviewConsole');
+    const stageEl = document.getElementById('kjuVaultStage') || document.getElementById('kjuGoalPreviewConsole');
+    const catalogEl = document.querySelector('.kju-milestone-catalog');
+    const vaultEl = document.querySelector('.kju-milestone-vault');
 
     if (!tiles.length || !titleEl) return;
 
@@ -984,100 +1421,146 @@
       home: {
         badge: 'MORTGAGE READINESS & PRIME LENDING',
         title: 'Buying a Home',
-        icon: 'fa-house',
         approvedText: '“Your credit can play an important role when lenders evaluate a mortgage application.”',
-        metrics: [
-          '<strong>Interest Variance:</strong> A 1.0%–2.5% rate delta on standard Canadian mortgages',
-          '<strong>Amortization Impact:</strong> Up to $80,000–$120,000+ in potential lifetime interest savings',
-          '<strong>Lender Access:</strong> Qualifying with Canadian prime A-lenders vs. costly alternative debt'
-        ],
         ctaText: 'DISCUSS MY HOME FINANCING GOAL'
       },
       auto: {
         badge: 'VEHICLE FINANCING & APR PROTECTION',
         title: 'Financing a Vehicle',
-        icon: 'fa-car',
         approvedText: '“A stronger credit profile may give you access to more borrowing options.”',
-        metrics: [
-          '<strong>APR Spread:</strong> Prime auto rates (5%–8%) vs. high-cost subprime financing (16%–29%+)',
-          '<strong>Monthly Savings:</strong> Reducing payments by $150–$350+/month on an identical vehicle',
-          '<strong>Financing Health:</strong> Avoiding forced long-term negative equity rollovers'
-        ],
         ctaText: 'DISCUSS MY VEHICLE FINANCING GOAL'
       },
       cards: {
         badge: 'REVOLVING PRODUCTS & PREMIUM PERKS',
         title: 'Better Credit Products',
-        icon: 'fa-credit-card',
         approvedText: '“Your credit history can influence which cards and credit products you qualify for.”',
-        metrics: [
-          '<strong>Credit Limits:</strong> Eligibility for $10,000–$25,000+ primary unsecured limits',
-          '<strong>Rewards & Travel:</strong> Access to premier 2%–4% cash-back and travel reward tiers',
-          '<strong>Introductory Offers:</strong> Qualifying for 0% promotional balance transfer windows'
-        ],
         ctaText: 'DISCUSS MY CREDIT PRODUCT GOALS'
       },
       borrowing: {
         badge: 'BORROWING OPTIONS & NEGOTIATION POWER',
         title: 'Better Borrowing Options',
-        icon: 'fa-percent',
         approvedText: '“Creditworthiness can influence the rates and terms lenders are willing to offer.”',
-        metrics: [
-          '<strong>Unsecured Lines:</strong> Personal lines of credit at Prime + 1% to 3%',
-          '<strong>Emergency Liquidity:</strong> Readily accessible credit when unexpected emergencies arise',
-          '<strong>Lender Leverage:</strong> Greater power to negotiate fee waivers and competitive loan terms'
-        ],
         ctaText: 'DISCUSS MY BORROWING OPTIONS'
       },
       profile: {
         badge: 'LONG-TERM RESILIENCE & PROFILE HEALTH',
         title: 'Building a Stronger Profile',
-        icon: 'fa-shield',
         approvedText: '“Maybe you don’t need financing today. You simply want to put yourself in a stronger position for the future.”',
-        metrics: [
-          '<strong>Score Defense:</strong> Resilient scoring buffer against temporary utilization spikes',
-          '<strong>Future Readiness:</strong> Positioned for major life milestones well before the need arises',
-          '<strong>Bureau Longevity:</strong> Building a healthy, multi-year record with Equifax and TransUnion'
-        ],
         ctaText: 'BUILD MY CREDIT STRENGTH STRATEGY'
       },
       options: {
         badge: 'FINANCIAL AUTONOMY & LIFE OPPORTUNITY',
         title: 'Creating Financial Options',
-        icon: 'fa-door-open',
         approvedText: '“Credit isn’t everything. But when you need it, you want your credit working for you, not against you.”',
-        metrics: [
-          '<strong>Housing Mobility:</strong> Smooth tenant lease screening without requiring guarantors',
-          '<strong>Deposit Waivers:</strong> Zero security deposits on utility connections and mobile plans',
-          '<strong>Complete Autonomy:</strong> Moving through life with credit that opens doors instead of closing them'
-        ],
         ctaText: 'EXPAND MY FINANCIAL OPTIONS'
       }
     };
+
+    function syncVaultHeight() {
+      if (!catalogEl || !vaultEl) return;
+      if (window.innerWidth >= 992) {
+        vaultEl.style.height = '';
+        vaultEl.style.maxHeight = '';
+        const h = catalogEl.offsetHeight;
+        if (h > 0) {
+          vaultEl.style.height = h + 'px';
+          vaultEl.style.maxHeight = h + 'px';
+        }
+      } else {
+        vaultEl.style.height = '';
+        vaultEl.style.maxHeight = '';
+      }
+    }
+
+    function adjustQuoteTextSize(text) {
+      if (!approvedTextEl) return;
+      approvedTextEl.textContent = text;
+      if (text.length > 95) {
+        approvedTextEl.style.fontSize = 'clamp(0.92rem, 1.15vw, 1.05rem)';
+        approvedTextEl.style.lineHeight = '1.45';
+      } else {
+        approvedTextEl.style.fontSize = 'clamp(1.02rem, 1.25vw, 1.18rem)';
+        approvedTextEl.style.lineHeight = '1.55';
+      }
+    }
+
+    function adjustButtonTextSize(btnText) {
+      if (!ctaBtnEl) return;
+      const span = ctaBtnEl.querySelector('span');
+      if (!span) return;
+      if (btnText) span.textContent = btnText;
+
+      const text = span.textContent || '';
+      if (text.length > 31) {
+        span.style.fontSize = 'clamp(0.58rem, 0.68vw, 0.66rem)';
+        span.style.letterSpacing = '0.025em';
+      } else if (text.length > 28) {
+        span.style.fontSize = 'clamp(0.61rem, 0.71vw, 0.68rem)';
+        span.style.letterSpacing = '0.035em';
+      } else {
+        span.style.fontSize = 'clamp(0.64rem, 0.74vw, 0.70rem)';
+        span.style.letterSpacing = '0.035em';
+      }
+
+      requestAnimationFrame(() => {
+        const btnWidth = ctaBtnEl.clientWidth;
+        if (!btnWidth) return;
+        const icon = ctaBtnEl.querySelector('i');
+        const iconWidth = icon ? icon.offsetWidth + 12 : 22;
+        const availableWidth = btnWidth - iconWidth - 32;
+
+        if (availableWidth > 0 && span.scrollWidth > availableWidth) {
+          let currentSize = parseFloat(window.getComputedStyle(span).fontSize);
+          while (span.scrollWidth > availableWidth && currentSize > 8.5) {
+            currentSize -= 0.5;
+            span.style.fontSize = currentSize + 'px';
+            span.style.letterSpacing = '0.015em';
+          }
+        }
+      });
+    }
+
+    // Initialize text sizing and height sync
+    adjustQuoteTextSize(goalData.home.approvedText);
+    adjustButtonTextSize(goalData.home.ctaText);
+    syncVaultHeight();
+
+    window.addEventListener('resize', () => {
+      syncVaultHeight();
+      adjustButtonTextSize();
+    });
+    window.addEventListener('load', syncVaultHeight);
 
     function updateGoalConsole(goalKey) {
       const data = goalData[goalKey];
       if (!data) return;
 
-      if (consoleEl) {
-        consoleEl.style.opacity = '0.5';
-      }
+      if (!stageEl) return;
+
+      // 1. Exit upward with quick fade
+      stageEl.style.transition = 'opacity 0.16s ease, transform 0.16s ease';
+      stageEl.style.opacity = '0';
+      stageEl.style.transform = 'translateY(-8px)';
 
       setTimeout(() => {
         if (badgeEl) badgeEl.textContent = data.badge;
-        if (titleEl) titleEl.innerHTML = `<i class="fa-solid ${data.icon}"></i> ${data.title}`;
-        if (approvedTextEl) approvedTextEl.textContent = data.approvedText;
-        if (metricsListEl) {
-          metricsListEl.innerHTML = data.metrics.map(m => `<li><i class="fa-solid fa-check"></i> ${m}</li>`).join('');
-        }
-        if (ctaBtnEl) {
-          const span = ctaBtnEl.querySelector('span');
-          if (span) span.textContent = data.ctaText;
-        }
-        if (consoleEl) {
-          consoleEl.style.opacity = '1';
-        }
-      }, 150);
+        if (titleEl) titleEl.textContent = data.title;
+        adjustQuoteTextSize(data.approvedText);
+        adjustButtonTextSize(data.ctaText);
+
+        // Keep height locked strictly to the left catalog
+        syncVaultHeight();
+
+        // 2. Position below before reveal
+        stageEl.style.transform = 'translateY(8px)';
+
+        requestAnimationFrame(() => {
+          // 3. Smooth entrance from below
+          stageEl.style.transition = 'opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1)';
+          stageEl.style.opacity = '1';
+          stageEl.style.transform = 'translateY(0)';
+        });
+      }, 160);
     }
 
     tiles.forEach(tile => {
@@ -1103,7 +1586,255 @@
   }
 
   // --------------------------------------------------------------------------
-  // 13. INITIALIZATION ON DOM READY
+  // 13. DOSSIER COMMAND CARD CURSOR LIGHTING
+  // --------------------------------------------------------------------------
+  function initDossierLighting() {
+    const panel = document.querySelector('.kju-dossier-panel');
+    if (!panel) return;
+
+    panel.addEventListener('mousemove', (e) => {
+      const rect = panel.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      panel.style.setProperty('--dossier-mouse-x', `${x}px`);
+      panel.style.setProperty('--dossier-mouse-y', `${y}px`);
+      panel.style.setProperty('--dossier-glare-opacity', '1');
+    }, { passive: true });
+
+    panel.addEventListener('mouseleave', () => {
+      panel.style.setProperty('--dossier-glare-opacity', '0');
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // 14. FOUNDER DOSSIER 3D TILT MICRO-INTERACTION (SECTION 11)
+  // --------------------------------------------------------------------------
+  function initFounderDossierTilt() {
+    const card = document.querySelector('.kju-founder-dossier-card');
+    if (!card) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let isHovering = false;
+
+    card.addEventListener('mouseenter', () => {
+      isHovering = true;
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      if (!isHovering) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (((y - centerY) / centerY) * -4).toFixed(2);
+      const rotateY = (((x - centerX) / centerX) * 4).toFixed(2);
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', () => {
+      isHovering = false;
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // 15. FLIPPABLE CARD DECK CONTROLLER — SECTION 10
+  // --------------------------------------------------------------------------
+  function initHorizonBlades() {
+    const track = document.getElementById('kjuHorizonTrack');
+    if (!track) return;
+
+    const cards = Array.from(track.querySelectorAll('.kju-flip-card'));
+    const flipAllBtn = document.getElementById('kjuDeckFlipAllBtn');
+    let isTrackRevealed = false;
+
+    // --- Card Click / Tap & Keyboard Handling ---
+    cards.forEach((card, index) => {
+      // Click or tap toggles flip state
+      card.addEventListener('click', (e) => {
+        // Prevent toggle if clicking a specific action link if any
+        card.classList.toggle('is-flipped');
+        const isFlipped = card.classList.contains('is-flipped');
+        card.setAttribute('aria-expanded', isFlipped ? 'true' : 'false');
+      });
+
+      // Keyboard navigation
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.classList.toggle('is-flipped');
+          const isFlipped = card.classList.contains('is-flipped');
+          card.setAttribute('aria-expanded', isFlipped ? 'true' : 'false');
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          const next = (index + 1) % cards.length;
+          cards[next].focus();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const prev = (index - 1 + cards.length) % cards.length;
+          cards[prev].focus();
+        }
+      });
+    });
+
+    // --- "Flip All Cards" Deck Controller ---
+    if (flipAllBtn) {
+      flipAllBtn.addEventListener('click', () => {
+        const isAllFlipped = track.classList.toggle('is-all-flipped');
+        cards.forEach(c => {
+          c.classList.remove('is-flipped');
+          c.setAttribute('aria-expanded', isAllFlipped ? 'true' : 'false');
+        });
+
+        const btnText = flipAllBtn.querySelector('.btn-text');
+        const btnIcon = flipAllBtn.querySelector('i');
+        if (btnText) {
+          btnText.textContent = isAllFlipped ? 'RESET CARDS' : 'FLIP ALL CARDS';
+        }
+        if (btnIcon) {
+          btnIcon.className = isAllFlipped ? 'fa-solid fa-arrows-rotate' : 'fa-solid fa-layer-group';
+        }
+      });
+    }
+
+    // --- Entrance reveal via IntersectionObserver ---
+    if (!('IntersectionObserver' in window)) {
+      track.classList.add('is-revealed');
+      isTrackRevealed = true;
+      return;
+    }
+
+    const trackObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isTrackRevealed) {
+          isTrackRevealed = true;
+          track.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -60px 0px',
+      threshold: 0.1
+    });
+
+    trackObserver.observe(track);
+  }
+
+  // --------------------------------------------------------------------------
+  // 17. WHY CHOOSE KJU BENTO CURSOR LIGHTING
+  // --------------------------------------------------------------------------
+  function initWhyBentoLighting() {
+    const cards = document.querySelectorAll('#kjuWhyGrid .kju-why-card');
+    if (!cards.length) return;
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--why-glow-x', `${x}px`);
+        card.style.setProperty('--why-glow-y', `${y}px`);
+      }, { passive: true });
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // 18. BACK TO TOP DIRECT CONTROLLER
+  // --------------------------------------------------------------------------
+  function initBackToTop() {
+    const btn = document.getElementById('kjuBackToTop');
+    if (!btn) return;
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > 400) {
+            btn.classList.add('is-visible');
+          } else {
+            btn.classList.remove('is-visible');
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // 19. HEADER NAVIGATION & SCROLLSPY
+  // --------------------------------------------------------------------------
+  function initHeaderNavigation() {
+    const navToggle = document.getElementById('kjuNavToggle');
+    const headerNav = document.getElementById('kjuHeaderNav');
+
+    if (navToggle && headerNav) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = headerNav.classList.toggle('is-open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        const icon = navToggle.querySelector('i');
+        if (icon) {
+          icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        }
+      });
+
+      // Close mobile nav when clicking a link
+      headerNav.querySelectorAll('.kju-header-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          headerNav.classList.remove('is-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          const icon = navToggle.querySelector('i');
+          if (icon) icon.className = 'fa-solid fa-bars';
+        });
+      });
+    }
+
+    // Scrollspy for index page anchor links
+    const internalNavLinks = document.querySelectorAll('.kju-header-nav-link[href^="#"]');
+    if (internalNavLinks.length && 'IntersectionObserver' in window) {
+      const sectionMap = {};
+      internalNavLinks.forEach(link => {
+        const targetId = link.getAttribute('href').substring(1);
+        const sectionEl = document.getElementById(targetId);
+        if (sectionEl) sectionMap[targetId] = { el: sectionEl, link: link };
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const targetId = entry.target.id;
+            internalNavLinks.forEach(link => {
+              if (link.getAttribute('href') === `#${targetId}`) {
+                link.classList.add('is-active');
+              } else {
+                link.classList.remove('is-active');
+              }
+            });
+          }
+        });
+      }, {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+      });
+
+      Object.values(sectionMap).forEach(item => observer.observe(item.el));
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // 20. INITIALIZATION ON DOM READY
   // --------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
     initAttribution();
@@ -1113,11 +1844,19 @@
     initFaqAccordion();
     initSecondaryScroll();
     initStickyNavbar();
+    initHeaderNavigation();
+    initWatermarkParallax();
     initScrollReveals();
+    initTrustRailAnimation();
     initTimelineAnimation();
     initRollupCounters();
-    initTestimonialFilter();
+    initCoverflow();
     initGoalSelector();
+    initDossierLighting();
+    initFounderDossierTilt();
+    initHorizonBlades();
+    initWhyBentoLighting();
+    initBackToTop();
 
     // Check deep-link hash (#fit-check)
     if (window.location.hash === '#fit-check') {
@@ -1126,3 +1865,5 @@
   });
 
 })();
+
+
