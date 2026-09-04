@@ -1779,25 +1779,70 @@
   function initHeaderNavigation() {
     const navToggle = document.getElementById('kjuNavToggle');
     const headerNav = document.getElementById('kjuHeaderNav');
+    const backdrop = document.getElementById('kjuNavBackdrop');
 
     if (navToggle && headerNav) {
-      navToggle.addEventListener('click', () => {
-        const isOpen = headerNav.classList.toggle('is-open');
-        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      function openNav() {
+        headerNav.classList.add('is-open');
+        navToggle.classList.add('is-active');
+        navToggle.setAttribute('aria-expanded', 'true');
         const icon = navToggle.querySelector('i');
-        if (icon) {
-          icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        if (icon) icon.className = 'fa-solid fa-xmark';
+        if (backdrop) backdrop.classList.add('is-active');
+        document.body.classList.add('kju-nav-locked');
+      }
+
+      function closeNav() {
+        headerNav.classList.remove('is-open');
+        navToggle.classList.remove('is-active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        const icon = navToggle.querySelector('i');
+        if (icon) icon.className = 'fa-solid fa-bars';
+        if (backdrop) backdrop.classList.remove('is-active');
+        document.body.classList.remove('kju-nav-locked');
+      }
+
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = headerNav.classList.contains('is-open');
+        if (isOpen) {
+          closeNav();
+        } else {
+          openNav();
         }
       });
 
-      // Close mobile nav when clicking a link
+      if (backdrop) {
+        backdrop.addEventListener('click', closeNav);
+      }
+
+      // Close mobile nav when clicking any link
       headerNav.querySelectorAll('.kju-header-nav-link').forEach(link => {
         link.addEventListener('click', () => {
-          headerNav.classList.remove('is-open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          const icon = navToggle.querySelector('i');
-          if (icon) icon.className = 'fa-solid fa-bars';
+          closeNav();
         });
+      });
+
+      // Close mobile nav when clicking the CTA inside drawer
+      const mobileCta = headerNav.querySelector('.kju-mobile-nav-cta-btn');
+      if (mobileCta) {
+        mobileCta.addEventListener('click', () => {
+          closeNav();
+        });
+      }
+
+      // Close when pressing Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && headerNav.classList.contains('is-open')) {
+          closeNav();
+        }
+      });
+
+      // Auto-close if resized to desktop viewport
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 991 && headerNav.classList.contains('is-open')) {
+          closeNav();
+        }
       });
     }
 

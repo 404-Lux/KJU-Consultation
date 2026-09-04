@@ -502,51 +502,108 @@ a {
   transform: translateY(-1px);
 }
 
-/* Mobile Nav Toggle */
+/* Mobile Nav Helper Classes (Desktop Hidden) */
+.kju-mobile-chevron {
+  display: none !important;
+}
+
+.kju-mobile-nav-cta-wrap {
+  display: none !important;
+}
+
+.kju-nav-backdrop {
+  display: none;
+}
+
+body.kju-nav-locked {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+/* Mobile Nav Toggle Button (Hidden on Desktop) */
 .kju-nav-toggle {
   display: none;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-xs);
   color: #FFFFFF;
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   align-items: center;
   justify-content: center;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   cursor: pointer;
   transition: all var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.kju-nav-toggle:hover {
+.kju-nav-toggle:hover,
+.kju-nav-toggle:focus-visible {
   border-color: var(--kju-gold);
   color: var(--kju-gold);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
 }
 
+/* ==========================================================================
+   MOBILE RESPONSIVENESS — TABLETS & SMARTPHONES (iOS & ANDROID)
+   Desktop layout (> 991px) remains 100% untouched.
+   ========================================================================== */
 @media (max-width: 991px) {
-  .kju-nav-toggle {
-    display: inline-flex;
+  .kju-header {
+    padding: 12px 0;
+    padding-top: max(12px, env(safe-area-inset-top));
   }
 
+  .kju-header .kju-container {
+    padding-left: clamp(16px, 4vw, 28px);
+    padding-right: clamp(16px, 4vw, 28px);
+  }
+
+  .kju-header-right {
+    gap: 12px;
+  }
+
+  .kju-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .kju-nav-toggle.is-active,
+  .kju-nav-toggle[aria-expanded="true"] {
+    background: rgba(184, 134, 11, 0.18);
+    border-color: var(--kju-gold, #B8860B);
+    color: var(--kju-gold, #B8860B);
+  }
+
+  /* Mobile Drawer Dropdown */
   .kju-header-nav {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--kju-authority-navy, #1F2A44);
-    border-top: 1px solid rgba(184, 134, 11, 0.3);
-    border-bottom: 2px solid rgba(184, 134, 11, 0.4);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+    width: 100%;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #0D1822; /* Authority Navy deep canvas */
+    border-top: 1px solid rgba(184, 134, 11, 0.35);
+    border-bottom: 3px solid var(--kju-gold, #B8860B);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.75);
     flex-direction: column;
     align-items: stretch;
-    padding: 16px 24px 20px;
-    gap: 6px;
+    padding: 16px 20px 24px;
+    gap: 0;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(-8px);
+    transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s;
     pointer-events: none;
+    z-index: 999;
   }
 
   .kju-header-nav.is-open {
@@ -556,31 +613,190 @@ a {
     pointer-events: auto;
   }
 
+  /* Nav Links in Mobile Drawer */
   .kju-header-nav-link {
-    padding: 12px 16px;
-    font-size: 0.94rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    padding: 12px 14px;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgba(245, 243, 238, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    margin-bottom: 2px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .kju-header-nav-link:hover,
+  .kju-header-nav-link:active {
+    background: rgba(255, 255, 255, 0.07);
+    color: #FFFFFF;
+    transform: translateX(3px);
+  }
+
+  .kju-header-nav-link.is-active {
+    color: var(--kju-gold, #B8860B);
+    background: rgba(184, 134, 11, 0.12);
+    border-left: 3px solid var(--kju-gold, #B8860B);
   }
 
   .kju-header-nav-link.is-active::after {
     display: none;
   }
+
+  .kju-mobile-chevron {
+    display: inline-block !important;
+    font-size: 0.78rem;
+    opacity: 0.45;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .kju-header-nav-link:hover .kju-mobile-chevron,
+  .kju-header-nav-link:active .kju-mobile-chevron {
+    opacity: 0.95;
+    transform: translateX(3px);
+    color: var(--kju-gold, #B8860B);
+  }
+
+  /* Full-width CTA inside mobile drawer */
+  .kju-mobile-nav-cta-wrap {
+    display: block !important;
+    margin-top: 18px;
+    padding-top: 12px;
+  }
+
+  .kju-mobile-nav-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 20px;
+    background: var(--kju-gold, #B8860B);
+    color: #FFFFFF;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--kju-gold, #B8860B);
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4);
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .kju-mobile-nav-cta-btn:active {
+    background: var(--kju-gold-hover, #9B7007);
+    transform: scale(0.98);
+  }
+
+  /* Backdrop Scrim Overlay */
+  .kju-nav-backdrop {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 16, 23, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+    z-index: 850;
+    pointer-events: none;
+  }
+
+  .kju-nav-backdrop.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 }
 
-@media (max-width: 520px) {
+/* Phones (iOS Safari, Android Chrome, Samsung Internet — <= 640px) */
+@media (max-width: 640px) {
+  .kju-header-inner {
+    gap: 8px;
+  }
+
+  .kju-navbar-logo-slot {
+    height: 40px;
+  }
+
+  .kju-brand-logo {
+    gap: 9px;
+  }
+
+  .kju-brand-logo img {
+    height: 38px;
+  }
+
   .kju-brand-name {
-    font-size: 1.14rem;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.18em !important;
+    white-space: nowrap;
   }
+
   .kju-brand-tagline {
-    font-size: 0.62rem;
+    font-size: 0.42rem !important;
+    letter-spacing: 0.32em !important;
+    white-space: nowrap;
+    margin-top: 3px;
   }
+
+  .kju-header-right {
+    gap: 8px;
+  }
+
   .kju-header-cta-btn {
-    padding: 6px 10px;
+    padding: 8px 12px;
     font-size: 0.72rem;
+    letter-spacing: 0.04em;
     gap: 5px;
+    border-radius: 4px;
   }
-  .kju-header-cta-btn span {
-    display: inline-block;
+
+  .kju-header-cta-btn i {
+    display: none; /* Hide chevron arrow in compact mobile header */
+  }
+
+  .kju-nav-toggle {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    font-size: 1.15rem;
+  }
+}
+
+/* Narrow Phones (iPhone SE, small Androids — <= 380px) */
+@media (max-width: 380px) {
+  .kju-brand-logo img {
+    height: 34px;
+  }
+
+  .kju-brand-name {
+    font-size: 0.64rem !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .kju-brand-tagline {
+    font-size: 0.38rem !important;
+    letter-spacing: 0.22em !important;
+  }
+
+  .kju-header-cta-btn {
+    padding: 7px 9px;
+    font-size: 0.66rem;
   }
 }
 
