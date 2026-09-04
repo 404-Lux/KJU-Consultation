@@ -6701,30 +6701,6 @@ body.kju-nav-locked {
   }
 }
 
-/* ==========================================================================
-   MOBILE STICKY CTA
-   ========================================================================== */
-.kju-mobile-sticky-bar {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(232, 228, 220, 0.98);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-top: 1.5px solid var(--border-gold);
-  padding: 14px 20px;
-  z-index: 800;
-  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.1);
-  transition: transform var(--transition-normal), opacity var(--transition-normal);
-}
-
-.kju-mobile-sticky-bar.is-hidden {
-  transform: translateY(100%);
-  opacity: 0;
-  pointer-events: none;
-}
 
 /* ==========================================================================
    DIRECT BACK TO TOP FLOATING BUTTON
@@ -7302,9 +7278,6 @@ body.kju-nav-locked {
   .kju-empathy-pain-col,
   .kju-empathy-solution-col {
     padding: 32px 22px;
-  }
-  .kju-mobile-sticky-bar {
-    display: block;
   }
   .kju-modal-card {
     padding: 28px 20px;

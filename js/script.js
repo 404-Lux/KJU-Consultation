@@ -319,7 +319,6 @@
   const progressFill = document.getElementById('kjuQualProgressFill');
   const backBtn = document.getElementById('kjuQualBackBtn');
   const nextBtn = document.getElementById('kjuQualNextBtn');
-  const mobileStickyBar = document.getElementById('kjuMobileStickyBar');
 
   // Step IDs definitions
   const ALL_STEPS = [
@@ -370,7 +369,6 @@
     if (!modalOverlay) return;
     modalOverlay.classList.add('is-active');
     document.body.style.overflow = 'hidden';
-    if (mobileStickyBar) mobileStickyBar.classList.add('is-hidden');
 
     trackEvent('qualification_cta_clicked');
 
@@ -386,9 +384,6 @@
     document.body.style.overflow = '';
     const modalCard = document.querySelector('.kju-modal-card');
     if (modalCard) modalCard.classList.remove('is-calendly-active');
-    if (mobileStickyBar && state.qualificationStatus !== 'QUALIFIED') {
-      mobileStickyBar.classList.remove('is-hidden');
-    }
   }
 
   function renderCurrentStep() {
