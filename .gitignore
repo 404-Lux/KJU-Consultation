@@ -1,0 +1,11 @@
+# OS files
+.DS_Store
+*.DS_Store
+Thumbs.db
+
+# Exclude v1 directory
+v1/
+v1/**
+
+# Logs
+*.log
