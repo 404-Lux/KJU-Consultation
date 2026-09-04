@@ -2,7 +2,7 @@
    KENNY JOHNSON UNIVERSITY (KJU) — META ADS CAMPAIGN LANDING PAGE
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@500&family=JetBrains+Mono:wght@500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,600;1,6..72,700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@500&family=JetBrains+Mono:wght@500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,600;1,6..72,700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   /* Brand Hex Colors (Source of Truth) */
@@ -3990,11 +3990,17 @@ a {
 .kju-how-title {
   font-family: var(--font-ui), sans-serif !important;
   font-size: clamp(2.1rem, 4.2vw, 2.85rem);
-  font-weight: 800 !important;
+  font-weight: 900 !important;
   letter-spacing: -0.02em !important;
   line-height: 1.05 !important;
   text-transform: uppercase !important;
   margin-bottom: 14px;
+}
+
+.kju-how-title strong,
+.kju-how-title .how-title-lead,
+.kju-how-title .how-title-accent {
+  font-weight: 900 !important;
 }
 
 .kju-how-title .how-title-lead {
@@ -4342,10 +4348,11 @@ a {
   margin: 0 2px;
 }
 
-.kju-why-title {
+.kju-why-title,
+.kju-why-title strong {
   font-family: var(--font-ui), sans-serif !important;
   font-size: clamp(2.2rem, 3.8vw, 3rem);
-  font-weight: 800 !important;
+  font-weight: 900 !important;
   letter-spacing: -0.02em !important;
   line-height: 1.05 !important;
   text-transform: uppercase !important;
@@ -5175,10 +5182,11 @@ a {
   display: inline-block;
 }
 
-.kju-objection-title {
+.kju-objection-title,
+.kju-objection-title strong {
   font-family: var(--font-ui), sans-serif !important;
   font-size: clamp(2.2rem, 3.8vw, 3rem);
-  font-weight: 800 !important;
+  font-weight: 900 !important;
   letter-spacing: -0.02em !important;
   line-height: 1.05 !important;
   text-transform: uppercase !important;
