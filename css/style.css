@@ -3665,29 +3665,20 @@ a {
   z-index: 2;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin-bottom: 6px;
 }
 
 .kju-card-idx {
   font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #D4AF37;
+  font-size: clamp(1.65rem, 2.2vw, 2.05rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #E5C158;
   text-transform: uppercase;
   line-height: 1;
-}
-
-.kju-card-pillar-tag {
-  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: rgba(232, 228, 220, 0.85);
-  background: rgba(184, 134, 11, 0.14);
-  border: 1px solid rgba(184, 134, 11, 0.35);
-  border-radius: 999px;
-  padding: 3px 10px;
+  display: inline-block;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 /* Icon Container & Badge */
@@ -3797,15 +3788,6 @@ a {
   background: linear-gradient(168deg, #1E2D44 0%, #121E31 100%);
   border: 1.5px solid #D4AF37;
   box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.75), inset 0 2px 0 #D4AF37, 0 0 22px rgba(184, 134, 11, 0.25);
-}
-
-.kju-card-reticle {
-  font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #D4AF37;
-  text-transform: uppercase;
 }
 
 .kju-card-back-content {
