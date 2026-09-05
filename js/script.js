@@ -9,7 +9,30 @@
   const CONFIG = {
     requiredWatchThreshold: 0.85, // 85% of video to unlock
     calendlyBaseUrl: 'https://calendly.com/d/cp2f-sj7-4vx',
-    paidConsultationUrl: 'https://calendly.com/d/cp2f-sj7-4vx?type=paid',
+    paidConsultationUrl: 'https://calendly.com/kennys-consulting/interview-clone',
+    salesTeammates: [
+      {
+        id: 'mariane',
+        name: 'Mariane Pacheco',
+        label: 'Mariane',
+        title: 'Credit Consultation call - Mariane Pacheco',
+        url: 'https://calendly.com/mariane-pacheco-qua/credit-consultation-call?month=2026-07'
+      },
+      {
+        id: 'jasmin',
+        name: 'Jasmin Ichihara',
+        label: 'Jasmin',
+        title: 'Credit Consultation call - Jasmin Ichihara',
+        url: 'https://calendly.com/jasmin-ichihara-kennyjohnsonuniversity/credit-consultation-call?month=2026-07'
+      },
+      {
+        id: 'john',
+        name: 'John Parcon',
+        label: 'John',
+        title: 'Credit Consultation call - John Parcon',
+        url: 'https://calendly.com/john-parcon-kennyjohnsonuniversity/credit-consultation-call?month=2026-06&date=2026-06-03'
+      }
+    ],
     resourcePdfPath: 'File/The 5-Minute Credit Report Check.pdf',
     resourcePdfName: 'The 5-Minute Credit Report Check.pdf'
   };
@@ -524,9 +547,22 @@
     if (currentStepId === 'step_contact') {
       if (progressText) progressText.textContent = 'FINAL STEP: YOUR DETAILS';
       if (progressFill) progressFill.style.width = '95%';
+      const noticeEl = document.querySelector('.kju-contact-notice');
+      if (noticeEl) {
+        if (state.answers.hasBureauAccess === 'No') {
+          noticeEl.innerHTML = '<strong>Help with bureau access:</strong> No problem if you don\'t have access yet — a sales teammate will call you from <strong>438-803-1002</strong> to help you retrieve your Credit Karma and Equifax reports during your consultation.';
+        } else {
+          noticeEl.innerHTML = '<strong>Before your consultation:</strong> Please make sure you have access to both Credit Karma and Equifax. Your credit specialist will call you from <strong>438-803-1002</strong>. Consultations may be rescheduled a maximum of two times.';
+        }
+      }
     } else if (currentStepId === 'step_calendly') {
       if (progressText) progressText.textContent = 'SCHEDULE YOUR STRATEGY CALL';
       if (progressFill) progressFill.style.width = '100%';
+      if (state.answers.hasBureauAccess === 'No') {
+        loadSalesTeammateBooking();
+      } else {
+        loadCalendlyEmbed();
+      }
     } else {
       if (progressText) progressText.textContent = `QUESTION ${currentQNumber} OF ${totalQuestions}`;
       const pct = Math.round((currentQNumber / totalQuestions) * 100);
@@ -629,11 +665,7 @@
         return;
       }
       trackEvent('question_answered', { question: 'has_bureau_access', answer: state.answers.hasBureauAccess });
-      // Disqualification check: No access to both Credit Karma and Equifax
-      if (state.answers.hasBureauAccess === 'No') {
-        disqualify('no_bureau_access');
-        return;
-      }
+      // If user answers 'No', they are STILL qualified for a call — a sales teammate will help them retrieve their credit files!
     } else if (currentStepId === 'step_contact') {
       const nameInput = document.getElementById('kjuContactName');
       const emailInput = document.getElementById('kjuContactEmail');
@@ -675,13 +707,18 @@
         name: name,
         email: email,
         phone: phone,
-        province: state.answers.province
+        province: state.answers.province,
+        hasBureauAccess: state.answers.hasBureauAccess
       });
 
       // Advance to Calendly
       state.currentStepIndex++;
       renderCurrentStep();
-      loadCalendlyEmbed();
+      if (state.answers.hasBureauAccess === 'No') {
+        loadSalesTeammateBooking();
+      } else {
+        loadCalendlyEmbed();
+      }
       return;
     }
 
@@ -789,9 +826,73 @@
     } catch (e) {}
   }
 
+  let selectedTeammateId = 'mariane';
+
+  function loadSalesTeammateBooking(selectedId) {
+    if (selectedId) {
+      selectedTeammateId = selectedId;
+    }
+
+    const container = document.getElementById('kjuCalendlyContainer');
+    if (!container) return;
+
+    let selectorWrap = document.getElementById('kjuTeammateSelector');
+    if (!selectorWrap) {
+      selectorWrap = document.createElement('div');
+      selectorWrap.id = 'kjuTeammateSelector';
+      selectorWrap.className = 'kju-teammate-selector-wrap';
+      container.parentNode.insertBefore(selectorWrap, container);
+    }
+    selectorWrap.style.display = 'block';
+
+    const teammates = CONFIG.salesTeammates;
+    let activeTeammate = teammates.find(t => t.id === selectedTeammateId) || teammates[0];
+
+    selectorWrap.innerHTML = `
+      <div class="kju-teammate-selector-header">
+        <i class="fa-solid fa-headset" style="color: var(--kju-gold);"></i>
+        <span>A sales teammate will help you get access. Choose your specialist:</span>
+      </div>
+      <div class="kju-teammate-grid">
+        ${teammates.map(t => `
+          <button type="button" class="kju-teammate-btn ${t.id === activeTeammate.id ? 'is-active' : ''}" data-teammate-id="${t.id}">
+            <div class="kju-teammate-avatar-ring">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <div class="kju-teammate-info">
+              <span class="kju-teammate-name">${t.name}</span>
+              <span class="kju-teammate-call-type">${t.title}</span>
+            </div>
+          </button>
+        `).join('')}
+      </div>
+    `;
+
+    selectorWrap.querySelectorAll('.kju-teammate-btn').forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        const tid = btn.dataset.teammateId;
+        loadSalesTeammateBooking(tid);
+      };
+    });
+
+    loadCalendlyEmbed(
+      activeTeammate.url,
+      activeTeammate.title,
+      'A sales teammate will call you to help you retrieve your Credit Karma & Equifax files and walk you through your credit strategy.'
+    );
+  }
+
   function loadCalendlyEmbed(customUrl, titleText, subtitleText) {
     const container = document.getElementById('kjuCalendlyContainer');
     if (!container) return;
+
+    // If not booking with a sales teammate, ensure the teammate selector is hidden
+    const selectorWrap = document.getElementById('kjuTeammateSelector');
+    const isTeammateUrl = CONFIG.salesTeammates && CONFIG.salesTeammates.some(t => t.url === customUrl);
+    if (selectorWrap && !isTeammateUrl) {
+      selectorWrap.style.display = 'none';
+    }
 
     trackEvent('calendly_viewed');
 

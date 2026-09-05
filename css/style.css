@@ -7439,6 +7439,112 @@ body.kju-nav-locked {
   transition: max-width var(--transition-normal), padding var(--transition-normal);
 }
 
+/* Sales Teammates Selector (Bureau Access Routing) */
+.kju-teammate-selector-wrap {
+  margin-bottom: 20px;
+  background: rgba(18, 28, 43, 0.03);
+  border: 1px solid rgba(18, 28, 43, 0.1);
+  border-left: 3.5px solid var(--kju-gold, #B8860B);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.kju-teammate-selector-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--kju-authority-navy-dark, #121C2B);
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+.kju-teammate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.kju-teammate-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(18, 28, 43, 0.14);
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-ui), sans-serif;
+  text-align: left;
+}
+
+.kju-teammate-btn:hover {
+  border-color: var(--kju-gold, #B8860B);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.15);
+}
+
+.kju-teammate-btn.is-active {
+  border-color: var(--kju-gold, #B8860B);
+  background: rgba(184, 134, 11, 0.08);
+  box-shadow: 0 0 0 2px rgba(184, 134, 11, 0.25), 0 4px 12px rgba(184, 134, 11, 0.15);
+}
+
+.kju-teammate-avatar-ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(18, 28, 43, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kju-authority-navy, #162533);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.kju-teammate-btn.is-active .kju-teammate-avatar-ring {
+  background: var(--kju-gold, #B8860B);
+  color: #FFFFFF;
+}
+
+.kju-teammate-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.kju-teammate-name {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--kju-authority-navy-dark, #121C2B);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kju-teammate-btn.is-active .kju-teammate-name {
+  color: var(--kju-gold, #B8860B);
+}
+
+.kju-teammate-call-type {
+  font-size: 0.68rem;
+  color: #6C7A89;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .kju-teammate-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
 .kju-calendly-frame-wrap {
   min-height: 650px;
   width: 100%;
