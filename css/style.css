@@ -8751,12 +8751,12 @@ body.kju-nav-locked {
     width: 100% !important;
   }
   .kju-founder-photo-wrap {
-    width: 68px !important;
-    height: 68px !important;
-    flex: 0 0 68px !important;
+    width: 108px !important;
+    height: 128px !important;
+    flex: 0 0 108px !important;
     border-radius: 10px !important;
     border: 2px solid var(--kju-gold, #B8860B) !important;
-    box-shadow: 0 0 12px rgba(184, 134, 11, 0.25) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 14px rgba(184, 134, 11, 0.25) !important;
     position: relative !important;
     overflow: hidden !important;
     background: #141E2E !important;
@@ -8774,7 +8774,8 @@ body.kju-nav-locked {
   .kju-founder-info-plate {
     display: flex !important;
     flex-direction: column !important;
-    gap: 5px !important;
+    justify-content: center !important;
+    gap: 6px !important;
     padding: 0 !important;
     background: transparent !important;
     border: none !important;
@@ -8788,26 +8789,25 @@ body.kju-nav-locked {
     text-align: left !important;
   }
   .kju-founder-name {
-    font-size: 0.92rem !important;
+    font-size: 0.98rem !important;
     font-weight: 800 !important;
     letter-spacing: 0.05em !important;
     color: #FFFFFF !important;
     line-height: 1.15 !important;
   }
   .kju-founder-role {
-    font-size: 0.62rem !important;
+    font-size: 0.64rem !important;
     letter-spacing: 0.12em !important;
     color: var(--kju-gold, #B8860B) !important;
     font-weight: 700 !important;
   }
   .kju-founder-directory-links {
     display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    gap: 6px 8px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 5px !important;
     padding: 0 !important;
-    margin-top: 2px !important;
+    margin-top: 4px !important;
     border: none !important;
   }
   .kju-directory-link {
@@ -8816,12 +8816,19 @@ body.kju-nav-locked {
     gap: 4px !important;
     font-size: 0.62rem !important;
     font-weight: 600 !important;
-    color: rgba(232, 228, 220, 0.85) !important;
+    color: rgba(232, 228, 220, 0.88) !important;
     padding: 3px 8px !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(200, 188, 168, 0.2) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(200, 188, 168, 0.22) !important;
     border-radius: 4px !important;
     text-decoration: none !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+  }
+  .kju-directory-link span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
   .kju-directory-link:active {
     color: var(--kju-gold, #B8860B) !important;
@@ -8925,18 +8932,25 @@ body.kju-nav-locked {
   .kju-meet-cta-wrap .kju-btn {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 13px 16px !important;
-    font-size: 0.76rem !important;
+    padding: 11px 16px !important;
+    font-size: 0.74rem !important;
     font-weight: 800 !important;
     letter-spacing: 0.04em !important;
+    display: inline-flex !important;
+    align-items: center !important;
     justify-content: center !important;
-    min-height: 44px !important;
+    white-space: nowrap !important;
+    min-height: 40px !important;
     border-radius: 6px !important;
     gap: 8px !important;
     box-shadow: 0 4px 14px rgba(184, 134, 11, 0.28) !important;
   }
+  .kju-meet-cta-wrap .kju-btn .kju-btn-subphrase {
+    display: none !important;
+  }
   .kju-meet-cta-wrap .kju-btn i {
-    font-size: 0.74rem !important;
+    font-size: 0.72rem !important;
+    display: inline-block !important;
   }
 
   /* =========================================================
