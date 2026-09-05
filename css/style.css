@@ -4204,13 +4204,17 @@ body.kju-nav-locked {
   height: 100%;
   text-align: left;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   border-radius: 16px;
 }
 
-/* Trigger flip on desktop hover */
-.kju-flip-card:hover .kju-flip-card-inner {
-  transform: rotateY(180deg);
+/* Trigger flip on desktop hover (pointer devices with true hover capability only) */
+@media (hover: hover) and (pointer: fine) and (min-width: 769px) {
+  .kju-flip-card:hover .kju-flip-card-inner {
+    transform: rotateY(180deg);
+  }
 }
 
 /* Trigger flip on click/touch/toggle */
@@ -4286,14 +4290,19 @@ body.kju-nav-locked {
    ========================================================= */
 .kju-flip-card-front {
   transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
   background: linear-gradient(168deg, #1A273C 0%, #101927 100%);
   border: 1px solid rgba(184, 134, 11, 0.32);
   box-shadow: 0 12px 28px -6px rgba(5, 10, 18, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  pointer-events: auto;
 }
 
-.kju-flip-card:hover .kju-flip-card-front {
-  border-color: rgba(212, 175, 55, 0.7);
-  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(184, 134, 11, 0.2);
+@media (hover: hover) and (pointer: fine) and (min-width: 769px) {
+  .kju-flip-card:hover .kju-flip-card-front {
+    border-color: rgba(212, 175, 55, 0.7);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(184, 134, 11, 0.2);
+    pointer-events: none;
+  }
 }
 
 /* Watermark Numeral in Background */
@@ -4358,10 +4367,12 @@ body.kju-nav-locked {
   transition: transform 0.4s ease, border-color 0.4s ease, color 0.4s ease;
 }
 
-.kju-flip-card:hover .kju-card-icon-badge {
-  transform: scale(1.06);
-  border-color: #D4AF37;
-  color: #FFFFFF;
+@media (hover: hover) and (pointer: fine) and (min-width: 769px) {
+  .kju-flip-card:hover .kju-card-icon-badge {
+    transform: scale(1.06);
+    border-color: #D4AF37;
+    color: #FFFFFF;
+  }
 }
 
 /* Front Content */
@@ -4424,12 +4435,16 @@ body.kju-nav-locked {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.kju-flip-card:hover .kju-card-action {
-  color: #FFFFFF;
-}
-
-.kju-flip-card:hover .kju-card-action i {
-  transform: rotate(180deg);
+@media (hover: hover) and (pointer: fine) and (min-width: 769px) {
+  .kju-flip-card:hover .kju-card-action {
+    color: #FFFFFF;
+  }
+  .kju-flip-card:hover .kju-card-action i {
+    transform: rotate(180deg);
+  }
+  .kju-flip-card:hover .kju-flip-card-back {
+    pointer-events: auto;
+  }
 }
 
 /* =========================================================
@@ -4437,9 +4452,21 @@ body.kju-nav-locked {
    ========================================================= */
 .kju-flip-card-back {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   background: linear-gradient(168deg, #1E2D44 0%, #121E31 100%);
   border: 1.5px solid #D4AF37;
   box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.75), inset 0 2px 0 #D4AF37, 0 0 22px rgba(184, 134, 11, 0.25);
+  pointer-events: none;
+}
+
+/* Active face pointer events toggle */
+.kju-flip-card.is-flipped .kju-flip-card-front,
+.horizon-track.kju-card-deck.is-all-flipped .kju-flip-card .kju-flip-card-front {
+  pointer-events: none;
+}
+.kju-flip-card.is-flipped .kju-flip-card-back,
+.horizon-track.kju-card-deck.is-all-flipped .kju-flip-card .kju-flip-card-back {
+  pointer-events: auto;
 }
 
 .kju-card-back-content {
@@ -4653,6 +4680,9 @@ body.kju-nav-locked {
     scroll-snap-stop: always !important;
     box-sizing: border-box !important;
     margin: 0 !important;
+    -webkit-tap-highlight-color: transparent !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
   }
   .kju-flip-card:nth-child(4),
   .kju-flip-card:nth-child(5) {

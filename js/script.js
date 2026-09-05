@@ -1808,9 +1808,34 @@
 
     // --- Card Click / Tap & Keyboard Handling ---
     cards.forEach((card, index) => {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let isSwipeDrag = false;
+
+      card.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          isSwipeDrag = false;
+        }
+      }, { passive: true });
+
+      card.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 1) {
+          const dx = Math.abs(e.touches[0].clientX - touchStartX);
+          const dy = Math.abs(e.touches[0].clientY - touchStartY);
+          if (dx > 10 || dy > 10) {
+            isSwipeDrag = true;
+          }
+        }
+      }, { passive: true });
+
       // Click or tap toggles flip state
       card.addEventListener('click', (e) => {
-        // Prevent toggle if clicking a specific action link if any
+        if (isSwipeDrag) {
+          isSwipeDrag = false;
+          return;
+        }
         card.classList.toggle('is-flipped');
         const isFlipped = card.classList.contains('is-flipped');
         card.setAttribute('aria-expanded', isFlipped ? 'true' : 'false');
