@@ -8124,14 +8124,15 @@ body.kju-nav-locked {
   }
   .kju-hero-actions .kju-btn {
     width: 100%;
-    min-height: 46px;
+    min-height: 44px;
     padding: 11px 16px;
-    font-size: 0.82rem;
+    font-size: clamp(0.70rem, 2.8vw, 0.82rem);
     font-weight: 800;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     justify-content: center;
     border-radius: 4px;
+    white-space: nowrap;
   }
 
   /* F. The Grounding Trust Bar (One-Line Architecture Matching Desktop) */
