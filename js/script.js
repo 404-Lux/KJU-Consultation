@@ -564,7 +564,7 @@
 
     // Update Navigation Buttons
     if (backBtn) {
-      backBtn.style.display = state.currentStepIndex > 0 ? 'inline-flex' : 'none';
+      backBtn.style.display = state.currentStepIndex > 0 && currentStepId !== 'step_calendly' ? 'inline-flex' : 'none';
     }
 
     if (nextBtn) {

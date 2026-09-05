@@ -7568,11 +7568,7 @@ body.kju-nav-locked {
 }
 
 .kju-modal-card.is-calendly-active .kju-form-nav {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(200, 188, 168, 0.25);
-  display: flex;
-  justify-content: flex-start;
+  display: none !important;
 }
 
 .kju-teammate-status-bar {
