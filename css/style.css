@@ -2764,7 +2764,7 @@ body.kju-nav-locked {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.9);
   width: 100%;
   max-width: 860px;
   height: 360px;
@@ -2776,6 +2776,13 @@ body.kju-nav-locked {
   );
   pointer-events: none;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.kju-coverflow-wrapper.is-revealed .kju-coverflow-stage::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 /* Faint Floor Shadow / Horizon Line */
@@ -2784,16 +2791,23 @@ body.kju-nav-locked {
   position: absolute;
   bottom: 8px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(0.85);
   width: 520px;
   height: 24px;
   background: radial-gradient(ellipse 260px 12px at 50% 50%, rgba(0, 0, 0, 0.12) 0%, transparent 80%);
   filter: blur(12px);
   pointer-events: none;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0.75s ease 0.2s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
 }
 
-/* 3D Preserved Track */
+.kju-coverflow-wrapper.is-revealed .kju-coverflow-stage::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* 3D Preserved Track Entrance State */
 .kju-coverflow-track {
   transform-style: preserve-3d;
   position: relative;
@@ -2803,6 +2817,21 @@ body.kju-nav-locked {
   justify-content: center;
   align-items: center;
   z-index: 1;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.6s ease;
+}
+
+.kju-coverflow-wrapper:not(.is-revealed) .kju-coverflow-track {
+  opacity: 0;
+  transform: translateY(24px) scale(0.95);
+  filter: blur(4px);
+}
+
+.kju-coverflow-wrapper.is-revealed .kju-coverflow-track {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
 }
 
 /* Individual 3D Coverflow Cards */
@@ -2828,11 +2857,17 @@ body.kju-nav-locked {
   backface-visibility: hidden;
   opacity: 0.35;
   filter: blur(2.5px);
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.5s ease,
-              filter 0.5s ease,
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.65s ease,
+              filter 0.65s ease,
               box-shadow 0.35s ease,
               border-color 0.3s ease;
+}
+
+.kju-coverflow-wrapper:not(.is-revealed) .kju-coverflow-card {
+  opacity: 0 !important;
+  transform: translateX(0%) translateZ(-140px) scale(0.82) !important;
+  filter: blur(6px) !important;
 }
 
 /* Active Center Card State */
@@ -2994,6 +3029,15 @@ body.kju-nav-locked {
   margin-top: 18px;
   position: relative;
   z-index: 10;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.25s,
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+}
+
+.kju-coverflow-wrapper.is-revealed .kju-coverflow-scrubber-wrap {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .kju-scrubber-nav-btn {
@@ -3300,7 +3344,7 @@ body.kju-nav-locked {
   flex-direction: column;
   overflow: hidden;
   opacity: 0;
-  transform: translateX(-20px);
+  transform: translateY(24px);
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -3325,7 +3369,7 @@ body.kju-nav-locked {
 /* Revealed State for Left Card */
 .kju-dossier-panel.is-revealed {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
   background: linear-gradient(155deg, #1F2A44 0%, #162234 50%, #121C2B 100%);
 }
 
@@ -3400,6 +3444,9 @@ body.kju-nav-locked {
   align-items: center;
   gap: 14px;
   z-index: 2;
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Copper-Gold Illuminated Check Indicator */
@@ -3427,22 +3474,37 @@ body.kju-nav-locked {
 }
 
 /* Phase 2: Sequential Checklist Illumination */
+.kju-dossier-panel.is-revealed .kju-dossier-step:nth-child(1) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.15s;
+}
 .kju-dossier-panel.is-revealed .kju-dossier-step:nth-child(1) .kju-step-tick {
   opacity: 1;
   transform: scale(1);
-  transition-delay: 0.20s;
+  transition-delay: 0.22s;
 }
 
+.kju-dossier-panel.is-revealed .kju-dossier-step:nth-child(2) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.28s;
+}
 .kju-dossier-panel.is-revealed .kju-dossier-step:nth-child(2) .kju-step-tick {
   opacity: 1;
   transform: scale(1);
   transition-delay: 0.35s;
 }
 
+.kju-dossier-panel.is-revealed .kju-dossier-step:nth-child(3) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.40s;
+}
 .kju-dossier-panel.is-revealed .kju-dossier-step:nth-child(3) .kju-step-tick {
   opacity: 1;
   transform: scale(1);
-  transition-delay: 0.50s;
+  transition-delay: 0.48s;
 }
 
 .kju-step-label {
@@ -3466,6 +3528,14 @@ body.kju-nav-locked {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease 0.45s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
+}
+
+.kju-dossier-panel.is-revealed .kju-dossier-clincher {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .kju-clincher-prefix {
@@ -3492,6 +3562,14 @@ body.kju-nav-locked {
   padding: 16px 24px;
   font-size: 0.88rem;
   letter-spacing: 0.06em;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s ease 0.52s, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.52s;
+}
+
+.kju-dossier-panel.is-revealed .kju-dossier-cta-btn {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Right Panel: Integrated Syllabus Track */
@@ -3501,6 +3579,15 @@ body.kju-nav-locked {
 
 .kju-syllabus-deck-controls {
   display: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease 0.35s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+}
+
+.kju-syllabus-deck-controls.is-revealed,
+.kju-syllabus-container.is-revealed + .kju-syllabus-deck-controls {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .kju-syllabus-container {
@@ -3890,8 +3977,9 @@ body.kju-nav-locked {
     max-width: 85% !important;
     scroll-snap-align: center !important;
     scroll-snap-stop: always !important;
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 0 !important;
+    transform: translateY(16px) scale(0.96) !important;
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
     margin: 0 !important;
     box-sizing: border-box !important;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05) !important;
@@ -3903,6 +3991,15 @@ body.kju-nav-locked {
     gap: 12px !important;
     align-items: flex-start !important;
   }
+  .kju-syllabus-container.is-revealed .kju-syllabus-row {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
+  .kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(1) { transition-delay: 0.05s !important; }
+  .kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(2) { transition-delay: 0.12s !important; }
+  .kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(3) { transition-delay: 0.19s !important; }
+  .kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(4) { transition-delay: 0.26s !important; }
+  .kju-syllabus-container.is-revealed .kju-syllabus-row:nth-child(5) { transition-delay: 0.33s !important; }
   .kju-syllabus-index {
     min-width: 36px !important;
     padding: 6px 8px !important;
@@ -5735,6 +5832,29 @@ body.kju-nav-locked {
 @media (max-width: 640px) {
   .kju-meet-section {
     padding: 72px 0;
+  }
+
+  .kju-meet-mobile-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin: 0 auto 14px !important;
+    text-align: center !important;
+  }
+
+  .kju-meet-mobile-header .kju-meet-headline {
+    text-align: center !important;
+    margin: 0 auto 4px !important;
+    width: 100% !important;
+  }
+
+  .kju-meet-role-subtitle {
+    text-align: center !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    display: block !important;
   }
 
   .kju-founder-info-plate {
@@ -7571,15 +7691,18 @@ body.kju-nav-locked {
 }
 
 #step_calendly .kju-result-title {
-  font-size: 1.15rem !important;
-  margin-bottom: 2px !important;
+  font-size: 1.12rem;
+  margin-bottom: 3px;
   letter-spacing: 0.02em;
 }
 
-#step_calendly #kjuCalendlySubtitle {
-  font-size: 0.82rem !important;
+#step_calendly #kjuCalendlySubtitle,
+.kju-calendly-subtitle {
+  font-size: 0.82rem;
   color: var(--text-dark-secondary);
-  margin-bottom: 0 !important;
+  margin-top: 3px;
+  margin-bottom: 0;
+  line-height: 1.45;
 }
 
 .kju-modal-card.is-calendly-active .kju-form-nav {
@@ -7822,17 +7945,33 @@ body.kju-nav-locked {
 
 @media (max-width: 640px) {
   .kju-modal-card.is-calendly-active {
-    padding: 22px 12px 24px;
+    padding: 20px 12px 22px;
     max-width: 100%;
   }
   .kju-calendly-header-bar {
     gap: 10px;
-    padding-right: 42px;
+    padding-right: 40px;
   }
   .kju-calendly-back-btn {
-    padding: 6px 12px;
-    height: 34px;
-    font-size: 0.80rem;
+    padding: 6px 10px;
+    height: 32px;
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+  #step_calendly .kju-result-title,
+  .kju-modal-card.is-calendly-active .kju-result-title {
+    font-size: 0.92rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.015em !important;
+    margin-bottom: 2px !important;
+  }
+  #step_calendly #kjuCalendlySubtitle,
+  .kju-modal-card.is-calendly-active #kjuCalendlySubtitle,
+  .kju-modal-card.is-calendly-active .kju-calendly-subtitle {
+    font-size: 0.75rem !important;
+    line-height: 1.35 !important;
+    margin-top: 2px !important;
+    margin-bottom: 0 !important;
   }
   .kju-calendly-frame-wrap {
     min-height: 580px;
@@ -9146,14 +9285,21 @@ body.kju-nav-locked {
   .kju-meet-editorial-spread {
     display: flex !important;
     flex-direction: column !important;
+    align-items: center !important;
     gap: 0 !important;
     max-width: 100% !important;
+    width: 100% !important;
   }
 
   /* Mobile Top Section Header */
   .kju-meet-mobile-header {
-    display: block !important;
-    margin-bottom: 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto 16px !important;
     text-align: center !important;
   }
   .kju-meet-mobile-header .kju-meet-headline {
@@ -9161,18 +9307,22 @@ body.kju-nav-locked {
     font-weight: 800 !important;
     letter-spacing: -0.02em !important;
     line-height: 1.1 !important;
-    margin: 0 auto 4px !important;
+    margin: 0 auto 6px !important;
     color: #FFFFFF !important;
     text-align: center !important;
+    width: 100% !important;
   }
-  .kju-meet-mobile-header .kju-meet-role-subtitle {
+  .kju-meet-mobile-header .kju-meet-role-subtitle,
+  .kju-meet-role-subtitle {
     font-size: 0.64rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.12em !important;
     color: var(--kju-gold, #B8860B) !important;
     margin: 0 auto !important;
-    line-height: 1.3 !important;
+    line-height: 1.35 !important;
     text-align: center !important;
+    width: 100% !important;
+    display: block !important;
   }
 
   /* Compact Executive Author Lockup Card */
@@ -10505,10 +10655,24 @@ body.kju-nav-locked {
     margin-bottom: 10px;
   }
   .kju-result-title {
-    font-size: 1.05rem;
-    line-height: 1.35;
+    font-size: 0.98rem;
+    line-height: 1.3;
     margin-bottom: 8px;
     letter-spacing: 0.01em;
+  }
+  #step_calendly .kju-result-title,
+  .kju-modal-card.is-calendly-active .kju-result-title {
+    font-size: 0.95rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.015em !important;
+    margin-bottom: 2px !important;
+  }
+  #step_calendly #kjuCalendlySubtitle,
+  .kju-modal-card.is-calendly-active #kjuCalendlySubtitle,
+  .kju-modal-card.is-calendly-active .kju-calendly-subtitle {
+    font-size: 0.76rem !important;
+    line-height: 1.38 !important;
+    margin-top: 2px !important;
   }
   .kju-result-box p {
     font-size: 0.85rem !important;
@@ -10696,7 +10860,32 @@ body.kju-nav-locked {
     font-size: 1.02rem;
   }
   .kju-result-title {
-    font-size: 0.98rem;
+    font-size: 0.88rem;
+    line-height: 1.25;
+  }
+  #step_calendly .kju-result-title,
+  .kju-modal-card.is-calendly-active .kju-result-title {
+    font-size: 0.84rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.01em !important;
+    margin-bottom: 2px !important;
+  }
+  #step_calendly #kjuCalendlySubtitle,
+  .kju-modal-card.is-calendly-active #kjuCalendlySubtitle,
+  .kju-modal-card.is-calendly-active .kju-calendly-subtitle {
+    font-size: 0.69rem !important;
+    line-height: 1.3 !important;
+    margin-top: 2px !important;
+  }
+  .kju-calendly-header-bar {
+    gap: 8px;
+    padding-right: 36px;
+  }
+  .kju-calendly-back-btn {
+    padding: 5px 8px;
+    height: 29px;
+    font-size: 0.74rem;
+    gap: 4px;
   }
   .kju-option-btn {
     padding: 9px 12px;
@@ -10796,6 +10985,14 @@ body.kju-nav-locked {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+  .kju-coverflow-wrapper:not(.is-revealed) .kju-coverflow-track,
+  .kju-coverflow-wrapper:not(.is-revealed) .kju-coverflow-card,
+  .kju-coverflow-scrubber-wrap {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
   }
 }
 

@@ -1116,10 +1116,15 @@
         const item = header.closest('.kju-faq-item');
         const isOpen = item.classList.contains('is-open');
 
-        document.querySelectorAll('.kju-faq-item').forEach(i => i.classList.remove('is-open'));
+        document.querySelectorAll('.kju-faq-item').forEach(i => {
+          i.classList.remove('is-open');
+          const h = i.querySelector('.kju-faq-header');
+          if (h) h.setAttribute('aria-expanded', 'false');
+        });
 
         if (!isOpen) {
           item.classList.add('is-open');
+          header.setAttribute('aria-expanded', 'true');
         }
       });
     });
@@ -1734,20 +1739,6 @@
 
     // Initial Layout Setup
     updateCoverflowLayout();
-
-    // Entrance Choreography with IntersectionObserver
-    if (wrapper && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            wrapper.classList.add('is-revealed');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-
-      observer.observe(wrapper);
-    }
   }
 
   // --------------------------------------------------------------------------
