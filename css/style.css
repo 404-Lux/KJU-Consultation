@@ -1277,23 +1277,10 @@ body.kju-nav-locked {
 }
 
 .kju-video-unmute-btn.is-active {
-  animation: none;
-  background: rgba(18, 28, 43, 0.88);
-  border: 1px solid var(--kju-gold);
-  box-shadow: none;
-}
-
-.kju-video-unmute-btn.is-active .kju-audio-waveform .bar-1 {
-  animation: kjuWave 0.85s infinite ease-in-out 0.1s;
-}
-.kju-video-unmute-btn.is-active .kju-audio-waveform .bar-2 {
-  animation: kjuWave 0.95s infinite ease-in-out 0.3s;
-}
-.kju-video-unmute-btn.is-active .kju-audio-waveform .bar-3 {
-  animation: kjuWave 0.75s infinite ease-in-out 0.2s;
-}
-.kju-video-unmute-btn.is-active .kju-audio-waveform .bar-4 {
-  animation: kjuWave 1.05s infinite ease-in-out 0.4s;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 @keyframes kjuWave {

@@ -197,26 +197,23 @@
     }
 
     if (unmuteBtn && video) {
+      const hideUnmuteButton = () => {
+        unmuteBtn.classList.add('is-active');
+        unmuteBtn.style.display = 'none';
+      };
+
       unmuteBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         video.muted = false;
         video.volume = 1.0;
-        if (unmuteText) {
-          unmuteText.textContent = 'AUDIO ACTIVE';
-        }
-        unmuteBtn.classList.add('is-active');
+        hideUnmuteButton();
         if (video.paused) video.play();
-        setTimeout(() => {
-          unmuteBtn.style.opacity = '0.5';
-        }, 2200);
       });
 
-      unmuteBtn.addEventListener('mouseenter', () => {
-        unmuteBtn.style.opacity = '1';
-      });
-
-      unmuteBtn.addEventListener('mouseleave', () => {
-        if (!video.muted) unmuteBtn.style.opacity = '0.5';
+      video.addEventListener('volumechange', () => {
+        if (!video.muted) {
+          hideUnmuteButton();
+        }
       });
     }
 
