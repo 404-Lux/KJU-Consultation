@@ -5401,6 +5401,11 @@ body.kju-nav-locked {
   z-index: 1;
 }
 
+/* --- Desktop Mobile Header Guard --- */
+.kju-meet-mobile-header {
+  display: none;
+}
+
 .kju-meet-editorial-spread {
   display: grid;
   grid-template-columns: 4.8fr 7.2fr;
@@ -8686,6 +8691,252 @@ body.kju-nav-locked {
   }
   .kju-why-section .kju-btn-primary i {
     font-size: 0.76rem !important;
+  }
+
+  /* =========================================================
+     SECTION 11 — MEET KENNY JOHNSON (EXECUTIVE BYLINE LOCKUP)
+     ========================================================= */
+  .kju-meet-section {
+    padding: 42px 0 38px !important;
+    overflow-x: hidden !important;
+  }
+
+  .kju-meet-editorial-spread {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Mobile Top Section Header */
+  .kju-meet-mobile-header {
+    display: block !important;
+    margin-bottom: 14px !important;
+    text-align: left !important;
+  }
+  .kju-meet-mobile-header .kju-meet-headline {
+    font-size: clamp(1.45rem, 6vw, 1.85rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.1 !important;
+    margin: 0 0 4px !important;
+    color: #FFFFFF !important;
+  }
+  .kju-meet-mobile-header .kju-meet-role-subtitle {
+    font-size: 0.64rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    color: var(--kju-gold, #B8860B) !important;
+    margin: 0 !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Compact Executive Author Lockup Card */
+  .kju-founder-dossier-card {
+    max-width: 100% !important;
+    margin: 0 0 16px !important;
+    background: linear-gradient(135deg, rgba(20, 30, 46, 0.95), rgba(15, 26, 36, 0.98)) !important;
+    border: 1px solid rgba(184, 134, 11, 0.35) !important;
+    border-radius: 12px !important;
+    padding: 12px 14px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .kju-founder-frame {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+  .kju-founder-photo-wrap {
+    width: 68px !important;
+    height: 68px !important;
+    flex: 0 0 68px !important;
+    border-radius: 10px !important;
+    border: 2px solid var(--kju-gold, #B8860B) !important;
+    box-shadow: 0 0 12px rgba(184, 134, 11, 0.25) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: #141E2E !important;
+  }
+  .kju-founder-photo {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    transform: none !important;
+  }
+  .kju-founder-photo-vignette {
+    display: none !important;
+  }
+  .kju-founder-info-plate {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+  .kju-founder-name-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    text-align: left !important;
+  }
+  .kju-founder-name {
+    font-size: 0.92rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em !important;
+    color: #FFFFFF !important;
+    line-height: 1.15 !important;
+  }
+  .kju-founder-role {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.12em !important;
+    color: var(--kju-gold, #B8860B) !important;
+    font-weight: 700 !important;
+  }
+  .kju-founder-directory-links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 6px 8px !important;
+    padding: 0 !important;
+    margin-top: 2px !important;
+    border: none !important;
+  }
+  .kju-directory-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 0.62rem !important;
+    font-weight: 600 !important;
+    color: rgba(232, 228, 220, 0.85) !important;
+    padding: 3px 8px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(200, 188, 168, 0.2) !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+  }
+  .kju-directory-link:active {
+    color: var(--kju-gold, #B8860B) !important;
+    border-color: var(--kju-gold, #B8860B) !important;
+  }
+
+  /* Right Column Narrative on Mobile */
+  .kju-meet-narrative {
+    width: 100% !important;
+  }
+  .kju-meet-narrative .kju-meet-title-lockup {
+    display: none !important;
+  }
+  .kju-meet-belief-block {
+    margin-bottom: 12px !important;
+  }
+  .kju-meet-belief-lead {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+    color: rgba(232, 228, 220, 0.75) !important;
+    margin: 0 0 4px !important;
+  }
+  .kju-meet-creed-callout {
+    font-size: 1.35rem !important;
+    line-height: 1.2 !important;
+    color: var(--kju-gold, #B8860B) !important;
+    margin: 0 0 8px !important;
+  }
+  .kju-meet-lead-text {
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Compact System Frictions Tag Cloud */
+  .kju-editorial-friction-rail {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(200, 188, 168, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 10px 12px !important;
+    margin: 10px 0 14px !important;
+  }
+  .kju-friction-label {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.12em !important;
+    margin-bottom: 6px !important;
+    color: var(--kju-gold, #B8860B) !important;
+  }
+  .kju-friction-items {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 5px 6px !important;
+    align-items: center !important;
+  }
+  .kju-friction-item {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.04em !important;
+    padding: 3px 7px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 4px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #E8E4DC !important;
+  }
+  .kju-friction-dot {
+    display: none !important;
+  }
+
+  /* Narrative Paragraphs & Closer */
+  .kju-meet-para {
+    font-size: 0.84rem !important;
+    line-height: 1.48 !important;
+    color: rgba(232, 228, 220, 0.85) !important;
+    margin: 0 0 10px !important;
+  }
+  .kju-meet-closing-plate {
+    margin: 10px 0 14px !important;
+    padding: 8px 12px !important;
+    background: rgba(184, 134, 11, 0.06) !important;
+    border-left: 2px solid var(--kju-gold, #B8860B) !important;
+    border-radius: 0 6px 6px 0 !important;
+  }
+  .kju-meet-closing-lead {
+    font-size: 0.82rem !important;
+    line-height: 1.35 !important;
+    margin: 0 0 2px !important;
+    color: rgba(232, 228, 220, 0.85) !important;
+  }
+  .kju-meet-closing-action {
+    font-size: 0.88rem !important;
+    line-height: 1.35 !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Mobile CTA Button */
+  .kju-meet-cta-wrap {
+    margin-top: 8px !important;
+    width: 100% !important;
+  }
+  .kju-meet-cta-wrap .kju-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 13px 16px !important;
+    font-size: 0.76rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    justify-content: center !important;
+    min-height: 44px !important;
+    border-radius: 6px !important;
+    gap: 8px !important;
+    box-shadow: 0 4px 14px rgba(184, 134, 11, 0.28) !important;
+  }
+  .kju-meet-cta-wrap .kju-btn i {
+    font-size: 0.74rem !important;
   }
 
   /* =========================================================
