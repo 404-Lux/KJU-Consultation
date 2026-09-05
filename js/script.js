@@ -824,15 +824,49 @@
 
     const fullCalendlyUrl = `${baseUrl}${separator}${params.join('&')}`;
 
-    container.innerHTML = `
-      <iframe
-        src="${fullCalendlyUrl}"
-        width="100%"
-        height="700"
-        frameborder="0"
-        title="KJU Consultation Booking"
-        style="border-radius: 8px; background: #FFFFFF; width: 100%; min-height: 700px; border: none;"
-      ></iframe>
+    container.innerHTML = '';
+
+    // Initialize via Calendly official JS if loaded
+    if (window.Calendly && typeof window.Calendly.initInlineWidget === 'function') {
+      window.Calendly.initInlineWidget({
+        url: fullCalendlyUrl,
+        parentElement: container,
+        prefill: {
+          name: state.contact.fullName || undefined,
+          email: state.contact.email || undefined,
+          customAnswers: {
+            a1: state.contact.phone || undefined
+          }
+        }
+      });
+    } else {
+      // Direct iframe fallback with full permissions & touch support
+      container.innerHTML = `
+        <iframe
+          src="${fullCalendlyUrl}"
+          width="100%"
+          height="650"
+          frameborder="0"
+          allow="camera; microphone; autoplay; encrypted-media; fullscreen;"
+          title="KJU Consultation Booking"
+          style="border-radius: 8px; background: #FFFFFF; width: 100%; min-height: 650px; border: none;"
+        ></iframe>
+      `;
+    }
+
+    // Direct fallback link for 100% reliability across all browser environments
+    let directLinkWrap = document.getElementById('kjuCalendlyDirectLink');
+    if (!directLinkWrap) {
+      directLinkWrap = document.createElement('div');
+      directLinkWrap.id = 'kjuCalendlyDirectLink';
+      directLinkWrap.className = 'kju-calendly-direct-wrap';
+      container.parentNode.appendChild(directLinkWrap);
+    }
+    directLinkWrap.innerHTML = `
+      <a href="${fullCalendlyUrl}" target="_blank" rel="noopener noreferrer" class="kju-calendly-external-link">
+        <span>Having trouble with the form? Open booking in a new window</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
     `;
 
     // Listen for Calendly booking postMessage

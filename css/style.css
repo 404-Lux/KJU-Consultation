@@ -6449,7 +6449,7 @@ body.kju-nav-locked {
 }
 
 .kju-modal-overlay.is-active .kju-modal-card {
-  transform: translateY(0);
+  transform: none !important;
 }
 
 .kju-modal-close {
@@ -6853,33 +6853,63 @@ body.kju-nav-locked {
 }
 
 .kju-calendly-frame-wrap {
-  min-height: 700px;
+  min-height: 650px;
   width: 100%;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 5;
+  -webkit-overflow-scrolling: touch;
 }
 
-.kju-calendly-frame-wrap iframe {
+.kju-calendly-frame-wrap iframe,
+.kju-calendly-frame-wrap .calendly-inline-widget {
   display: block;
   width: 100%;
-  min-height: 700px;
+  min-height: 650px;
   border: none;
   background: #FFFFFF;
+  pointer-events: auto !important;
+  touch-action: auto !important;
+}
+
+.kju-calendly-direct-wrap {
+  text-align: center;
+  margin-top: 14px;
+  padding-bottom: 6px;
+}
+
+.kju-calendly-external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--kju-authority-navy-dark, #121C2B);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+  padding: 6px 12px;
+}
+
+.kju-calendly-external-link:hover {
+  color: var(--kju-gold, #B8860B);
 }
 
 @media (max-width: 640px) {
   .kju-modal-card.is-calendly-active {
-    padding: 24px 14px 28px;
+    padding: 22px 12px 24px;
     max-width: 100%;
   }
   .kju-calendly-frame-wrap {
-    min-height: 600px;
+    min-height: 580px;
   }
-  .kju-calendly-frame-wrap iframe {
-    min-height: 600px;
+  .kju-calendly-frame-wrap iframe,
+  .kju-calendly-frame-wrap .calendly-inline-widget {
+    min-height: 580px;
   }
 }
 
@@ -7713,6 +7743,45 @@ body.kju-nav-locked {
   .kju-empathy-solution-col {
     padding: 32px 22px;
   }
+
+  /* KJU Intro Breakout Section Mobile Scaling */
+  .kju-intro-section {
+    padding: 60px 0 54px;
+  }
+  .kju-intro-title {
+    font-size: clamp(2rem, 8.2vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    margin-bottom: 14px;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .kju-intro-lead-p {
+    font-size: 0.94rem;
+    line-height: 1.55;
+    max-width: 90%;
+    margin: 0 auto 24px;
+    color: rgba(232, 228, 220, 0.92);
+  }
+  .kju-watermark-text {
+    font-size: clamp(1.45rem, 7.6vw, 2.1rem);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+  }
+  .kju-intro-cta-btn {
+    padding: 13px 22px;
+    font-size: 0.84rem;
+    max-width: 320px;
+    width: 100%;
+  }
+
   /* Mobile Scaling for Qualification Modal & Assessment Card */
   .kju-modal-overlay {
     padding: 16px 12px;
@@ -7901,6 +7970,19 @@ body.kju-nav-locked {
   }
   .kju-friction-lead-text span.highlight {
     font-size: 0.80rem;
+  }
+  .kju-intro-section {
+    padding: 48px 0 42px;
+  }
+  .kju-intro-title {
+    font-size: 1.82rem;
+  }
+  .kju-intro-lead-p {
+    font-size: 0.86rem;
+  }
+  .kju-watermark-text {
+    font-size: clamp(1.2rem, 7.2vw, 1.5rem);
+    letter-spacing: 0.04em;
   }
   .kju-telemetry-chip {
     height: 35px;
