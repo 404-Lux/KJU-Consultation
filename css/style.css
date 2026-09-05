@@ -2295,6 +2295,14 @@ body.kju-nav-locked {
   display: none;
 }
 
+.kju-pillars-br-1 {
+  display: inline;
+}
+
+.kju-pillars-br-2 {
+  display: none;
+}
+
 .kju-intro-inner {
   position: relative;
   z-index: 2;
@@ -4107,6 +4115,14 @@ body.kju-nav-locked {
   text-transform: uppercase;
 }
 
+.kju-deck-desktop-hint {
+  display: inline-flex;
+}
+
+.kju-deck-mobile-controls {
+  display: none;
+}
+
 .kju-deck-hint i {
   font-size: 0.85rem;
   color: #D4AF37;
@@ -4502,55 +4518,207 @@ body.kju-nav-locked {
 }
 
 @media (max-width: 768px) {
+  .kju-pillars-section {
+    padding: 48px 0 42px;
+    overflow-x: hidden !important;
+  }
+  .kju-pillars-header {
+    margin-bottom: 24px;
+  }
+  .kju-pillar-hero-badge {
+    padding: 4px 12px;
+    font-size: 0.70rem;
+    margin-bottom: 12px;
+  }
+  .kju-pillars-br-1 {
+    display: inline !important;
+  }
+  .kju-pillars-br-2 {
+    display: inline !important;
+  }
+  .kju-pillars-title {
+    font-size: clamp(1.72rem, 7vw, 2.15rem);
+    line-height: 1.14;
+    max-width: 360px;
+    margin: 0 auto 12px;
+    text-align: center;
+  }
+  .kju-pillars-subhead {
+    font-size: 0.88rem;
+    line-height: 1.48;
+    max-width: 350px;
+    margin: 0 auto;
+    color: rgba(232, 228, 220, 0.85);
+  }
+  .kju-pillars-motto {
+    font-size: 1.15rem;
+    margin: 4px 0 6px;
+    padding-bottom: 2px;
+  }
+
+  /* Control Bar: Replace top utility bar with 5 active indicator dots & subtle swipe/tap hint */
   .kju-deck-toolbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .kju-deck-desktop-hint {
+    display: none !important;
   }
   .kju-deck-flip-all-btn {
-    width: 100%;
-    justify-content: center;
+    display: none !important;
   }
-  .kju-deck-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+  .kju-deck-mobile-controls {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
-  .kju-flip-card:nth-child(4) {
-    grid-column: auto;
+  .kju-deck-dots {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
   }
-  .kju-flip-card:nth-child(5) {
-    grid-column: 1 / -1;
-    max-width: 380px;
-    margin: 0 auto;
-    width: 100%;
+  .kju-deck-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.28);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .kju-flip-card {
-    height: 390px;
+  .kju-deck-dot.is-active {
+    width: 22px;
+    border-radius: 4px;
+    background: #E2AD27;
+    box-shadow: 0 0 8px rgba(226, 173, 39, 0.4);
   }
-}
+  .kju-deck-mobile-hint {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #E2AD27;
+    text-transform: uppercase;
+  }
+  .kju-deck-mobile-hint .hint-sep {
+    color: rgba(255, 255, 255, 0.3);
+  }
+  .kju-deck-mobile-hint i.fa-arrow-right {
+    font-size: 0.72rem;
+    animation: kjuDeckSwipeNudge 1.6s ease-in-out infinite;
+  }
+  @keyframes kjuDeckSwipeNudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
 
-@media (max-width: 520px) {
+  /* Horizontal Peek Carousel / Snap-Slider (78vw - 82vw) */
   .kju-deck-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 14px !important;
+    padding: 8px 4px 16px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    scrollbar-width: none !important;
   }
-  .kju-flip-card:nth-child(5) {
-    max-width: 100%;
+  .kju-deck-grid::-webkit-scrollbar {
+    display: none !important;
   }
+
   .kju-flip-card {
-    height: 360px;
+    flex: 0 0 80vw !important;
+    min-width: 260px !important;
+    max-width: 325px !important;
+    height: 370px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+  .kju-flip-card:nth-child(4),
+  .kju-flip-card:nth-child(5) {
+    grid-column: auto;
+    max-width: 325px !important;
+    margin: 0 !important;
+  }
+
+  /* Card Face Text & Elements Proportion Tuning */
+  .kju-flip-card-front,
+  .kju-flip-card-back {
+    padding: 18px 16px !important;
+    border-radius: 14px !important;
+  }
+  .kju-card-idx {
+    font-size: 1.45rem !important;
   }
   .kju-card-watermark {
-    font-size: 3.8rem;
-    top: 30px;
+    font-size: 3.6rem !important;
+    top: 24px !important;
+    right: 8px !important;
   }
-  .kju-card-title,
+  .kju-card-icon-container {
+    margin: 10px 0 8px !important;
+  }
+  .kju-card-icon-badge {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.25rem !important;
+    border-radius: 12px !important;
+  }
+  .kju-card-kicker {
+    font-size: 0.60rem !important;
+    letter-spacing: 0.12em !important;
+    margin-bottom: 5px !important;
+  }
+  .kju-card-title {
+    font-size: 0.96rem !important;
+    line-height: 1.25 !important;
+  }
+  .kju-card-footer {
+    padding-top: 10px !important;
+  }
+  .kju-card-action {
+    font-size: 0.62rem !important;
+    gap: 5px !important;
+  }
+  .kju-card-back-kicker {
+    font-size: 0.58rem !important;
+    margin-bottom: 4px !important;
+  }
   .kju-card-back-title {
-    font-size: 1rem;
+    font-size: 0.95rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 8px !important;
+  }
+  .kju-card-gold-rule {
+    width: 26px !important;
+    margin-bottom: 10px !important;
   }
   .kju-card-desc {
-    font-size: 0.9rem;
-    line-height: 1.55;
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+  }
+  .kju-card-hallmark {
+    font-size: 0.64rem !important;
   }
 }
 
@@ -8384,6 +8552,25 @@ body.kju-nav-locked {
   }
   .kju-syllabus-desc {
     font-size: 0.78rem !important;
+  }
+  .kju-pillars-title {
+    font-size: 1.62rem;
+    max-width: 320px;
+  }
+  .kju-pillars-subhead {
+    font-size: 0.84rem;
+  }
+  .kju-flip-card {
+    flex: 0 0 84vw !important;
+    min-width: 245px !important;
+    height: 360px !important;
+  }
+  .kju-card-title,
+  .kju-card-back-title {
+    font-size: 0.90rem !important;
+  }
+  .kju-card-desc {
+    font-size: 0.80rem !important;
   }
 }
 

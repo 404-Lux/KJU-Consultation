@@ -870,7 +870,7 @@
           <span>10,000+ Clients Helped</span>
         </div>
         <h2 class="kju-section-title kju-pillars-title">
-          Credit Can Be Complicated.<br>Understanding It Doesn't Have to Be.
+          Credit Can Be Complicated.<br class="kju-pillars-br-1">Understanding It<br class="kju-pillars-br-2"> Doesn't Have to Be.
         </h2>
         <p class="kju-section-subhead kju-pillars-subhead">
           Kenny Johnson University was built around one simple philosophy:<br>
@@ -884,10 +884,28 @@
 
         <!-- Deck Controls & Hint Bar -->
         <div class="kju-deck-toolbar">
-          <div class="kju-deck-hint">
+          <!-- Desktop Hint -->
+          <div class="kju-deck-hint kju-deck-desktop-hint">
             <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
             <span>HOVER OR CLICK CARDS TO FLIP SPECIFICATIONS</span>
           </div>
+
+          <!-- Mobile Utility Bar: 5 Active Indicator Dots & Subtle Swipe/Tap Hint -->
+          <div class="kju-deck-mobile-controls" aria-hidden="true">
+            <div class="kju-deck-dots" id="kjuDeckDots">
+              <button type="button" class="kju-deck-dot is-active" data-deck-index="0" aria-label="Card 1"></button>
+              <button type="button" class="kju-deck-dot" data-deck-index="1" aria-label="Card 2"></button>
+              <button type="button" class="kju-deck-dot" data-deck-index="2" aria-label="Card 3"></button>
+              <button type="button" class="kju-deck-dot" data-deck-index="3" aria-label="Card 4"></button>
+              <button type="button" class="kju-deck-dot" data-deck-index="4" aria-label="Card 5"></button>
+            </div>
+            <div class="kju-deck-mobile-hint">
+              <span class="hint-tap"><i class="fa-solid fa-hand-pointer"></i> Tap to flip</span>
+              <span class="hint-sep">•</span>
+              <span class="hint-swipe">Swipe <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+
           <button type="button" class="kju-deck-flip-all-btn" id="kjuDeckFlipAllBtn" aria-label="Flip all cards in deck">
             <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
             <span class="btn-text">FLIP ALL CARDS</span>

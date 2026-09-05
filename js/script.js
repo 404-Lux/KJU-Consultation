@@ -1855,6 +1855,48 @@
       });
     }
 
+    // --- Mobile Swipe Carousel Dots Synchronization ---
+    const deckGrid = track.querySelector('.kju-deck-grid');
+    const deckDots = track.querySelectorAll('.kju-deck-dot');
+    if (deckGrid && deckDots.length) {
+      let isDeckScrolling = false;
+      deckGrid.addEventListener('scroll', () => {
+        if (!isDeckScrolling) {
+          window.requestAnimationFrame(() => {
+            const gridRect = deckGrid.getBoundingClientRect();
+            const gridCenter = gridRect.left + gridRect.width / 2;
+            let closestCardIndex = 0;
+            let minDistance = Infinity;
+
+            cards.forEach((card, idx) => {
+              const cardRect = card.getBoundingClientRect();
+              const cardCenter = cardRect.left + cardRect.width / 2;
+              const dist = Math.abs(gridCenter - cardCenter);
+              if (dist < minDistance) {
+                minDistance = dist;
+                closestCardIndex = idx;
+              }
+            });
+
+            deckDots.forEach((dot, idx) => {
+              dot.classList.toggle('is-active', idx === closestCardIndex);
+            });
+            isDeckScrolling = false;
+          });
+          isDeckScrolling = true;
+        }
+      }, { passive: true });
+
+      deckDots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const targetCardIdx = parseInt(dot.getAttribute('data-deck-index'), 10);
+          if (cards[targetCardIdx]) {
+            cards[targetCardIdx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
+        });
+      });
+    }
+
     // --- Entrance reveal via IntersectionObserver ---
     if (!('IntersectionObserver' in window)) {
       track.classList.add('is-revealed');
