@@ -5757,6 +5757,11 @@ body.kju-nav-locked {
   margin-top: 40px;
 }
 
+/* --- Mobile Swipe Cue Nav (Hidden on desktop > 768px) --- */
+.kju-milestone-mobile-nav {
+  display: none;
+}
+
 /* --- Left: 6 Compact Selector Strips --- */
 .kju-milestone-catalog {
   display: flex;
@@ -8717,7 +8722,58 @@ body.kju-nav-locked {
     margin-top: 16px !important;
   }
 
-  /* Horizontal Scrollable Milestone Pill Rail */
+  /* Mobile Swipe Cue Header */
+  .kju-milestone-mobile-nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 4px 4px !important;
+    margin-bottom: 2px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .kju-milestone-mobile-nav .milestone-counter-label {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    color: var(--kju-gold, #B8860B) !important;
+    text-transform: uppercase !important;
+  }
+  .kju-milestone-mobile-nav .counter-dot {
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background: var(--kju-gold, #B8860B) !important;
+    display: inline-block !important;
+    box-shadow: 0 0 6px rgba(184, 134, 11, 0.4) !important;
+  }
+  .kju-milestone-mobile-nav .milestone-swipe-cue {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.65rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.04em !important;
+    color: #64748B !important;
+    text-transform: uppercase !important;
+  }
+  .kju-milestone-mobile-nav .milestone-swipe-cue i {
+    font-size: 0.62rem !important;
+    color: var(--kju-gold, #B8860B) !important;
+    animation: kjuPillSwipeNudge 1.6s ease-in-out infinite !important;
+  }
+
+  @keyframes kjuPillSwipeNudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+
+  /* Horizontal Scrollable Milestone Pill Rail with Visual Fade Cue */
   .kju-milestone-catalog {
     display: flex !important;
     flex-direction: row !important;
@@ -8726,11 +8782,22 @@ body.kju-nav-locked {
     -webkit-overflow-scrolling: touch !important;
     scroll-snap-type: x proximity !important;
     gap: 8px !important;
-    padding: 4px 2px 8px !important;
+    padding: 4px 28px 8px 4px !important;
     margin: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
     scrollbar-width: none !important;
+    mask-image: linear-gradient(to right, black calc(100% - 44px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 44px), transparent 100%);
+    transition: mask-image 0.2s ease, -webkit-mask-image 0.2s ease;
+  }
+  .kju-milestone-catalog.is-scrolled-mid {
+    mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 36px), transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 36px), transparent 100%) !important;
+  }
+  .kju-milestone-catalog.is-scrolled-end {
+    mask-image: linear-gradient(to right, transparent 0%, black 28px, black 100%) !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28px, black 100%) !important;
   }
   .kju-milestone-catalog::-webkit-scrollbar {
     display: none !important;

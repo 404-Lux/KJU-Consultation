@@ -1776,7 +1776,35 @@
       }, 160);
     }
 
-    tiles.forEach(tile => {
+    const counterTextEl = document.getElementById('kjuMilestoneCounterText');
+
+    function updateCounter(index) {
+      if (counterTextEl) {
+        counterTextEl.textContent = `GOAL ${index + 1} OF ${tiles.length}`;
+      }
+    }
+
+    if (catalogEl) {
+      const updateScrollMask = () => {
+        const scrollLeft = catalogEl.scrollLeft;
+        const maxScroll = catalogEl.scrollWidth - catalogEl.clientWidth - 4;
+        if (scrollLeft <= 6) {
+          catalogEl.classList.remove('is-scrolled-mid', 'is-scrolled-end');
+        } else if (scrollLeft >= maxScroll) {
+          catalogEl.classList.remove('is-scrolled-mid');
+          catalogEl.classList.add('is-scrolled-end');
+        } else {
+          catalogEl.classList.add('is-scrolled-mid');
+          catalogEl.classList.remove('is-scrolled-end');
+        }
+      };
+
+      catalogEl.addEventListener('scroll', updateScrollMask, { passive: true });
+      window.addEventListener('resize', updateScrollMask, { passive: true });
+      updateScrollMask();
+    }
+
+    tiles.forEach((tile, index) => {
       const selectGoal = () => {
         const goalKey = tile.dataset.goal;
         tiles.forEach(t => {
@@ -1785,6 +1813,7 @@
         });
         tile.classList.add('is-active');
         tile.setAttribute('aria-selected', 'true');
+        updateCounter(index);
         if (window.innerWidth <= 768) {
           tile.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
