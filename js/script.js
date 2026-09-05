@@ -274,7 +274,11 @@
       }
 
       if (progressText) {
-        progressText.innerHTML = '<span style="color: var(--kju-gold);">✓ Video Watched · Resource Unlocked</span>';
+        progressText.innerHTML = '<span class="kju-pill-unlocked"><i class="fa-solid fa-check kju-pill-unlocked-icon"></i> <span class="kju-pill-unlocked-text">Video Watched · Resource Unlocked</span></span>';
+      }
+      const progressPill = document.querySelector('.kju-video-progress-pill');
+      if (progressPill) {
+        progressPill.classList.add('is-unlocked');
       }
 
       if (downloadBtn) {
@@ -377,8 +381,85 @@
     return seq;
   }
 
+  // --------------------------------------------------------------------------
+  // LUXURY QUALIFICATION TOAST NOTIFICATION UTILITY
+  // --------------------------------------------------------------------------
+  let kjuToastTimer = null;
+
+  function showKjuToast(message) {
+    const modalCard = document.querySelector('.kju-modal-card');
+    if (!modalCard) {
+      alert(message);
+      return;
+    }
+
+    let toast = document.getElementById('kjuModalToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'kjuModalToast';
+      toast.className = 'kju-modal-toast';
+      toast.setAttribute('role', 'alert');
+      toast.setAttribute('aria-live', 'assertive');
+      const progressWrap = modalCard.querySelector('.kju-form-progress-wrap');
+      if (progressWrap) {
+        modalCard.insertBefore(toast, progressWrap.nextSibling);
+      } else {
+        modalCard.prepend(toast);
+      }
+    }
+
+    toast.innerHTML = `
+      <div class="kju-toast-body">
+        <i class="fa-solid fa-circle-exclamation kju-toast-icon"></i>
+        <div class="kju-toast-message">${message}</div>
+      </div>
+      <button type="button" class="kju-toast-dismiss" aria-label="Dismiss notification">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    `;
+
+    toast.classList.add('is-visible');
+
+    const dismissBtn = toast.querySelector('.kju-toast-dismiss');
+    if (dismissBtn) {
+      dismissBtn.onclick = () => {
+        hideKjuToast();
+      };
+    }
+
+    // Trigger subtle haptic shake on the active step container
+    const currentStepId = state.activeStepSequence ? state.activeStepSequence[state.currentStepIndex] : null;
+    if (currentStepId) {
+      const activeStep = document.getElementById(currentStepId);
+      if (activeStep) {
+        activeStep.classList.remove('is-shaking');
+        void activeStep.offsetWidth; // Force reflow
+        activeStep.classList.add('is-shaking');
+      }
+    }
+
+    if (kjuToastTimer) {
+      clearTimeout(kjuToastTimer);
+    }
+    kjuToastTimer = setTimeout(() => {
+      hideKjuToast();
+    }, 4000);
+  }
+
+  function hideKjuToast() {
+    const toast = document.getElementById('kjuModalToast');
+    if (toast) {
+      toast.classList.remove('is-visible');
+    }
+    if (kjuToastTimer) {
+      clearTimeout(kjuToastTimer);
+      kjuToastTimer = null;
+    }
+  }
+
   function openFitCheck() {
     if (!modalOverlay) return;
+    hideKjuToast();
     modalOverlay.classList.add('is-active');
     document.body.style.overflow = 'hidden';
     const mobileStickyBar = document.getElementById('kjuMobileStickyBar');
@@ -394,6 +475,7 @@
 
   function closeFitCheck() {
     if (!modalOverlay) return;
+    hideKjuToast();
     modalOverlay.classList.remove('is-active');
     document.body.style.overflow = '';
     const modalCard = document.querySelector('.kju-modal-card');
@@ -405,6 +487,7 @@
   }
 
   function renderCurrentStep() {
+    hideKjuToast();
     state.activeStepSequence = calculateStepSequence();
     const currentStepId = state.activeStepSequence[state.currentStepIndex];
 
@@ -458,7 +541,7 @@
     if (nextBtn) {
       if (currentStepId === 'step_contact') {
         nextBtn.style.display = 'inline-flex';
-        nextBtn.innerHTML = '<span>Continue to Book Your Free Call</span> <i class="fa-solid fa-arrow-right"></i>';
+        nextBtn.innerHTML = '<span>Book Your Free Call</span> <i class="fa-solid fa-arrow-right"></i>';
       } else if (currentStepId === 'step_calendly') {
         nextBtn.style.display = 'none';
       } else {
@@ -479,7 +562,7 @@
       trackEvent('question_answered', { question: 'province', answer: state.answers.province });
     } else if (currentStepId === 'step_items') {
       if (state.answers.showingItems.length === 0) {
-        alert('Please select at least one option to continue.');
+        showKjuToast('Please select at least one option to continue.');
         return;
       }
       trackEvent('question_answered', { question: 'showing_items', answer: state.answers.showingItems });
@@ -490,31 +573,31 @@
       }
     } else if (currentStepId === 'step_item_count') {
       if (!state.answers.negativeCount) {
-        alert('Please select an option to continue.');
+        showKjuToast('Please select how many negative items are showing.');
         return;
       }
       trackEvent('question_answered', { question: 'negative_count', answer: state.answers.negativeCount });
     } else if (currentStepId === 'step_collections') {
       if (!state.answers.hasCollections) {
-        alert('Please select Yes, No, or Not sure.');
+        showKjuToast('Please select Yes, No, or Not sure.');
         return;
       }
       trackEvent('question_answered', { question: 'has_collections', answer: state.answers.hasCollections });
     } else if (currentStepId === 'step_coll_count') {
       if (!state.answers.collectionsCount) {
-        alert('Please select how many collection accounts.');
+        showKjuToast('Please select how many collection accounts.');
         return;
       }
       trackEvent('question_answered', { question: 'collections_count', answer: state.answers.collectionsCount });
     } else if (currentStepId === 'step_proposal') {
       if (!state.answers.hasProposal) {
-        alert('Please select Yes or No.');
+        showKjuToast('Please select Yes or No.');
         return;
       }
       trackEvent('question_answered', { question: 'has_proposal', answer: state.answers.hasProposal });
     } else if (currentStepId === 'step_prop_disch') {
       if (!state.answers.proposalDischarged) {
-        alert('Please select Yes or No.');
+        showKjuToast('Please select Yes or No.');
         return;
       }
       trackEvent('question_answered', { question: 'proposal_discharged', answer: state.answers.proposalDischarged });
@@ -525,13 +608,13 @@
       }
     } else if (currentStepId === 'step_bankruptcy') {
       if (!state.answers.hasBankruptcy) {
-        alert('Please select Yes or No.');
+        showKjuToast('Please select Yes or No.');
         return;
       }
       trackEvent('question_answered', { question: 'has_bankruptcy', answer: state.answers.hasBankruptcy });
     } else if (currentStepId === 'step_bank_disch') {
       if (!state.answers.bankruptcyDischarged) {
-        alert('Please select Yes or No.');
+        showKjuToast('Please select Yes or No.');
         return;
       }
       trackEvent('question_answered', { question: 'bankruptcy_discharged', answer: state.answers.bankruptcyDischarged });
@@ -542,7 +625,7 @@
       }
     } else if (currentStepId === 'step_bureaus') {
       if (!state.answers.hasBureauAccess) {
-        alert('Please select Yes or No.');
+        showKjuToast('Please select Yes or No.');
         return;
       }
       trackEvent('question_answered', { question: 'has_bureau_access', answer: state.answers.hasBureauAccess });
@@ -562,21 +645,21 @@
 
       if (!name || name.length < 2) {
         if (nameInput) nameInput.classList.add('is-invalid');
-        alert('Please enter your full name.');
+        showKjuToast('Please enter your full name.');
         return;
       }
       if (nameInput) nameInput.classList.remove('is-invalid');
 
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         if (emailInput) emailInput.classList.add('is-invalid');
-        alert('Please enter a valid email address.');
+        showKjuToast('Please enter a valid email address.');
         return;
       }
       if (emailInput) emailInput.classList.remove('is-invalid');
 
       if (!phone || phone.replace(/\D/g, '').length < 10) {
         if (phoneInput) phoneInput.classList.add('is-invalid');
-        alert('Please enter a valid 10-digit phone number.');
+        showKjuToast('Please enter a valid 10-digit phone number.');
         return;
       }
       if (phoneInput) phoneInput.classList.remove('is-invalid');
@@ -771,6 +854,7 @@
 
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
+          hideKjuToast();
           buttons.forEach(b => b.classList.remove('is-selected'));
           btn.classList.add('is-selected');
           state.answers[fieldName] = btn.dataset.value;
@@ -784,6 +868,7 @@
       const q2Buttons = q2Group.querySelectorAll('.kju-option-btn');
       q2Buttons.forEach(btn => {
         btn.addEventListener('click', () => {
+          hideKjuToast();
           const val = btn.dataset.value;
 
           if (val === 'None of the above') {
@@ -805,6 +890,24 @@
             }
           }
         });
+      });
+    }
+
+    // Input changes on contact step
+    ['kjuContactName', 'kjuContactEmail', 'kjuContactPhone'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', () => {
+          el.classList.remove('is-invalid');
+          hideKjuToast();
+        });
+      }
+    });
+
+    const provSelect = document.getElementById('kjuProvinceSelect');
+    if (provSelect) {
+      provSelect.addEventListener('change', () => {
+        hideKjuToast();
       });
     }
 

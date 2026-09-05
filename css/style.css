@@ -1308,26 +1308,62 @@ body.kju-nav-locked {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(6px);
+  background: rgba(10, 17, 28, 0.92);
+  backdrop-filter: blur(8px);
   padding: 6px 14px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(245, 197, 66, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  transition: all var(--transition-normal);
+}
+
+.kju-video-progress-pill.is-unlocked {
+  background: rgba(11, 22, 36, 0.96);
+  border-color: rgba(245, 197, 66, 0.65);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 14px rgba(245, 197, 66, 0.22);
 }
 
 .kju-progress-ring-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--kju-gold);
-  box-shadow: 0 0 6px var(--kju-gold);
+  background: #F5C542;
+  box-shadow: 0 0 8px #F5C542;
+  flex-shrink: 0;
+}
+
+.kju-video-progress-pill.is-unlocked .kju-progress-ring-dot {
+  background: #2ECC71;
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.8);
+  animation: none;
 }
 
 .kju-video-progress-text {
   font-family: var(--font-ui);
   font-size: 0.84rem;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.kju-pill-unlocked {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+.kju-pill-unlocked-icon {
+  color: #F5C542 !important;
+  font-size: 0.95em;
+  filter: drop-shadow(0 0 4px rgba(245, 197, 66, 0.65));
+}
+
+.kju-pill-unlocked-text {
+  color: #FFFFFF !important;
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -6440,6 +6476,95 @@ body.kju-nav-locked {
   transition: width var(--transition-normal);
 }
 
+/* ==========================================================================
+   LUXURY QUALIFICATION NOTIFICATION / TOAST
+   Replaces browser native alert dialogs with Authority Navy & Gold styling
+   ========================================================================== */
+.kju-modal-toast {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(135deg, #0A121E 0%, #131E2E 100%);
+  border: 1px solid rgba(226, 173, 39, 0.55);
+  border-left: 4px solid #E2AD27;
+  border-radius: var(--radius-xs);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(226, 173, 39, 0.12);
+  color: #FFFFFF;
+  font-family: var(--font-ui);
+  animation: kjuToastSlideDown 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 10;
+}
+
+.kju-modal-toast.is-visible {
+  display: flex;
+}
+
+@keyframes kjuToastSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.kju-toast-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.kju-toast-icon {
+  color: #F5C542;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(245, 197, 66, 0.5));
+}
+
+.kju-toast-message {
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+.kju-toast-dismiss {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.05rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.kju-toast-dismiss:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Haptic shake animation for unselected question/field */
+@keyframes kjuHapticShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.is-shaking {
+  animation: kjuHapticShake 0.4s ease-in-out;
+}
+
 /* Steps */
 .kju-step-container {
   display: none;
@@ -7502,8 +7627,143 @@ body.kju-nav-locked {
   .kju-empathy-solution-col {
     padding: 32px 22px;
   }
+  /* Mobile Scaling for Qualification Modal & Assessment Card */
+  .kju-modal-overlay {
+    padding: 16px 12px;
+  }
   .kju-modal-card {
-    padding: 28px 20px;
+    padding: 22px 16px 20px;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 12px;
+  }
+  .kju-modal-close {
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    font-size: 1.15rem;
+  }
+  .kju-form-progress-wrap {
+    margin-bottom: 16px;
+    padding-right: 32px; /* Prevent overlap with close button */
+  }
+  .kju-form-progress-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .kju-form-progress-bar {
+    height: 5px;
+  }
+  .kju-modal-toast {
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 0.82rem;
+  }
+  .kju-toast-message {
+    font-size: 0.82rem;
+  }
+  .kju-toast-icon {
+    font-size: 1rem;
+  }
+  .kju-step-question {
+    font-size: 1.12rem;
+    line-height: 1.32;
+    margin-bottom: 6px;
+  }
+  .kju-step-helper {
+    font-size: 0.80rem;
+    line-height: 1.45;
+    margin-bottom: 16px;
+  }
+  .kju-options-grid {
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .kju-option-btn {
+    padding: 11px 14px;
+    font-size: 0.88rem;
+    min-height: 44px;
+    border-radius: 6px;
+  }
+  .kju-option-checkbox-indicator {
+    width: 18px;
+    height: 18px;
+    font-size: 0.68rem;
+  }
+  .kju-select-control {
+    padding: 12px 38px 12px 14px;
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+  }
+  .kju-result-box {
+    padding: 6px 0 10px;
+  }
+  .kju-result-icon {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+  .kju-result-title {
+    font-size: 1.05rem;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+  .kju-result-box p {
+    font-size: 0.85rem !important;
+    line-height: 1.45;
+  }
+  .kju-contact-grid {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .kju-input-group {
+    gap: 4px;
+  }
+  .kju-input-group label {
+    font-size: 0.78rem;
+  }
+  .kju-input-control {
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    border-radius: 6px;
+  }
+  .kju-contact-notice {
+    padding: 10px 12px;
+    font-size: 0.76rem;
+    line-height: 1.45;
+    margin-bottom: 16px;
+    border-radius: 6px;
+  }
+  .kju-form-nav {
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .kju-form-nav .kju-btn {
+    padding: 11px 16px;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    min-height: 42px;
+    gap: 8px;
+  }
+  .kju-form-nav .kju-btn-back {
+    padding: 11px 16px;
+    font-size: 0.82rem;
+    min-height: 42px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .kju-form-nav #kjuQualNextBtn {
+    flex: 1;
+    white-space: normal;
+    line-height: 1.25;
+    text-align: center;
+  }
+  .kju-result-explanation {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
   }
 }
 
@@ -7552,6 +7812,26 @@ body.kju-nav-locked {
   }
   .kju-trust-rail-subtext {
     font-size: 0.42rem;
+  }
+  .kju-modal-overlay {
+    padding: 8px 6px;
+  }
+  .kju-modal-card {
+    padding: 18px 12px 18px;
+  }
+  .kju-step-question {
+    font-size: 1.02rem;
+  }
+  .kju-result-title {
+    font-size: 0.98rem;
+  }
+  .kju-option-btn {
+    padding: 9px 12px;
+    font-size: 0.82rem;
+  }
+  .kju-form-nav .kju-btn {
+    padding: 10px 12px;
+    font-size: 0.76rem;
   }
 }
 
