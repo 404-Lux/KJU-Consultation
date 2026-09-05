@@ -750,18 +750,27 @@ body.kju-nav-locked {
   }
 }
 
+/* Mobile Phones & Handhelds (<= 767px)
+   The header CTA is removed on mobile screens and replaced by the bottom sticky bar.
+   The top navbar cleanly retains the brand crest on the left and hamburger menu on the right. */
+@media (max-width: 767px) {
+  .kju-header-cta-btn {
+    display: none !important;
+  }
+}
+
 /* Phones (iOS Safari, Android Chrome, Samsung Internet — <= 640px) */
 @media (max-width: 640px) {
   .kju-header-inner {
-    gap: 8px;
+    gap: 12px;
   }
 
   .kju-navbar-logo-slot {
-    height: 40px;
+    height: 42px;
   }
 
   .kju-brand-logo {
-    gap: 9px;
+    gap: 10px;
   }
 
   .kju-brand-logo img {
@@ -769,32 +778,20 @@ body.kju-nav-locked {
   }
 
   .kju-brand-name {
-    font-size: 0.72rem !important;
-    letter-spacing: 0.18em !important;
+    font-size: clamp(0.70rem, 3vw, 0.76rem) !important;
+    letter-spacing: 0.16em !important;
     white-space: nowrap;
   }
 
   .kju-brand-tagline {
-    font-size: 0.42rem !important;
-    letter-spacing: 0.32em !important;
+    font-size: clamp(0.40rem, 1.7vw, 0.44rem) !important;
+    letter-spacing: 0.28em !important;
     white-space: nowrap;
     margin-top: 3px;
   }
 
   .kju-header-right {
     gap: 8px;
-  }
-
-  .kju-header-cta-btn {
-    padding: 8px 12px;
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
-    gap: 5px;
-    border-radius: 4px;
-  }
-
-  .kju-header-cta-btn i {
-    display: none; /* Hide chevron arrow in compact mobile header */
   }
 
   .kju-nav-toggle {
@@ -813,18 +810,13 @@ body.kju-nav-locked {
   }
 
   .kju-brand-name {
-    font-size: 0.64rem !important;
+    font-size: 0.66rem !important;
     letter-spacing: 0.12em !important;
   }
 
   .kju-brand-tagline {
     font-size: 0.38rem !important;
-    letter-spacing: 0.22em !important;
-  }
-
-  .kju-header-cta-btn {
-    padding: 7px 9px;
-    font-size: 0.66rem;
+    letter-spacing: 0.20em !important;
   }
 }
 
@@ -6696,6 +6688,98 @@ body.kju-nav-locked {
   }
   .kju-calendly-frame-wrap iframe {
     min-height: 600px;
+  }
+}
+
+
+/* ==========================================================================
+   MOBILE STICKY CTA BAR (Smartphones <= 767px only)
+   Desktop and laptop layouts (> 767px) strictly untouched (display: none !important).
+   ========================================================================== */
+.kju-mobile-sticky-bar {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .kju-mobile-sticky-bar {
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 840;
+    background: rgba(13, 24, 34, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(184, 134, 11, 0.38);
+    box-shadow: 0 -4px 22px rgba(0, 0, 0, 0.45);
+    padding: 8px 16px;
+    padding-bottom: max(8px, env(safe-area-inset-bottom, 8px));
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    pointer-events: auto;
+  }
+
+  .kju-mobile-sticky-bar.is-hidden,
+  body.kju-nav-locked .kju-mobile-sticky-bar {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Compact, thumb-proportioned CTA button — completely prevents giant/bulky .kju-btn */
+  .kju-mobile-sticky-bar .kju-sticky-cta-btn,
+  .kju-mobile-sticky-bar .kju-btn {
+    width: 100% !important;
+    min-height: 44px !important;
+    max-height: 46px !important;
+    height: 44px !important;
+    padding: 9px 18px !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    font-family: var(--font-ui), sans-serif !important;
+    font-size: 0.82rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    color: #FFFFFF !important;
+    background: var(--kju-gold, #B8860B) !important;
+    border: 1px solid var(--kju-gold, #B8860B) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 3px 12px rgba(184, 134, 11, 0.35) !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .kju-mobile-sticky-bar .kju-sticky-cta-btn:hover,
+  .kju-mobile-sticky-bar .kju-btn:hover {
+    background: var(--kju-gold-hover, #9B7007) !important;
+    border-color: var(--kju-gold-hover, #9B7007) !important;
+  }
+
+  .kju-mobile-sticky-bar .kju-sticky-cta-btn:active,
+  .kju-mobile-sticky-bar .kju-btn:active {
+    background: var(--kju-gold-hover, #9B7007) !important;
+    border-color: var(--kju-gold-hover, #9B7007) !important;
+    transform: scale(0.985) !important;
+  }
+
+  .kju-mobile-sticky-bar .kju-sticky-cta-btn i,
+  .kju-mobile-sticky-bar .kju-btn i {
+    font-size: 0.78rem !important;
+    margin-left: 2px !important;
+    transition: transform 0.2s ease;
+  }
+
+  .kju-footer {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 8px)) !important;
   }
 }
 
