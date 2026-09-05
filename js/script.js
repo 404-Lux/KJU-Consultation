@@ -109,7 +109,7 @@
       if (typeof window.fbq === 'function') {
         if (eventName === 'qualified_lead') {
           window.fbq('track', 'Lead', payload);
-        } else if (eventName === 'free_call_booked') {
+        } else if (eventName === 'call_booked' || eventName === 'free_call_booked') {
           window.fbq('track', 'Schedule', payload);
         } else {
           window.fbq('trackCustom', eventName, payload);
@@ -945,6 +945,14 @@
     if (state.contact.fullName) params.push(`name=${nameParam}`);
     if (state.contact.email) params.push(`email=${emailParam}`);
     if (state.contact.phone) params.push(`a1=${phoneParam}`);
+
+    // Forward Meta Ads UTM parameters to Calendly
+    if (state.attribution.utm_source) params.push(`utm_source=${encodeURIComponent(state.attribution.utm_source)}`);
+    if (state.attribution.utm_medium) params.push(`utm_medium=${encodeURIComponent(state.attribution.utm_medium)}`);
+    if (state.attribution.utm_campaign) params.push(`utm_campaign=${encodeURIComponent(state.attribution.utm_campaign)}`);
+    if (state.attribution.utm_content) params.push(`utm_content=${encodeURIComponent(state.attribution.utm_content)}`);
+    if (state.attribution.utm_term) params.push(`utm_term=${encodeURIComponent(state.attribution.utm_term)}`);
+
     params.push('hide_gdpr_banner=1');
     params.push('hide_event_type_details=1');
     params.push('primary_color=b8860b');
@@ -964,6 +972,13 @@
           customAnswers: {
             a1: state.contact.phone || undefined
           }
+        },
+        utm: {
+          utmCampaign: state.attribution.utm_campaign || undefined,
+          utmSource: state.attribution.utm_source || undefined,
+          utmMedium: state.attribution.utm_medium || undefined,
+          utmContent: state.attribution.utm_content || undefined,
+          utmTerm: state.attribution.utm_term || undefined
         }
       });
     } else {
@@ -997,12 +1012,20 @@
       </a>
     `;
 
-    // Listen for Calendly booking postMessage
-    window.addEventListener('message', (e) => {
-      if (e.data && e.data.event && e.data.event === 'calendly.event_scheduled') {
-        trackEvent('call_booked', { email: state.contact.email, isPaid: !!customUrl });
-      }
-    });
+    // Listen for Calendly booking postMessage (only once)
+    if (!state.calendlyListenerAttached) {
+      state.calendlyListenerAttached = true;
+      window.addEventListener('message', (e) => {
+        if (e.data && e.data.event && e.data.event === 'calendly.event_scheduled') {
+          trackEvent('call_booked', {
+            email: state.contact.email,
+            isPaid: !!customUrl,
+            content_name: 'Credit Consultation Call',
+            status: 'scheduled'
+          });
+        }
+      });
+    }
   }
 
   // --------------------------------------------------------------------------
