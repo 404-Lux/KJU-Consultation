@@ -6041,6 +6041,11 @@ body.kju-nav-locked {
   max-width: min(1320px, 94vw);
 }
 
+/* --- Desktop Mobile Tag Cloud Guard --- */
+.objection-mobile-tags {
+  display: none;
+}
+
 /* Unboxed Spread Container: Zero outer box */
 .objection-wrapper {
   max-width: 1260px;
@@ -9178,6 +9183,183 @@ body.kju-nav-locked {
   }
   #kjuGoalCtaBtn.kju-btn i {
     font-size: 0.72rem !important;
+  }
+
+  /* =========================================================
+     SECTION 13 — FINAL OBJECTION HANDLING (CHIP CLOUD + SOLUTION CARD)
+     ========================================================= */
+  .kju-objection-section {
+    padding: 42px 0 38px !important;
+  }
+
+  .kju-objection-section .kju-section-header {
+    margin-bottom: 18px !important;
+    text-align: center !important;
+  }
+
+  .kju-objection-title,
+  .kju-objection-title strong {
+    font-size: clamp(1.45rem, 6vw, 1.85rem) !important;
+    line-height: 1.15 !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    max-width: 320px !important;
+    display: block !important;
+  }
+
+  .objection-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    margin-top: 16px !important;
+  }
+
+  /* Left Column (Frustration Loop & Tag Cloud) */
+  .objection-left {
+    border-right: none !important;
+    border-bottom: none !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Hide Desktop Bullet List on Mobile */
+  .objection-list {
+    display: none !important;
+  }
+
+  /* Mobile Scannable Tag Cloud */
+  .objection-mobile-tags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 7px 8px !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
+    max-width: 340px !important;
+  }
+
+  .objection-tag-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    font-family: var(--font-ui), sans-serif !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.01em !important;
+    color: #121C2B !important;
+    background: #FFFFFF !important;
+    border: 1px solid rgba(184, 92, 50, 0.35) !important;
+    border-radius: 999px !important;
+    padding: 6px 12px !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    white-space: nowrap !important;
+    line-height: 1.2 !important;
+  }
+
+  /* The Core Question Box */
+  .objection-question-box {
+    border-top: none !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .objection-question-label,
+  .objection-question-label strong {
+    font-size: 0.74rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.06em !important;
+    color: #B85C32 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 4px !important;
+    display: block !important;
+    text-align: center !important;
+  }
+
+  .objection-label-extra {
+    display: none !important;
+  }
+
+  .objection-question-text,
+  .objection-question-text strong {
+    font-size: clamp(1.22rem, 4.5vw, 1.45rem) !important;
+    line-height: 1.25 !important;
+    color: #111C26 !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: block !important;
+    max-width: 300px !important;
+  }
+
+  /* Right Panel: The Solution Card */
+  .objection-right {
+    padding: 22px 18px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(200, 188, 168, 0.25) !important;
+    border-top: 3px solid var(--kju-gold, #B8860B) !important;
+    background: var(--kju-authority-navy, #162533) !important;
+    box-shadow: 0 12px 32px rgba(18, 28, 43, 0.3) !important;
+    text-align: left !important;
+  }
+
+  .objection-heading {
+    font-size: 0.94rem !important;
+    line-height: 1.4 !important;
+    font-weight: 800 !important;
+    margin-bottom: 14px !important;
+    color: #FFFFFF !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  .objection-reassurance-list {
+    gap: 10px !important;
+    margin: 0 0 16px 0 !important;
+  }
+
+  .objection-reassurance-list li {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+    padding-left: 20px !important;
+    color: rgba(245, 243, 238, 0.92) !important;
+  }
+
+  .objection-reassurance-list li::before {
+    font-size: 1.05rem !important;
+    color: var(--kju-gold, #B8860B) !important;
+  }
+
+  .objection-cadence {
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 18px !important;
+    border-left: 3px solid var(--kju-gold, #B8860B) !important;
+    padding-left: 12px !important;
+  }
+
+  .objection-cadence strong {
+    font-size: 0.84rem !important;
+  }
+
+  /* Full-Width Reassuring CTA Button */
+  .objection-cta-button {
+    padding: 12px 18px !important;
+    font-size: 0.76rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em !important;
+    min-height: 42px !important;
+    border-radius: 6px !important;
+    width: 100% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 14px rgba(184, 134, 11, 0.35) !important;
+  }
+
+  .objection-cta-button i {
+    font-size: 0.74rem !important;
   }
 
   .kju-goal-tiles-grid {
