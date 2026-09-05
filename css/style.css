@@ -7141,9 +7141,7 @@ body.kju-nav-locked {
     display: none;
   }
   .kju-video-length-tag {
-    font-size: clamp(0.64rem, 2.4vw, 0.7rem);
-    letter-spacing: 0.04em;
-    white-space: nowrap;
+    display: none !important;
   }
 
   .kju-video-wrapper {
