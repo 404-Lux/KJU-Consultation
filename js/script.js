@@ -759,7 +759,7 @@
         );
         if (progressText) progressText.textContent = 'PAID CONSULTATION SCHEDULING';
         if (progressFill) progressFill.style.width = '100%';
-        if (backBtn) backBtn.style.display = 'inline-flex';
+        if (backBtn) backBtn.style.display = 'none';
         if (nextBtn) nextBtn.style.display = 'none';
       };
     }
