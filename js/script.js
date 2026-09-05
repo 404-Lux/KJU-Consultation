@@ -1101,6 +1101,12 @@
     if (nextBtn) nextBtn.addEventListener('click', handleNext);
     if (backBtn) backBtn.addEventListener('click', handleBack);
     if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeFitCheck);
+    document.querySelectorAll('[data-close-modal]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeFitCheck();
+      });
+    });
 
     if (modalOverlay) {
       modalOverlay.addEventListener('click', (e) => {

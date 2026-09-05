@@ -7483,6 +7483,65 @@ body.kju-nav-locked {
   transition: max-width var(--transition-normal), padding var(--transition-normal);
 }
 
+.kju-modal-card.is-calendly-active .kju-modal-close {
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  background: var(--kju-authority-navy, #121C2B);
+  color: #FFFFFF;
+  border: 1.5px solid var(--kju-gold, #B8860B);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  font-size: 1.25rem;
+  z-index: 1000;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.kju-modal-card.is-calendly-active .kju-modal-close:hover {
+  background: var(--kju-gold, #B8860B);
+  color: #121C2B;
+  transform: scale(1.1);
+}
+
+.kju-calendly-header-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+  padding-right: 48px;
+}
+
+.kju-calendly-title-wrap {
+  flex: 1;
+}
+
+.kju-calendly-close-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(18, 28, 43, 0.07);
+  border: 1px solid rgba(18, 28, 43, 0.16);
+  border-radius: var(--radius-xs, 4px);
+  color: var(--kju-authority-navy-dark, #121C2B);
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.80rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.kju-calendly-close-btn:hover {
+  background: var(--kju-authority-navy, #121C2B);
+  color: #FFFFFF;
+  border-color: var(--kju-authority-navy, #121C2B);
+}
+
 #step_calendly .kju-result-box {
   margin-bottom: 8px !important;
   text-align: left;
