@@ -8712,23 +8712,25 @@ body.kju-nav-locked {
   .kju-meet-mobile-header {
     display: block !important;
     margin-bottom: 14px !important;
-    text-align: left !important;
+    text-align: center !important;
   }
   .kju-meet-mobile-header .kju-meet-headline {
     font-size: clamp(1.45rem, 6vw, 1.85rem) !important;
     font-weight: 800 !important;
     letter-spacing: -0.02em !important;
     line-height: 1.1 !important;
-    margin: 0 0 4px !important;
+    margin: 0 auto 4px !important;
     color: #FFFFFF !important;
+    text-align: center !important;
   }
   .kju-meet-mobile-header .kju-meet-role-subtitle {
     font-size: 0.64rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.12em !important;
     color: var(--kju-gold, #B8860B) !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     line-height: 1.3 !important;
+    text-align: center !important;
   }
 
   /* Compact Executive Author Lockup Card */
@@ -8844,18 +8846,21 @@ body.kju-nav-locked {
   }
   .kju-meet-belief-block {
     margin-bottom: 12px !important;
+    text-align: center !important;
   }
   .kju-meet-belief-lead {
     font-size: 0.82rem !important;
     line-height: 1.4 !important;
     color: rgba(232, 228, 220, 0.75) !important;
-    margin: 0 0 4px !important;
+    margin: 0 auto 4px !important;
+    text-align: center !important;
   }
   .kju-meet-creed-callout {
     font-size: 1.35rem !important;
     line-height: 1.2 !important;
     color: var(--kju-gold, #B8860B) !important;
-    margin: 0 0 8px !important;
+    margin: 0 auto 8px !important;
+    text-align: center !important;
   }
   .kju-meet-lead-text {
     font-size: 0.88rem !important;
