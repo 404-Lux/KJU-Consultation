@@ -368,7 +368,6 @@
     'step_bankruptcy',   // Q8
     'step_bank_disch',   // Q9 (conditional)
     'step_bureaus',      // Q10
-    'step_contact',      // Contact capture
     'step_calendly'      // Calendly embed
   ];
 
@@ -395,7 +394,6 @@
     }
 
     seq.push('step_bureaus');
-    seq.push('step_contact');
     seq.push('step_calendly');
 
     return seq;
@@ -538,31 +536,10 @@
     }
 
     // Update Progress Indicator
-    const totalQuestions = state.activeStepSequence.length - 2; // Exclude contact & calendly
+    const totalQuestions = state.activeStepSequence.length - 1; // Exclude calendly
     const currentQNumber = Math.min(totalQuestions, state.currentStepIndex + 1);
 
-    if (currentStepId === 'step_contact') {
-      if (progressText) progressText.textContent = 'FINAL STEP: YOUR DETAILS';
-      if (progressFill) progressFill.style.width = '95%';
-
-      const nameInput = document.getElementById('kjuContactName');
-      const emailInput = document.getElementById('kjuContactEmail');
-      const phoneInput = document.getElementById('kjuContactPhone');
-      if (nameInput && !nameInput.value && state.contact.fullName) nameInput.value = state.contact.fullName;
-      if (emailInput && !emailInput.value && state.contact.email) emailInput.value = state.contact.email;
-      if (phoneInput && !phoneInput.value && state.contact.phone) phoneInput.value = state.contact.phone;
-
-      const noticeEl = document.querySelector('.kju-contact-notice');
-      if (noticeEl) {
-        if (state.answers.hasBureauAccess === 'No') {
-          const teammates = CONFIG.salesTeammates || [];
-          const activeTeammate = teammates.find(t => t.id === selectedTeammateId) || { name: 'Mariane Pacheco' };
-          noticeEl.innerHTML = `<strong>Help with bureau access:</strong> No problem if you don't have access yet — your credit consultant <strong>${activeTeammate.name}</strong> will call you from <strong>438-803-1002</strong> to help you retrieve your Credit Karma and Equifax reports during your consultation.`;
-        } else {
-          noticeEl.innerHTML = '<strong>Before your consultation:</strong> Please make sure you have access to both Credit Karma and Equifax. Your credit specialist will call you from <strong>438-803-1002</strong>. Consultations may be rescheduled a maximum of two times.';
-        }
-      }
-    } else if (currentStepId === 'step_calendly') {
+    if (currentStepId === 'step_calendly') {
       if (progressText) progressText.textContent = 'SCHEDULE YOUR STRATEGY CALL';
       if (progressFill) progressFill.style.width = '100%';
       if (state.answers.hasBureauAccess === 'No') {
@@ -591,7 +568,7 @@
     }
 
     if (nextBtn) {
-      if (currentStepId === 'step_contact') {
+      if (currentStepId === 'step_bureaus') {
         nextBtn.style.display = 'inline-flex';
         nextBtn.innerHTML = '<span>Book Your Free Call</span> <i class="fa-solid fa-arrow-right"></i>';
       } else if (currentStepId === 'step_calendly') {
@@ -682,59 +659,16 @@
       }
       trackEvent('question_answered', { question: 'has_bureau_access', answer: state.answers.hasBureauAccess });
       // If user answers 'No', they are STILL qualified for a call — a sales teammate will help them retrieve their credit files!
-    } else if (currentStepId === 'step_contact') {
-      const nameInput = document.getElementById('kjuContactName');
-      const emailInput = document.getElementById('kjuContactEmail');
-      const phoneInput = document.getElementById('kjuContactPhone');
-
-      const name = nameInput ? nameInput.value.trim() : '';
-      const email = emailInput ? emailInput.value.trim() : '';
-      const phone = phoneInput ? phoneInput.value.trim() : '';
-
-      if (!name || name.length < 2) {
-        if (nameInput) nameInput.classList.add('is-invalid');
-        showKjuToast('Please enter your full name.');
-        return;
-      }
-      if (nameInput) nameInput.classList.remove('is-invalid');
-
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        if (emailInput) emailInput.classList.add('is-invalid');
-        showKjuToast('Please enter a valid email address.');
-        return;
-      }
-      if (emailInput) emailInput.classList.remove('is-invalid');
-
-      if (!phone || phone.replace(/\D/g, '').length < 10) {
-        if (phoneInput) phoneInput.classList.add('is-invalid');
-        showKjuToast('Please enter a valid 10-digit phone number.');
-        return;
-      }
-      if (phoneInput) phoneInput.classList.remove('is-invalid');
-
-      state.contact.fullName = name;
-      state.contact.email = email;
-      state.contact.phone = phone;
-
-      // LEAD SAVE & PERSISTENCE
       saveLeadRecord();
       state.qualificationStatus = 'QUALIFIED';
       trackEvent('qualified_lead', {
-        name: name,
-        email: email,
-        phone: phone,
         province: state.answers.province,
         hasBureauAccess: state.answers.hasBureauAccess
       });
 
-      // Advance to Calendly
+      // Advance directly to Calendly
       state.currentStepIndex++;
       renderCurrentStep();
-      if (state.answers.hasBureauAccess === 'No') {
-        loadSalesTeammateBooking();
-      } else {
-        loadCalendlyEmbed();
-      }
       return;
     }
 
