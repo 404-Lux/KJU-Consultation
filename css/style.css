@@ -7470,6 +7470,21 @@ body.kju-nav-locked {
   gap: 12px;
 }
 
+.kju-result-actions .kju-btn {
+  padding: 13px 20px;
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+  min-height: 46px;
+  gap: 8px;
+  line-height: 1.35;
+}
+
+.kju-result-actions .kju-btn-secondary {
+  padding: 11px 18px;
+  font-size: 0.84rem;
+  min-height: 40px;
+}
+
 /* Calendly Modal Integration */
 .kju-modal-card.is-calendly-active {
   max-width: 920px;
@@ -10550,6 +10565,25 @@ body.kju-nav-locked {
     line-height: 1.5;
     margin-bottom: 18px;
   }
+  .kju-result-actions {
+    gap: 10px;
+  }
+  .kju-result-actions .kju-btn {
+    padding: 11px 16px;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    min-height: 42px;
+    gap: 8px;
+    line-height: 1.35;
+  }
+  .kju-result-actions .kju-btn i {
+    font-size: 0.85rem;
+  }
+  .kju-result-actions .kju-btn-secondary {
+    padding: 10px 16px;
+    font-size: 0.78rem;
+    min-height: 38px;
+  }
 }
 
 /* Narrow Phones (iPhone SE, Small Android Viewports — <= 380px) */
@@ -10671,6 +10705,21 @@ body.kju-nav-locked {
   .kju-form-nav .kju-btn {
     padding: 10px 12px;
     font-size: 0.76rem;
+  }
+  .kju-result-actions .kju-btn {
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    min-height: 38px;
+    gap: 6px;
+  }
+  .kju-result-actions .kju-btn i {
+    font-size: 0.78rem;
+  }
+  .kju-result-actions .kju-btn-secondary {
+    padding: 9px 12px;
+    font-size: 0.72rem;
+    min-height: 34px;
   }
   .kju-testimonial-subtext {
     font-size: 0.78rem;
