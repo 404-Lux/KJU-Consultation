@@ -550,7 +550,9 @@
       const noticeEl = document.querySelector('.kju-contact-notice');
       if (noticeEl) {
         if (state.answers.hasBureauAccess === 'No') {
-          noticeEl.innerHTML = '<strong>Help with bureau access:</strong> No problem if you don\'t have access yet — a sales teammate will call you from <strong>438-803-1002</strong> to help you retrieve your Credit Karma and Equifax reports during your consultation.';
+          const teammates = CONFIG.salesTeammates || [];
+          const activeTeammate = teammates.find(t => t.id === selectedTeammateId) || { name: 'Mariane Pacheco' };
+          noticeEl.innerHTML = `<strong>Help with bureau access:</strong> No problem if you don't have access yet — your credit consultant <strong>${activeTeammate.name}</strong> will call you from <strong>438-803-1002</strong> to help you retrieve your Credit Karma and Equifax reports during your consultation.`;
         } else {
           noticeEl.innerHTML = '<strong>Before your consultation:</strong> Please make sure you have access to both Credit Karma and Equifax. Your credit specialist will call you from <strong>438-803-1002</strong>. Consultations may be rescheduled a maximum of two times.';
         }
@@ -559,11 +561,20 @@
       if (progressText) progressText.textContent = 'SCHEDULE YOUR STRATEGY CALL';
       if (progressFill) progressFill.style.width = '100%';
       if (state.answers.hasBureauAccess === 'No') {
-        loadSalesTeammateBooking();
+        loadSalesTeammateBooking(selectedTeammateId);
       } else {
         loadCalendlyEmbed();
       }
     } else {
+      if (currentStepId === 'step_bureaus') {
+        const q10Selector = document.getElementById('kjuTeammateSelectorQ10');
+        if (q10Selector) {
+          q10Selector.style.display = state.answers.hasBureauAccess === 'No' ? 'block' : 'none';
+          q10Selector.querySelectorAll('.kju-teammate-btn').forEach(b => {
+            b.classList.toggle('is-active', b.dataset.teammateId === selectedTeammateId);
+          });
+        }
+      }
       if (progressText) progressText.textContent = `QUESTION ${currentQNumber} OF ${totalQuestions}`;
       const pct = Math.round((currentQNumber / totalQuestions) * 100);
       if (progressFill) progressFill.style.width = `${pct}%`;
@@ -993,6 +1004,28 @@
           buttons.forEach(b => b.classList.remove('is-selected'));
           btn.classList.add('is-selected');
           state.answers[fieldName] = btn.dataset.value;
+
+          if (fieldName === 'hasBureauAccess') {
+            const q10Selector = document.getElementById('kjuTeammateSelectorQ10');
+            if (q10Selector) {
+              q10Selector.style.display = btn.dataset.value === 'No' ? 'block' : 'none';
+              q10Selector.querySelectorAll('.kju-teammate-btn').forEach(b => {
+                b.classList.toggle('is-active', b.dataset.teammateId === selectedTeammateId);
+              });
+            }
+          }
+        });
+      });
+    });
+
+    // Teammate selection buttons inside Question 10
+    document.querySelectorAll('#kjuTeammateSelectorQ10 .kju-teammate-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        selectedTeammateId = btn.dataset.teammateId;
+        document.querySelectorAll('#kjuTeammateSelectorQ10 .kju-teammate-btn').forEach(b => {
+          b.classList.toggle('is-active', b.dataset.teammateId === selectedTeammateId);
         });
       });
     });

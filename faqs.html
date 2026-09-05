@@ -506,6 +506,37 @@
           <button type="button" class="kju-option-btn" data-value="Yes"><span>Yes, I have access to both</span> <i class="fa-solid fa-chevron-right"></i></button>
           <button type="button" class="kju-option-btn" data-value="No"><span>No, I do not have access to both yet</span> <i class="fa-solid fa-chevron-right"></i></button>
         </div>
+
+        <!-- Sales Teammate Selection (revealed when 'No' is selected) -->
+        <div class="kju-teammate-selector-wrap" id="kjuTeammateSelectorQ10" style="display: none; margin-top: 20px;">
+          <div class="kju-teammate-selector-header">
+            <i class="fa-solid fa-headset" style="color: var(--kju-gold);"></i>
+            <span>A sales teammate will help you get access. Choose your credit consultant:</span>
+          </div>
+          <div class="kju-teammate-grid">
+            <button type="button" class="kju-teammate-btn is-active" data-teammate-id="mariane">
+              <div class="kju-teammate-avatar-ring"><i class="fa-solid fa-user-check"></i></div>
+              <div class="kju-teammate-info">
+                <span class="kju-teammate-name">Mariane Pacheco</span>
+                <span class="kju-teammate-call-type">Credit Consultation call</span>
+              </div>
+            </button>
+            <button type="button" class="kju-teammate-btn" data-teammate-id="jasmin">
+              <div class="kju-teammate-avatar-ring"><i class="fa-solid fa-user-check"></i></div>
+              <div class="kju-teammate-info">
+                <span class="kju-teammate-name">Jasmin Ichihara</span>
+                <span class="kju-teammate-call-type">Credit Consultation call</span>
+              </div>
+            </button>
+            <button type="button" class="kju-teammate-btn" data-teammate-id="john">
+              <div class="kju-teammate-avatar-ring"><i class="fa-solid fa-user-check"></i></div>
+              <div class="kju-teammate-info">
+                <span class="kju-teammate-name">John Parcon</span>
+                <span class="kju-teammate-call-type">Credit Consultation call</span>
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Qualified Result & Contact Capture Step -->
