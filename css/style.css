@@ -6145,7 +6145,7 @@ body.kju-nav-locked {
   font-size: clamp(1.04rem, 1.22vw, 1.15rem);
   line-height: 1.55;
   color: #121C2B !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   margin-bottom: 0;
   position: relative;
   padding-left: 28px;
@@ -6238,12 +6238,12 @@ body.kju-nav-locked {
   font-family: var(--font-ui), sans-serif;
   font-size: clamp(1.02rem, 1.2vw, 1.14rem);
   line-height: 1.55;
-  color: rgba(245, 243, 238, 0.92) !important;
-  font-weight: 450 !important;
+  color: rgba(245, 243, 238, 0.94) !important;
+  font-weight: 600 !important;
   margin-bottom: 0;
   padding-left: 28px;
   position: relative;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -9425,7 +9425,8 @@ body.kju-nav-locked {
     font-size: 0.82rem !important;
     line-height: 1.45 !important;
     padding-left: 20px !important;
-    color: rgba(245, 243, 238, 0.92) !important;
+    font-weight: 600 !important;
+    color: rgba(245, 243, 238, 0.94) !important;
   }
 
   .objection-reassurance-list li::before {
