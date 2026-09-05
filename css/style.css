@@ -7493,42 +7493,6 @@ body.kju-nav-locked {
   transform: scale(1.1);
 }
 
-.kju-calendly-header-bar {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 10px;
-  padding-right: 48px;
-}
-
-.kju-calendly-title-wrap {
-  flex: 1;
-}
-
-.kju-calendly-close-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  background: rgba(18, 28, 43, 0.07);
-  border: 1px solid rgba(18, 28, 43, 0.16);
-  border-radius: var(--radius-xs, 4px);
-  color: var(--kju-authority-navy-dark, #121C2B);
-  font-family: var(--font-ui), sans-serif;
-  font-size: 0.80rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-
-.kju-calendly-close-btn:hover {
-  background: var(--kju-authority-navy, #121C2B);
-  color: #FFFFFF;
-  border-color: var(--kju-authority-navy, #121C2B);
-}
-
 #step_calendly .kju-result-box {
   margin-bottom: 8px !important;
   text-align: left;
