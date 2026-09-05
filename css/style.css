@@ -9494,6 +9494,139 @@ body.kju-nav-locked {
     flex-shrink: 0 !important;
   }
 
+  /* =========================================================
+     SECTION 17 — INSTITUTIONAL LEDGER FOOTER (COMPACT MOBILE)
+     ========================================================= */
+  .kju-footer-institutional {
+    padding: 34px 0 calc(78px + env(safe-area-inset-bottom, 8px)) !important;
+  }
+
+  .kju-footer-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  .kju-footer-col-brand .kju-brand-logo {
+    margin-bottom: 10px !important;
+    gap: 10px !important;
+  }
+  .kju-footer-col-brand .kju-brand-logo img {
+    height: 36px !important;
+  }
+  .kju-footer-col-brand .kju-brand-name {
+    font-size: 0.94rem !important;
+    line-height: 1.15 !important;
+  }
+  .kju-footer-col-brand .kju-brand-tagline {
+    font-size: 0.60rem !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .kju-footer-trust-pill {
+    font-size: 0.70rem !important;
+    padding: 4px 10px !important;
+    gap: 6px !important;
+    margin-bottom: 8px !important;
+    border-radius: 999px !important;
+  }
+  .kju-footer-trust-pill i {
+    font-size: 0.66rem !important;
+  }
+
+  .kju-footer-sub-tagline {
+    font-size: 0.72rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 14px !important;
+    color: rgba(232, 228, 220, 0.7) !important;
+  }
+
+  .kju-footer-links-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    padding-top: 14px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .kju-footer-subcol:first-child .kju-footer-link-list {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 18px !important;
+  }
+
+  .kju-footer-ledger-heading {
+    font-size: 0.68rem !important;
+    letter-spacing: 0.08em !important;
+    margin-bottom: 8px !important;
+    gap: 6px !important;
+  }
+  .kju-footer-ledger-heading i {
+    font-size: 0.64rem !important;
+  }
+
+  .kju-footer-link-list {
+    gap: 8px !important;
+  }
+
+  .kju-footer-link,
+  .kju-footer-channel-link {
+    font-size: 0.70rem !important;
+    gap: 6px !important;
+  }
+
+  .kju-footer-channel-link {
+    padding: 7px 10px !important;
+    border-radius: 4px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .kju-footer-channel-link span {
+    font-size: 0.68rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .kju-footer-channel-link i.fa-arrow-up-right-from-square {
+    font-size: 0.58rem !important;
+  }
+
+  /* Compliance Notice Box */
+  .kju-footer-col-compliance {
+    padding: 14px 14px !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(184, 134, 11, 0.2) !important;
+    border-left: 3px solid var(--kju-gold, #B8860B) !important;
+    background: rgba(255, 255, 255, 0.025) !important;
+  }
+  .kju-footer-col-compliance .kju-footer-ledger-heading {
+    font-size: 0.70rem !important;
+    margin-bottom: 6px !important;
+  }
+  .kju-footer-compliance-text {
+    font-size: 0.67rem !important;
+    line-height: 1.45 !important;
+    color: rgba(232, 228, 220, 0.72) !important;
+  }
+
+  /* Basemark Rule & Copyright */
+  .kju-footer-basemark {
+    margin-top: 18px !important;
+    padding-top: 12px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    font-size: 0.65rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  .kju-footer-copyright {
+    text-align: center !important;
+    width: 100% !important;
+    line-height: 1.4 !important;
+    color: rgba(232, 228, 220, 0.65) !important;
+  }
+
   .kju-goal-tiles-grid {
     grid-template-columns: 1fr;
   }
