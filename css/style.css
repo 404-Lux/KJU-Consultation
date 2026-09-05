@@ -6708,7 +6708,7 @@ body.kju-nav-locked {
 
 /* Open Content Layout (No Box Card Wrapper) */
 .kju-final-cta-content {
-  max-width: 920px;
+  max-width: 1080px;
   margin: 0 auto;
   text-align: center;
   position: relative;
@@ -6762,39 +6762,44 @@ body.kju-nav-locked {
 .kju-final-cta-rail {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 18px 24px;
-  margin: 38px auto 40px;
+  padding: 13px 26px;
+  margin: 36px auto 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px 24px;
+  flex-wrap: nowrap;
+  gap: 10px 16px;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 999px;
-  max-width: 900px;
+  max-width: 1040px;
+  width: fit-content;
 }
 
 .kju-final-rail-item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   font-family: var(--font-ui);
-  font-size: 0.86rem;
+  font-size: clamp(0.75rem, 0.92vw, 0.84rem);
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: #FFFFFF;
   text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .kju-final-rail-item i {
   color: #E2AD27;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
+  flex-shrink: 0;
 }
 
 .kju-final-rail-dot {
   color: rgba(200, 188, 168, 0.4);
   font-size: 0.85rem;
   user-select: none;
+  flex-shrink: 0;
 }
 
 /* --- Primary Action Lockup --- */
