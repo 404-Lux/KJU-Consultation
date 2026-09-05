@@ -4030,6 +4030,7 @@ body.kju-nav-locked {
   color: #E2AD27;
 }
 
+.kju-section-title.kju-pillars-title,
 .kju-pillars-title {
   color: #FFFFFF !important;
   font-size: clamp(1.75rem, 3.5vw, 2.55rem);
@@ -4563,10 +4564,11 @@ body.kju-nav-locked {
   .kju-pillars-br-2 {
     display: inline !important;
   }
+  .kju-section-title.kju-pillars-title,
   .kju-pillars-title {
-    font-size: clamp(1.72rem, 7vw, 2.15rem);
-    line-height: 1.14;
-    max-width: 360px;
+    font-size: clamp(1.12rem, 5.8vw, 2.15rem) !important;
+    line-height: 1.15;
+    max-width: 100% !important;
     margin: 0 auto 12px;
     text-align: center;
   }
@@ -8582,10 +8584,6 @@ body.kju-nav-locked {
   }
   .kju-syllabus-desc {
     font-size: 0.78rem !important;
-  }
-  .kju-pillars-title {
-    font-size: 1.62rem;
-    max-width: 320px;
   }
   .kju-pillars-subhead {
     font-size: 0.84rem;
