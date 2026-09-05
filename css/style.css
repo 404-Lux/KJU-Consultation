@@ -4901,6 +4901,7 @@ body.kju-nav-locked {
   gap: 24px;
   position: relative;
   z-index: 2;
+  align-items: stretch;
 }
 
 /* Protocol Step Container & Scroll Reveal */
@@ -4909,6 +4910,8 @@ body.kju-nav-locked {
   flex-direction: column;
   align-items: center;
   text-align: left;
+  height: 100%;
+  width: 100%;
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -4942,6 +4945,7 @@ body.kju-nav-locked {
   margin-bottom: 20px;
   position: relative;
   z-index: 3;
+  flex-shrink: 0;
 }
 
 .pipeline-node {
@@ -5024,6 +5028,8 @@ body.kju-nav-locked {
   position: relative;
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
+  box-sizing: border-box;
 }
 
 /* Step 01 (Starting Step Surface Highlight) */
@@ -8691,6 +8697,7 @@ body.kju-nav-locked {
     width: 100% !important;
     box-sizing: border-box !important;
     scrollbar-width: none !important;
+    align-items: stretch !important;
   }
   .kju-timeline-track::-webkit-scrollbar,
   .kju-pipeline-track::-webkit-scrollbar {
@@ -8703,6 +8710,7 @@ body.kju-nav-locked {
     min-width: 260px !important;
     max-width: 320px !important;
     height: auto !important;
+    align-self: stretch !important;
     scroll-snap-align: center !important;
     scroll-snap-stop: always !important;
     box-sizing: border-box !important;
