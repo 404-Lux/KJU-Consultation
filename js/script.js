@@ -308,6 +308,18 @@
         }
       });
     }
+
+    // Resource Card "See more" / "See less" mobile toggle
+    const seeMoreBtn = document.getElementById('kjuSeeMoreBtn');
+    const resourceDesc = document.getElementById('kjuResourceDesc');
+    if (seeMoreBtn && resourceDesc) {
+      seeMoreBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isExpanded = resourceDesc.classList.toggle('is-expanded');
+        seeMoreBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        seeMoreBtn.textContent = isExpanded ? 'See less' : 'See more';
+      });
+    }
   }
 
   // --------------------------------------------------------------------------
