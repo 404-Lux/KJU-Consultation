@@ -9362,6 +9362,138 @@ body.kju-nav-locked {
     font-size: 0.74rem !important;
   }
 
+  /* =========================================================
+     SECTION 16 — FINAL CTA: EXECUTIVE ADVISORY CONVOCATION
+     ========================================================= */
+  .kju-final-cta-section {
+    padding: 44px 0 44px !important;
+    overflow-x: hidden !important;
+  }
+
+  .kju-final-cta-content {
+    max-width: 100% !important;
+    padding: 0 4px !important;
+  }
+
+  .kju-final-cta-title {
+    font-size: clamp(1.45rem, 6.2vw, 1.85rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: 0.01em !important;
+    margin: 0 auto 12px !important;
+    max-width: 320px !important;
+    text-align: center !important;
+  }
+
+  .kju-final-cta-narrative {
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  .kju-final-cta-lead {
+    font-size: 0.84rem !important;
+    line-height: 1.45 !important;
+    color: rgba(232, 228, 220, 0.85) !important;
+    margin: 0 0 8px !important;
+  }
+
+  .kju-final-cta-pivot {
+    font-size: 0.94rem !important;
+    line-height: 1.35 !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    margin: 0 0 8px !important;
+  }
+
+  .kju-final-cta-trust {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+    color: #E2AD27 !important;
+    margin: 0 0 16px !important;
+  }
+
+  /* 4 Deliverables Rail as Compact Vertical Stack */
+  .kju-final-cta-rail {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 12px 14px !important;
+    margin: 0 auto 18px !important;
+    gap: 8px !important;
+    border-radius: 8px !important;
+    max-width: 320px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .kju-final-rail-dot {
+    display: none !important;
+  }
+
+  .kju-final-rail-item {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.04em !important;
+    gap: 7px !important;
+  }
+
+  .kju-final-rail-item i {
+    font-size: 0.78rem !important;
+  }
+
+  /* Action Button & Seal Caption */
+  .kju-final-cta-action {
+    gap: 10px !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .kju-final-btn {
+    width: 100% !important;
+    max-width: 330px !important;
+    padding: 12px 18px !important;
+    font-size: 0.74rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    border-radius: 6px !important;
+    min-height: 42px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    box-shadow: 0 4px 14px rgba(184, 134, 11, 0.35) !important;
+  }
+
+  .kju-final-btn .kju-final-btn-prefix {
+    display: none !important;
+  }
+
+  .kju-final-btn i {
+    font-size: 0.72rem !important;
+    display: inline-block !important;
+  }
+
+  /* Tight, properly-aligned seal caption */
+  .kju-final-seal-caption {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    font-size: 0.58rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
+    color: rgba(232, 228, 220, 0.75) !important;
+    text-align: center !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    line-height: 1.3 !important;
+  }
+
+  .kju-final-seal-caption i {
+    font-size: 0.65rem !important;
+    color: #E2AD27 !important;
+    flex-shrink: 0 !important;
+  }
+
   .kju-goal-tiles-grid {
     grid-template-columns: 1fr;
   }
