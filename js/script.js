@@ -1098,6 +1098,10 @@
     const ctaBtn = document.getElementById('kjuPipelineCta');
     if (!wrapper || !steps.length) return;
 
+    const mobileStepper = document.getElementById('kjuPipelineMobileStepper');
+    const mobileRailFill = document.getElementById('kjuPipelineMobileRailFill');
+    const mobileStepBtns = wrapper.querySelectorAll('.pipeline-mobile-step-btn');
+
     const stepPercentages = [0, 33.333, 66.666, 100];
 
     function setPipelineProgress(stepIndex) {
@@ -1106,6 +1110,13 @@
         progressBar.style.setProperty('--pipeline-fill', `${pct}%`);
         progressBar.style.width = `${pct}%`;
       }
+      if (mobileRailFill) {
+        mobileRailFill.style.width = `${pct}%`;
+      }
+      mobileStepBtns.forEach((btn, idx) => {
+        btn.classList.toggle('is-active', idx === stepIndex);
+        btn.classList.toggle('is-complete', idx < stepIndex);
+      });
 
       steps.forEach((step, idx) => {
         if (idx === stepIndex) {
@@ -1127,6 +1138,14 @@
         progressBar.style.setProperty('--pipeline-fill', '0%');
         progressBar.style.width = '0%';
       }
+      if (mobileRailFill) {
+        mobileRailFill.style.width = '0%';
+      }
+      mobileStepBtns.forEach((btn, idx) => {
+        btn.classList.toggle('is-active', idx === 0);
+        btn.classList.remove('is-complete');
+      });
+
       steps.forEach((step, idx) => {
         step.classList.remove('is-dimmed', 'is-illuminated');
         if (idx === 0) {
@@ -1137,7 +1156,7 @@
       });
     }
 
-    // Interactive Hover per Step
+    // Interactive Hover per Step (Desktop)
     steps.forEach((step, idx) => {
       step.addEventListener('mouseenter', () => {
         setPipelineProgress(idx);
@@ -1148,6 +1167,46 @@
       track.addEventListener('mouseleave', () => {
         resetPipeline();
       });
+
+      // Mobile Swipe Carousel Synchronization with Stepper
+      if (mobileStepBtns.length) {
+        let isTimelineScrolling = false;
+        track.addEventListener('scroll', () => {
+          if (!isTimelineScrolling) {
+            window.requestAnimationFrame(() => {
+              const trackRect = track.getBoundingClientRect();
+              const trackCenter = trackRect.left + trackRect.width / 2;
+              let closestStepIndex = 0;
+              let minDistance = Infinity;
+
+              steps.forEach((step, idx) => {
+                const stepRect = step.getBoundingClientRect();
+                const stepCenter = stepRect.left + stepRect.width / 2;
+                const dist = Math.abs(trackCenter - stepCenter);
+                if (dist < minDistance) {
+                  minDistance = dist;
+                  closestStepIndex = idx;
+                }
+              });
+
+              setPipelineProgress(closestStepIndex);
+              isTimelineScrolling = false;
+            });
+            isTimelineScrolling = true;
+          }
+        }, { passive: true });
+
+        // Tapping Stepper Button scrolls to that step
+        mobileStepBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const targetIndex = parseInt(btn.getAttribute('data-step-index'), 10);
+            if (steps[targetIndex]) {
+              steps[targetIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+              setPipelineProgress(targetIndex);
+            }
+          });
+        });
+      }
     }
 
     // Coordinated Button Micro-Interaction (hovering CTA pulses Step 01)

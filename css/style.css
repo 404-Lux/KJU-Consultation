@@ -4845,6 +4845,11 @@ body.kju-nav-locked {
   margin-top: 50px;
 }
 
+/* Mobile Stepper Rail hidden on desktop */
+.kju-pipeline-mobile-stepper {
+  display: none;
+}
+
 /* Dynamic Sequential Progression Spine (Top Track) */
 .pipeline-spine-wrapper {
   position: absolute;
@@ -8171,23 +8176,289 @@ body.kju-nav-locked {
   .kju-section-title {
     font-size: 2rem;
   }
+  /* =========================================================
+     SECTION 09 — HOW DOES IT WORK? (MOBILE SWIPE DECK SYSTEM)
+     ========================================================= */
+  .kju-how-section {
+    padding: 46px 0 42px !important;
+    overflow-x: hidden !important;
+  }
+  .kju-how-header {
+    margin-bottom: 18px !important;
+  }
+  .kju-how-title {
+    font-size: clamp(1.70rem, 7vw, 2.10rem) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 10px !important;
+  }
+  .kju-how-subhead,
+  .kju-section-subhead.kju-how-subhead {
+    font-size: 0.88rem !important;
+    line-height: 1.48 !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    color: var(--text-dark-secondary, #4A5568) !important;
+  }
+  .kju-pipeline-container {
+    margin-top: 22px !important;
+  }
+
+  /* Connected 4-Step Progress Rail */
+  .kju-pipeline-mobile-stepper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-bottom: 16px !important;
+    gap: 8px !important;
+  }
+  .pipeline-mobile-rail-track {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 330px !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+  }
+  .pipeline-mobile-rail-track::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 26px;
+    right: 26px;
+    height: 2px;
+    background: rgba(200, 188, 168, 0.4);
+    z-index: 1;
+  }
+  .pipeline-mobile-rail-fill {
+    position: absolute;
+    top: 15px;
+    left: 26px;
+    height: 2px;
+    width: 0%;
+    max-width: calc(100% - 52px);
+    background: linear-gradient(90deg, #B8860B 0%, #E2AD27 100%);
+    box-shadow: 0 0 8px rgba(184, 134, 11, 0.5);
+    z-index: 2;
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pipeline-mobile-step-btn {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 3 !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .pipeline-mobile-step-btn .step-num {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    background: #FFFFFF !important;
+    color: #6C7A89 !important;
+    border: 1.5px solid rgba(200, 188, 168, 0.6) !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+  }
+  .pipeline-mobile-step-btn .step-name {
+    font-family: var(--font-ui), sans-serif !important;
+    font-size: 0.64rem !important;
+    font-weight: 700 !important;
+    color: #7A869A !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+    transition: color 0.25s ease !important;
+  }
+  .pipeline-mobile-step-btn.is-active .step-num {
+    background: var(--kju-authority-navy, #1F2A44) !important;
+    color: #E2AD27 !important;
+    border-color: #B8860B !important;
+    box-shadow: 0 0 10px rgba(184, 134, 11, 0.45) !important;
+    transform: scale(1.08) !important;
+  }
+  .pipeline-mobile-step-btn.is-active .step-name {
+    color: #B8860B !important;
+  }
+  .pipeline-mobile-step-btn.is-complete .step-num {
+    background: #FAF8F5 !important;
+    color: #B8860B !important;
+    border-color: #B8860B !important;
+  }
+  .pipeline-mobile-step-btn.is-complete .step-name {
+    color: var(--kju-authority-navy, #1F2A44) !important;
+  }
+  .pipeline-mobile-swipe-hint {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace !important;
+    font-size: 0.64rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    color: #B8860B !important;
+    text-transform: uppercase !important;
+    margin-top: 2px !important;
+  }
+  .pipeline-mobile-swipe-hint i {
+    font-size: 0.68rem !important;
+    animation: kjuPipelineSwipeNudge 1.6s ease-in-out infinite !important;
+  }
+  @keyframes kjuPipelineSwipeNudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+
+  /* Horizontal Peek Swipe Deck */
   .kju-timeline-track,
   .kju-pipeline-track {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 14px !important;
+    padding: 8px 6px 16px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    scrollbar-width: none !important;
   }
+  .kju-timeline-track::-webkit-scrollbar,
+  .kju-pipeline-track::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Self-Contained Step Cards */
   .pipeline-step {
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    column-gap: 16px;
-    align-items: start;
-    width: 100%;
+    flex: 0 0 80vw !important;
+    min-width: 260px !important;
+    max-width: 320px !important;
+    height: auto !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #FFFFFF !important;
+    border: 1px solid rgba(200, 188, 168, 0.5) !important;
+    border-radius: 12px !important;
+    padding: 16px 16px 18px !important;
+    box-shadow: 0 4px 16px rgba(31, 42, 68, 0.06) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
   }
+  .pipeline-step.is-active {
+    border-color: rgba(184, 134, 11, 0.6) !important;
+    box-shadow: 0 6px 20px rgba(184, 134, 11, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  }
+  .pipeline-step.is-start {
+    background: #FAF8F5 !important;
+    border-color: rgba(184, 134, 11, 0.4) !important;
+    box-shadow: inset 0 2px 0 #B8860B, 0 4px 16px rgba(184, 134, 11, 0.08) !important;
+  }
+  .pipeline-step.is-destination {
+    background: #FFFFFF !important;
+    box-shadow: inset 0 2px 0 var(--kju-authority-navy, #1F2A44), 0 4px 16px rgba(31, 42, 68, 0.08) !important;
+    border-color: rgba(31, 42, 68, 0.35) !important;
+  }
+
+  /* Embedded Node & Stage Header */
   .pipeline-node-wrapper {
-    margin-bottom: 0;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid rgba(200, 188, 168, 0.3) !important;
   }
+  .pipeline-node {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 2px !important;
+    cursor: default !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+  }
+  .pipeline-node-num {
+    font-size: 0.82rem !important;
+  }
+  .pipeline-stage-tag {
+    margin: 0 !important;
+    font-size: 0.64rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  /* Inner Card Content */
   .pipeline-card {
-    padding: 22px 18px;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+  }
+  .pipeline-card-meta {
+    margin-bottom: 8px !important;
+    min-height: 20px !important;
+  }
+  .pipeline-step-label {
+    font-size: 0.65rem !important;
+  }
+  .pipeline-status-pill {
+    font-size: 0.60rem !important;
+    padding: 2px 7px !important;
+  }
+  .kju-step-heading {
+    font-size: 1.02rem !important;
+    line-height: 1.28 !important;
+    margin-bottom: 8px !important;
+  }
+  .kju-step-copy {
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+    color: var(--text-dark-secondary, #4A5568) !important;
+  }
+
+  /* Proportional & Sleek Section 9 CTA */
+  .kju-how-section .kju-center-cta-wrap {
+    margin-top: 22px !important;
+    padding: 0 12px !important;
+  }
+  #kjuPipelineCta.kju-btn,
+  .kju-how-section .kju-btn-primary {
+    font-size: 0.80rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em !important;
+    padding: 12px 20px !important;
+    min-height: 44px !important;
+    max-width: 320px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    gap: 8px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 14px rgba(184, 134, 11, 0.28) !important;
+  }
+  #kjuPipelineCta.kju-btn i,
+  .kju-how-section .kju-btn-primary i {
+    font-size: 0.76rem !important;
   }
   .kju-why-editorial-grid {
     grid-template-columns: 1fr;
