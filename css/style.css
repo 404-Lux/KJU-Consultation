@@ -824,7 +824,7 @@ body.kju-nav-locked {
    02 — HERO SECTION (PRESTIGE EDITORIAL CRAFT)
    ========================================================================== */
 .kju-hero-section {
-  padding: 72px 0 68px;
+  padding: clamp(32px, 3.2vw, 42px) 0 64px;
   position: relative;
   background-color: var(--kju-white);
   border-bottom: 1px solid var(--border-light);
@@ -895,6 +895,7 @@ body.kju-nav-locked {
   font-style: italic;
   font-size: 1.18rem;
   color: var(--kju-gold-hover);
+  margin-top: 0;
   margin-bottom: 8px;
   letter-spacing: 0.01em;
   animation: kjuHeroFadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
@@ -6892,7 +6893,7 @@ body.kju-nav-locked {
 /* Tablet Optimization (768px – 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .kju-hero-section {
-    padding: 56px 0 52px;
+    padding: 30px 0 48px;
   }
   .kju-hero-section .kju-container {
     padding-left: 32px;
@@ -6974,7 +6975,7 @@ body.kju-nav-locked {
 @media (max-width: 767px) {
   /* A. Global Page Gutter & Viewport Safety */
   .kju-hero-section {
-    padding: 38px 0 42px;
+    padding: 20px 0 38px;
   }
   .kju-hero-section .kju-container {
     padding-left: clamp(16px, 4.2vw, 20px);
@@ -7368,6 +7369,9 @@ body.kju-nav-locked {
 
 /* Narrow Phones (iPhone SE, Small Android Viewports — <= 380px) */
 @media (max-width: 380px) {
+  .kju-hero-section {
+    padding: 15px 0 32px;
+  }
   .kju-hero-title {
     font-size: 26px;
   }
