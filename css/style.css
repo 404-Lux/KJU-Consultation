@@ -1778,7 +1778,7 @@ body.kju-nav-locked {
   color: var(--kju-gold, #B8860B) !important;
   -webkit-text-fill-color: var(--kju-gold, #B8860B) !important;
   background: none !important;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.06em;
   display: inline-flex;
   align-items: baseline;
   justify-content: center;
@@ -1789,6 +1789,7 @@ body.kju-nav-locked {
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
+  letter-spacing: inherit;
   display: inline-block;
 }
 
@@ -1798,7 +1799,8 @@ body.kju-nav-locked {
   -webkit-text-fill-color: var(--kju-gold, #B8860B) !important;
   font-size: 0.85em;
   font-weight: 700;
-  margin-left: 2px;
+  margin-left: 3px;
+  letter-spacing: 0;
   display: inline-block;
 }
 
@@ -8496,6 +8498,7 @@ body.kju-nav-locked {
     color: var(--kju-gold, #B8860B) !important;
     -webkit-text-fill-color: var(--kju-gold, #B8860B) !important;
     background: none !important;
+    letter-spacing: 0.05em;
   }
   .kju-trust-rail-num .kju-num-plus,
   .kju-trust-rail-num .kju-num-unit,
@@ -10571,6 +10574,7 @@ body.kju-nav-locked {
     color: var(--kju-gold, #B8860B) !important;
     -webkit-text-fill-color: var(--kju-gold, #B8860B) !important;
     background: none !important;
+    letter-spacing: 0.05em;
   }
   .kju-trust-rail-label-text {
     font-size: 0.50rem;
