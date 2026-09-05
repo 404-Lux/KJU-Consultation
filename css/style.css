@@ -898,7 +898,6 @@ body.kju-nav-locked {
   margin-top: 0;
   margin-bottom: 8px;
   letter-spacing: 0.01em;
-  animation: kjuHeroFadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
 }
 
 .kju-hero-title {
@@ -908,7 +907,6 @@ body.kju-nav-locked {
   color: var(--kju-black);
   position: relative;
   z-index: 3;
-  animation: kjuHeroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
 }
 
 .kju-hero-subhead {
@@ -2555,6 +2553,36 @@ body.kju-nav-locked {
 
 .kju-resource-post-prompt.is-visible {
   display: block;
+}
+
+/* Refined Obsidian Vault Download Button (Resolves button friction with primary gold CTA) */
+#kjuDownloadResourceBtn.kju-btn-primary,
+.kju-resource-gate-card.is-unlocked #kjuDownloadResourceBtn {
+  background: #0E1624 !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid var(--kju-gold, #B8860B) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 12px rgba(184, 134, 11, 0.22) !important;
+  transition: all 0.25s ease !important;
+}
+
+#kjuDownloadResourceBtn.kju-btn-primary:hover,
+.kju-resource-gate-card.is-unlocked #kjuDownloadResourceBtn:hover {
+  background: rgba(184, 134, 11, 0.18) !important;
+  border-color: var(--kju-gold-hover, #9B7007) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(184, 134, 11, 0.35) !important;
+}
+
+#kjuDownloadResourceBtn.kju-btn-primary i,
+.kju-resource-gate-card.is-unlocked #kjuDownloadResourceBtn i {
+  color: var(--kju-gold, #B8860B) !important;
+  transition: transform 0.2s ease;
+}
+
+#kjuDownloadResourceBtn.kju-btn-primary:hover i,
+.kju-resource-gate-card.is-unlocked #kjuDownloadResourceBtn:hover i {
+  transform: translateY(2px);
 }
 
 /* ==========================================================================
@@ -6877,8 +6905,8 @@ body.kju-nav-locked {
    ========================================================================== */
 .kju-reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(22px);
+  transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), transform 0.52s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -6887,12 +6915,12 @@ body.kju-nav-locked {
   transform: translateY(0);
 }
 
-.kju-delay-1 { transition-delay: 0.08s; }
-.kju-delay-2 { transition-delay: 0.16s; }
-.kju-delay-3 { transition-delay: 0.24s; }
-.kju-delay-4 { transition-delay: 0.32s; }
-.kju-delay-5 { transition-delay: 0.40s; }
-.kju-delay-6 { transition-delay: 0.48s; }
+.kju-delay-1 { transition-delay: 0.10s; }
+.kju-delay-2 { transition-delay: 0.20s; }
+.kju-delay-3 { transition-delay: 0.30s; }
+.kju-delay-4 { transition-delay: 0.40s; }
+.kju-delay-5 { transition-delay: 0.50s; }
+.kju-delay-6 { transition-delay: 0.60s; }
 
 /* ==========================================================================
    RESPONSIVE DESIGN BREAKPOINTS
@@ -7118,14 +7146,37 @@ body.kju-nav-locked {
     white-space: nowrap;
   }
 
-  /* Bottom Audio & Progress Controls (Slimmed Down Footprint) */
-  .kju-video-overlay-controls {
-    padding: 6px 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .kju-video-wrapper {
+    overflow: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  .kju-video-player-box {
+    border: 1.5px solid var(--border-gold);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    position: relative;
     width: 100%;
-    gap: 6px;
+    padding-top: 56.25%;
+    background: #000000;
+  }
+
+  /* Bottom Audio & Progress Controls (Dedicated Toolbar Below Video Frame) */
+  .kju-video-overlay-controls {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    background: transparent !important;
+    padding: 8px 4px 2px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    z-index: 10;
   }
   .kju-video-unmute-btn {
     padding: 4px 8px;

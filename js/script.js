@@ -933,16 +933,18 @@
       return;
     }
 
-    const observer = new IntersectionObserver((entries, obs) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-revealed');
-          obs.unobserve(entry.target);
+        } else {
+          // Re-trigger entrance transition when scrolling down or back
+          entry.target.classList.remove('is-revealed');
         }
       });
     }, {
-      rootMargin: '0px 0px -50px 0px',
-      threshold: 0.12
+      rootMargin: '0px 0px -25px 0px',
+      threshold: 0.08
     });
 
     revealElements.forEach(el => observer.observe(el));
@@ -1113,16 +1115,18 @@
       return;
     }
 
-    const observer = new IntersectionObserver((entries, obs) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           runAssemblyAndCounters();
-          obs.unobserve(entry.target);
+        } else {
+          rail.classList.remove('is-assembled');
+          hasRun = false;
         }
       });
     }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.12,
+      rootMargin: '0px 0px -30px 0px'
     });
 
     observer.observe(rail);
