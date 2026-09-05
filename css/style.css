@@ -8476,21 +8476,31 @@ body.kju-nav-locked {
   }
   #kjuPipelineCta.kju-btn,
   .kju-how-section .kju-btn-primary {
-    font-size: 0.80rem !important;
+    font-size: clamp(0.66rem, 2.7vw, 0.74rem) !important;
     font-weight: 800 !important;
-    letter-spacing: 0.05em !important;
-    padding: 12px 20px !important;
-    min-height: 44px !important;
-    max-width: 320px !important;
+    letter-spacing: 0.035em !important;
+    padding: 11px 16px !important;
+    min-height: 40px !important;
+    max-width: 340px !important;
     width: 100% !important;
     margin: 0 auto !important;
     gap: 8px !important;
     border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
     box-shadow: 0 4px 14px rgba(184, 134, 11, 0.28) !important;
+  }
+  #kjuPipelineCta.kju-btn span,
+  .kju-how-section .kju-btn-primary span {
+    white-space: nowrap !important;
+    display: inline !important;
   }
   #kjuPipelineCta.kju-btn i,
   .kju-how-section .kju-btn-primary i {
-    font-size: 0.76rem !important;
+    font-size: 0.72rem !important;
+    display: inline-block !important;
   }
   /* =========================================================
      SECTION 10 — WHY CHOOSE KJU? (FEATURED CARD + TILES SWIPE DECK)
