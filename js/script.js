@@ -1785,6 +1785,9 @@
         });
         tile.classList.add('is-active');
         tile.setAttribute('aria-selected', 'true');
+        if (window.innerWidth <= 768) {
+          tile.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
         updateGoalConsole(goalKey);
       };
 

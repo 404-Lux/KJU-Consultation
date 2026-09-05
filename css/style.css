@@ -8682,6 +8682,167 @@ body.kju-nav-locked {
   .kju-why-section .kju-btn-primary i {
     font-size: 0.76rem !important;
   }
+
+  /* =========================================================
+     SECTION 12 — MILESTONE GOAL SELECTOR & DOCKED VAULT
+     ========================================================= */
+  .kju-goals-section {
+    padding: 44px 0 40px !important;
+    overflow-x: hidden !important;
+  }
+  .kju-goals-section .kju-section-header {
+    margin-bottom: 16px !important;
+    text-align: center !important;
+  }
+  .kju-goals-section .kju-section-title {
+    font-size: clamp(1.45rem, 6vw, 1.95rem) !important;
+    line-height: 1.12 !important;
+    max-width: 340px !important;
+    margin: 0 auto 10px !important;
+    text-align: center !important;
+  }
+  .kju-goals-section .kju-section-subhead {
+    font-size: 0.86rem !important;
+    line-height: 1.45 !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    color: var(--text-dark-secondary, #4A5568) !important;
+    text-align: center !important;
+  }
+
+  .kju-goal-selector-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 16px !important;
+  }
+
+  /* Horizontal Scrollable Milestone Pill Rail */
+  .kju-milestone-catalog {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x proximity !important;
+    gap: 8px !important;
+    padding: 4px 2px 8px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    scrollbar-width: none !important;
+  }
+  .kju-milestone-catalog::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Compact Pill Buttons */
+  .kju-milestone-strip {
+    flex: 0 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 8px 14px !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(200, 188, 168, 0.45) !important;
+    border-left: 1px solid rgba(200, 188, 168, 0.45) !important;
+    background: #FFFFFF !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    transform: none !important;
+    transition: all 0.2s ease !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .kju-milestone-strip .kju-milestone-index {
+    font-size: 0.72rem !important;
+    min-width: auto !important;
+    color: var(--kju-gold, #B8860B) !important;
+    font-weight: 800 !important;
+  }
+  .kju-milestone-strip .kju-milestone-name {
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
+    color: #121C2B !important;
+  }
+  .kju-milestone-strip .kju-milestone-arrow {
+    display: none !important;
+  }
+  .kju-milestone-strip.is-active {
+    background: var(--kju-authority-navy, #1F2A44) !important;
+    border-color: #B8860B !important;
+    border-left: 1px solid #B8860B !important;
+    box-shadow: 0 3px 12px rgba(184, 134, 11, 0.35) !important;
+    transform: none !important;
+  }
+  .kju-milestone-strip.is-active .kju-milestone-index {
+    color: #E2AD27 !important;
+  }
+  .kju-milestone-strip.is-active .kju-milestone-name {
+    color: #FFFFFF !important;
+  }
+
+  /* Compact Dynamic Preview Vault */
+  .kju-milestone-vault {
+    padding: 18px 16px !important;
+    border-radius: 12px !important;
+    height: auto !important;
+    min-height: 200px !important;
+    max-height: none !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-shadow: 0 10px 28px rgba(31, 42, 68, 0.25) !important;
+  }
+  .kju-vault-watermark {
+    font-size: 110px !important;
+    top: -10px !important;
+    right: 12px !important;
+    opacity: 0.03 !important;
+  }
+  .kju-vault-stage {
+    padding-bottom: 6px !important;
+  }
+  .kju-goal-preview-badge {
+    font-size: 0.62rem !important;
+    padding: 3px 8px !important;
+    letter-spacing: 0.10em !important;
+    margin-bottom: 8px !important;
+  }
+  .kju-goal-preview-title {
+    font-size: 1.25rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 8px !important;
+  }
+  .kju-goal-preview-approved-text {
+    font-size: 0.88rem !important;
+    line-height: 1.48 !important;
+    color: #E8E4DC !important;
+  }
+  .kju-vault-cta-wrap {
+    margin-top: 14px !important;
+    padding-top: 10px !important;
+  }
+  #kjuGoalCtaBtn.kju-btn {
+    padding: 11px 16px !important;
+    min-height: 42px !important;
+    font-size: 0.74rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    border-radius: 6px !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+  #kjuGoalCtaBtn.kju-btn span {
+    font-size: 0.74rem !important;
+    line-height: 1.2 !important;
+  }
+  #kjuGoalCtaBtn.kju-btn i {
+    font-size: 0.72rem !important;
+  }
+
   .kju-goal-tiles-grid {
     grid-template-columns: 1fr;
   }
