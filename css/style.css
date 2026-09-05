@@ -7478,12 +7478,17 @@ body.kju-nav-locked {
 
 /* Sales Teammates Selector (Bureau Access Routing) */
 .kju-teammate-selector-wrap {
+  margin-top: 18px;
   margin-bottom: 20px;
   background: rgba(18, 28, 43, 0.03);
   border: 1px solid rgba(18, 28, 43, 0.1);
   border-left: 3.5px solid var(--kju-gold, #B8860B);
   border-radius: 8px;
-  padding: 16px 18px;
+  padding: 14px 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .kju-teammate-selector-header {
@@ -7496,19 +7501,22 @@ body.kju-nav-locked {
   color: var(--kju-authority-navy-dark, #121C2B);
   margin-bottom: 12px;
   letter-spacing: 0.02em;
+  line-height: 1.35;
 }
 
 .kju-teammate-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .kju-teammate-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+  gap: 8px;
+  padding: 10px 8px;
   border-radius: 6px;
   border: 1.5px solid rgba(18, 28, 43, 0.14);
   background: #FFFFFF;
@@ -7516,6 +7524,10 @@ body.kju-nav-locked {
   transition: all 0.2s ease;
   font-family: var(--font-ui), sans-serif;
   text-align: left;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .kju-teammate-btn:hover {
@@ -7531,15 +7543,15 @@ body.kju-nav-locked {
 }
 
 .kju-teammate-avatar-ring {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: rgba(18, 28, 43, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--kju-authority-navy, #162533);
-  font-size: 1rem;
+  font-size: 0.85rem;
   flex-shrink: 0;
 }
 
@@ -7552,15 +7564,18 @@ body.kju-nav-locked {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  flex: 1;
+  overflow: hidden;
 }
 
 .kju-teammate-name {
-  font-size: 0.84rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--kju-authority-navy-dark, #121C2B);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.25;
 }
 
 .kju-teammate-btn.is-active .kju-teammate-name {
@@ -7568,17 +7583,32 @@ body.kju-nav-locked {
 }
 
 .kju-teammate-call-type {
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   color: #6C7A89;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .kju-teammate-grid {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+  .kju-teammate-btn {
+    padding: 10px 12px;
+  }
+  .kju-teammate-avatar-ring {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+  .kju-teammate-name {
+    font-size: 0.84rem;
+  }
+  .kju-teammate-call-type {
+    font-size: 0.70rem;
   }
 }
 
