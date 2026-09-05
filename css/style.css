@@ -1231,6 +1231,14 @@ body.kju-nav-locked {
   transition: all var(--transition-fast);
 }
 
+.kju-unmute-compact {
+  display: none;
+}
+
+.kju-unmute-full {
+  display: inline;
+}
+
 .kju-audio-waveform {
   display: inline-flex;
   align-items: flex-end;
@@ -2109,46 +2117,68 @@ body.kju-nav-locked {
 
 @media (max-width: 768px) {
   .kju-marquee-wrapper {
-    padding: 8px 0 16px;
-    gap: 12px;
-    margin-bottom: 30px;
+    padding: 6px 0 12px;
+    gap: 7px;
+    margin-bottom: 24px;
     mask-image: linear-gradient(
       to right,
       transparent 0%,
-      rgba(0, 0, 0, 1) 8%,
-      rgba(0, 0, 0, 1) 92%,
+      rgba(0, 0, 0, 1) 4%,
+      rgba(0, 0, 0, 1) 96%,
       transparent 100%
     );
     -webkit-mask-image: linear-gradient(
       to right,
       transparent 0%,
-      rgba(0, 0, 0, 1) 8%,
-      rgba(0, 0, 0, 1) 92%,
+      rgba(0, 0, 0, 1) 4%,
+      rgba(0, 0, 0, 1) 96%,
       transparent 100%
     );
   }
+  .kju-marquee-row {
+    padding: 2px 0;
+  }
   .kju-marquee-row:nth-child(1) {
-    transform: rotate(-0.8deg) scale(1.01);
+    transform: rotate(-0.5deg);
   }
   .kju-marquee-row:nth-child(2) {
-    transform: rotate(0.8deg) scale(1.01);
+    transform: rotate(0.5deg);
+  }
+  .kju-marquee-group {
+    gap: 7px;
+    padding-right: 7px;
   }
   .kju-telemetry-chip {
-    padding: 8px 14px;
-    height: 54px;
-    min-height: 54px;
-    gap: 10px;
+    padding: 4px 8px;
+    height: 38px;
+    min-height: 38px;
+    border-radius: 6px;
+    border-width: 1px;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+  .kju-telemetry-flag {
+    height: 19px;
+    padding: 0 5px;
+    font-size: 7.5px;
+    letter-spacing: 0.06em;
+    gap: 3px;
+    border-radius: 3px;
+  }
+  .kju-telemetry-flag i {
+    font-size: 7px;
   }
   .kju-telemetry-text {
-    font-size: 12px;
-    max-width: 190px;
-    line-height: 1.2;
+    font-size: 9.5px;
+    max-width: 110px;
+    line-height: 1.15;
+    font-weight: 650;
   }
   .kju-marquee-track.track-left {
-    animation-duration: 30s;
+    animation-duration: 25s;
   }
   .kju-marquee-track.track-right {
-    animation-duration: 34s;
+    animation-duration: 27s;
   }
 }
 
@@ -7301,18 +7331,39 @@ body.kju-nav-locked {
     gap: 8px !important;
     z-index: 10;
   }
+  .kju-unmute-full {
+    display: none !important;
+  }
+  .kju-unmute-compact {
+    display: inline !important;
+  }
   .kju-video-unmute-btn {
-    padding: 4px 8px;
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    gap: 5px;
-    border-radius: var(--radius-pill);
-    box-shadow: 0 2px 10px rgba(184, 134, 11, 0.4);
+    padding: 4px 9px !important;
+    font-size: 8.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
+    gap: 5px !important;
+    border-radius: var(--radius-pill) !important;
+    box-shadow: 0 2px 8px rgba(184, 134, 11, 0.4) !important;
+    white-space: nowrap !important;
+    height: 25px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    line-height: 1 !important;
+  }
+  #kjuUnmuteText {
+    font-size: 8.5px !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+    letter-spacing: 0.03em !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
   .kju-audio-waveform {
-    height: 10px;
+    height: 9px;
     gap: 1.5px;
+    flex-shrink: 0;
   }
   .kju-audio-waveform .bar {
     width: 1.5px;
@@ -7320,23 +7371,31 @@ body.kju-nav-locked {
   }
   .kju-audio-waveform .bar-1 { height: 3px; }
   .kju-audio-waveform .bar-2 { height: 6px; }
-  .kju-audio-waveform .bar-3 { height: 10px; }
-  .kju-audio-waveform .bar-4 { height: 5px; }
+  .kju-audio-waveform .bar-3 { height: 9px; }
+  .kju-audio-waveform .bar-4 { height: 4px; }
 
   .kju-video-progress-pill {
-    padding: 4px 8px;
-    font-size: 9.5px;
-    gap: 5px;
-    border-radius: var(--radius-pill);
+    padding: 4px 9px !important;
+    font-size: 9px !important;
+    gap: 5px !important;
+    border-radius: var(--radius-pill) !important;
+    height: 25px !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
   }
   .kju-progress-ring-dot {
     width: 5px;
     height: 5px;
+    flex-shrink: 0;
   }
   .kju-video-progress-text {
-    font-size: 9.5px;
-    font-weight: 600;
-    white-space: nowrap;
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
   }
 
   /* D. The Resource Gate Card (Compact Column Architecture & See More) */
@@ -7615,13 +7674,40 @@ body.kju-nav-locked {
     grid-template-columns: 1fr;
   }
   .kju-friction-lead-banner {
-    padding: 20px 20px;
+    padding: 16px 18px;
+    margin: 0 auto 20px;
+    border-radius: 8px;
+    max-width: 100%;
+    box-shadow: 0 6px 20px rgba(14, 22, 36, 0.18);
   }
   .kju-friction-lead-text {
-    font-size: 1.05rem;
+    font-size: 0.86rem;
+    font-weight: 450;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+  }
+  .kju-friction-lead-text span.highlight {
+    font-size: 0.86rem;
+    font-weight: 750;
+    letter-spacing: 0.02em;
+    margin-top: 3px;
+    display: inline-block;
+  }
+  .kju-friction-grid-label {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .kju-friction-inventory-badge {
+    font-size: 0.62rem;
+    padding: 3px 9px;
+  }
+  .kju-friction-label-text {
+    font-size: 0.82rem;
+    line-height: 1.35;
+    text-align: center;
   }
   .kju-friction-conclusion-text {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
   .kju-empathy-pain-col,
   .kju-empathy-solution-col {
@@ -7791,14 +7877,45 @@ body.kju-nav-locked {
     font-size: 7.5px;
   }
   .kju-video-unmute-btn {
-    padding: 3px 6px;
-    font-size: 8.5px;
-    gap: 4px;
+    padding: 3px 7px !important;
+    font-size: 7.5px !important;
+    height: 23px !important;
+    gap: 4px !important;
+  }
+  #kjuUnmuteText {
+    font-size: 7.5px !important;
   }
   .kju-video-progress-pill {
+    padding: 3px 7px !important;
+    font-size: 8px !important;
+    height: 23px !important;
+    gap: 4px !important;
+  }
+  .kju-friction-lead-banner {
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+  .kju-friction-lead-text {
+    font-size: 0.80rem;
+    line-height: 1.45;
+  }
+  .kju-friction-lead-text span.highlight {
+    font-size: 0.80rem;
+  }
+  .kju-telemetry-chip {
+    height: 35px;
+    min-height: 35px;
     padding: 3px 6px;
+    gap: 5px;
+  }
+  .kju-telemetry-flag {
+    height: 17px;
+    font-size: 7px;
+    padding: 0 4px;
+  }
+  .kju-telemetry-text {
     font-size: 8.5px;
-    gap: 4px;
+    max-width: 95px;
   }
   .kju-trust-badge-text {
     font-size: 0.48rem;
