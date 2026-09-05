@@ -7501,8 +7501,57 @@ body.kju-nav-locked {
   transform: scale(1.1);
 }
 
+.kju-calendly-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+  padding-right: 48px;
+}
+
+.kju-calendly-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 14px;
+  height: 36px;
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-light, rgba(200, 188, 168, 0.6));
+  border-radius: 6px;
+  color: var(--kju-authority-navy-dark, #121C2B);
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.kju-calendly-back-btn:hover {
+  background: #FAF8F5;
+  color: var(--kju-gold, #B8860B);
+  border-color: var(--kju-gold, #B8860B);
+  transform: translateX(-2px);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.2);
+}
+
+.kju-calendly-back-btn:active {
+  transform: scale(0.97);
+}
+
+.kju-calendly-back-btn i {
+  font-size: 0.80rem;
+  transition: transform 0.2s ease;
+}
+
+.kju-calendly-back-btn:hover i {
+  transform: translateX(-2px);
+}
+
 #step_calendly .kju-result-box {
-  margin-bottom: 8px !important;
+  margin-bottom: 0 !important;
   text-align: left;
 }
 
@@ -7515,7 +7564,15 @@ body.kju-nav-locked {
 #step_calendly #kjuCalendlySubtitle {
   font-size: 0.82rem !important;
   color: var(--text-dark-secondary);
-  margin-bottom: 8px !important;
+  margin-bottom: 0 !important;
+}
+
+.kju-modal-card.is-calendly-active .kju-form-nav {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(200, 188, 168, 0.25);
+  display: flex;
+  justify-content: flex-start;
 }
 
 .kju-teammate-status-bar {
@@ -7756,6 +7813,15 @@ body.kju-nav-locked {
   .kju-modal-card.is-calendly-active {
     padding: 22px 12px 24px;
     max-width: 100%;
+  }
+  .kju-calendly-header-bar {
+    gap: 10px;
+    padding-right: 42px;
+  }
+  .kju-calendly-back-btn {
+    padding: 6px 12px;
+    height: 34px;
+    font-size: 0.80rem;
   }
   .kju-calendly-frame-wrap {
     min-height: 580px;

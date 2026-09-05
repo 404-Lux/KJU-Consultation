@@ -2095,11 +2095,17 @@
 
       <!-- Embedded Calendly Step -->
       <div class="kju-step-container" id="step_calendly">
-        <div class="kju-result-box" style="margin-bottom: 12px; text-align: left;">
-          <h3 class="kju-result-title" id="kjuCalendlyTitle">Select Your Strategy Call Time</h3>
-          <p id="kjuCalendlySubtitle" style="font-size: 0.84rem; color: var(--text-dark-secondary); margin-top: 4px;">
-            Choose an available date and time slot below to complete your booking.
-          </p>
+        <div class="kju-calendly-header-bar">
+          <button type="button" class="kju-calendly-back-btn" id="kjuCalendlyBackBtn" aria-label="Go back to previous step">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Back</span>
+          </button>
+          <div class="kju-result-box" style="margin-bottom: 0; text-align: left; flex: 1;">
+            <h3 class="kju-result-title" id="kjuCalendlyTitle">Select Your Strategy Call Time</h3>
+            <p id="kjuCalendlySubtitle" style="font-size: 0.84rem; color: var(--text-dark-secondary); margin-top: 4px;">
+              Choose an available date and time slot below to complete your booking.
+            </p>
+          </div>
         </div>
         <div class="kju-calendly-frame-wrap" id="kjuCalendlyContainer">
           <!-- Dynamically populated iframe -->

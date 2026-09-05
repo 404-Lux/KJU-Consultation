@@ -544,6 +544,14 @@
     if (currentStepId === 'step_contact') {
       if (progressText) progressText.textContent = 'FINAL STEP: YOUR DETAILS';
       if (progressFill) progressFill.style.width = '95%';
+
+      const nameInput = document.getElementById('kjuContactName');
+      const emailInput = document.getElementById('kjuContactEmail');
+      const phoneInput = document.getElementById('kjuContactPhone');
+      if (nameInput && !nameInput.value && state.contact.fullName) nameInput.value = state.contact.fullName;
+      if (emailInput && !emailInput.value && state.contact.email) emailInput.value = state.contact.email;
+      if (phoneInput && !phoneInput.value && state.contact.phone) phoneInput.value = state.contact.phone;
+
       const noticeEl = document.querySelector('.kju-contact-notice');
       if (noticeEl) {
         if (state.answers.hasBureauAccess === 'No') {
@@ -579,7 +587,7 @@
 
     // Update Navigation Buttons
     if (backBtn) {
-      backBtn.style.display = state.currentStepIndex > 0 && currentStepId !== 'step_calendly' ? 'inline-flex' : 'none';
+      backBtn.style.display = state.currentStepIndex > 0 ? 'inline-flex' : 'none';
     }
 
     if (nextBtn) {
@@ -1120,6 +1128,8 @@
 
     if (nextBtn) nextBtn.addEventListener('click', handleNext);
     if (backBtn) backBtn.addEventListener('click', handleBack);
+    const calBackBtn = document.getElementById('kjuCalendlyBackBtn');
+    if (calBackBtn) calBackBtn.addEventListener('click', handleBack);
     if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeFitCheck);
     document.querySelectorAll('[data-close-modal]').forEach(btn => {
       btn.addEventListener('click', (e) => {
