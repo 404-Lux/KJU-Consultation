@@ -2020,6 +2020,51 @@
         card.style.setProperty('--why-glow-y', `${y}px`);
       }, { passive: true });
     });
+
+    // Mobile Swipe Carousel Dots Synchronization for Section 10
+    const tilesTrack = document.getElementById('kjuWhyTilesTrack');
+    const whyDots = document.querySelectorAll('#kjuWhyDots .kju-why-dot');
+    if (tilesTrack && whyDots.length) {
+      const tileCards = tilesTrack.querySelectorAll('.kju-why-card');
+      let isWhyScrolling = false;
+
+      tilesTrack.addEventListener('scroll', () => {
+        if (!isWhyScrolling) {
+          window.requestAnimationFrame(() => {
+            const trackRect = tilesTrack.getBoundingClientRect();
+            const trackCenter = trackRect.left + trackRect.width / 2;
+            let closestIndex = 0;
+            let minDistance = Infinity;
+
+            tileCards.forEach((tile, idx) => {
+              const tileRect = tile.getBoundingClientRect();
+              const tileCenter = tileRect.left + tileRect.width / 2;
+              const dist = Math.abs(trackCenter - tileCenter);
+              if (dist < minDistance) {
+                minDistance = dist;
+                closestIndex = idx;
+              }
+            });
+
+            whyDots.forEach((dot, idx) => {
+              dot.classList.toggle('is-active', idx === closestIndex);
+            });
+            isWhyScrolling = false;
+          });
+          isWhyScrolling = true;
+        }
+      }, { passive: true });
+
+      // Click on dot scrolls to that tile
+      whyDots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const targetIndex = parseInt(dot.getAttribute('data-tile-index'), 10);
+          if (tileCards[targetIndex]) {
+            tileCards[targetIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
+        });
+      });
+    }
   }
 
   // --------------------------------------------------------------------------

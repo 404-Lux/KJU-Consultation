@@ -1328,65 +1328,83 @@
           </div>
         </article>
 
-        <!-- Tile 01: Personalized Approach -->
-        <article class="kju-why-card kju-reveal kju-delay-1" tabindex="0">
-          <div class="kju-why-card-header">
-            <span class="kju-why-index">01</span>
-            <div class="kju-why-icon-badge" aria-hidden="true">
-              <i class="fa-solid fa-sliders"></i>
-            </div>
+        <!-- Mobile Indicator & Swipe Hint for Tiles Deck (Smartphones <= 768px only) -->
+        <div class="kju-why-mobile-nav" id="kjuWhyMobileNav" aria-hidden="true">
+          <div class="kju-why-dots" id="kjuWhyDots">
+            <button type="button" class="kju-why-dot is-active" data-tile-index="0" aria-label="Tile 1"></button>
+            <button type="button" class="kju-why-dot" data-tile-index="1" aria-label="Tile 2"></button>
+            <button type="button" class="kju-why-dot" data-tile-index="2" aria-label="Tile 3"></button>
+            <button type="button" class="kju-why-dot" data-tile-index="3" aria-label="Tile 4"></button>
+            <button type="button" class="kju-why-dot" data-tile-index="4" aria-label="Tile 5"></button>
           </div>
-          <h3 class="kju-why-card-title">Personalized Approach</h3>
-          <p class="kju-why-card-desc">There's no universal solution for every credit situation. We take the time to understand yours.</p>
-        </article>
+          <div class="kju-why-mobile-hint">
+            <span>Swipe pillars</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </div>
+        </div>
 
-        <!-- Tile 02: Experience -->
-        <article class="kju-why-card kju-reveal kju-delay-2" tabindex="0">
-          <div class="kju-why-card-header">
-            <span class="kju-why-index">02</span>
-            <div class="kju-why-icon-badge" aria-hidden="true">
-              <i class="fa-solid fa-award"></i>
+        <!-- Remaining 5 Bento Tiles in Swipe Deck -->
+        <div class="kju-why-tiles-track" id="kjuWhyTilesTrack">
+          <!-- Tile 01: Personalized Approach -->
+          <article class="kju-why-card kju-reveal kju-delay-1" tabindex="0">
+            <div class="kju-why-card-header">
+              <span class="kju-why-index">01</span>
+              <div class="kju-why-icon-badge" aria-hidden="true">
+                <i class="fa-solid fa-sliders"></i>
+              </div>
             </div>
-          </div>
-          <h3 class="kju-why-card-title">Experience</h3>
-          <p class="kju-why-card-desc">KJU has helped more than 10,000 clients with their credit.</p>
-        </article>
+            <h3 class="kju-why-card-title">Personalized Approach</h3>
+            <p class="kju-why-card-desc">There's no universal solution for every credit situation. We take the time to understand yours.</p>
+          </article>
 
-        <!-- Tile 03: Transparency -->
-        <article class="kju-why-card kju-reveal kju-delay-2" tabindex="0">
-          <div class="kju-why-card-header">
-            <span class="kju-why-index">03</span>
-            <div class="kju-why-icon-badge" aria-hidden="true">
-              <i class="fa-solid fa-scale-balanced"></i>
+          <!-- Tile 02: Experience -->
+          <article class="kju-why-card kju-reveal kju-delay-2" tabindex="0">
+            <div class="kju-why-card-header">
+              <span class="kju-why-index">02</span>
+              <div class="kju-why-icon-badge" aria-hidden="true">
+                <i class="fa-solid fa-award"></i>
+              </div>
             </div>
-          </div>
-          <h3 class="kju-why-card-title">Transparency</h3>
-          <p class="kju-why-card-desc">We explain the process and what you can realistically expect without promising specific results.</p>
-        </article>
+            <h3 class="kju-why-card-title">Experience</h3>
+            <p class="kju-why-card-desc">KJU has helped more than 10,000 clients with their credit.</p>
+          </article>
 
-        <!-- Tile 04: Canadian Credit Knowledge -->
-        <article class="kju-why-card kju-reveal kju-delay-3" tabindex="0">
-          <div class="kju-why-card-header">
-            <span class="kju-why-index">04</span>
-            <div class="kju-why-icon-badge" aria-hidden="true">
-              <i class="fa-solid fa-leaf"></i>
+          <!-- Tile 03: Transparency -->
+          <article class="kju-why-card kju-reveal kju-delay-2" tabindex="0">
+            <div class="kju-why-card-header">
+              <span class="kju-why-index">03</span>
+              <div class="kju-why-icon-badge" aria-hidden="true">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
             </div>
-          </div>
-          <h3 class="kju-why-card-title">Canadian Credit Knowledge</h3>
-          <p class="kju-why-card-desc">Our services are designed around the Canadian credit system, including Equifax Canada and TransUnion Canada.</p>
-        </article>
+            <h3 class="kju-why-card-title">Transparency</h3>
+            <p class="kju-why-card-desc">We explain the process and what you can realistically expect without promising specific results.</p>
+          </article>
 
-        <!-- Tile 05: Support (Spans 2 Columns under tiles 01-04) -->
-        <article class="kju-why-card is-span-2 kju-reveal kju-delay-3" tabindex="0">
-          <div class="kju-why-card-header">
-            <span class="kju-why-index">05</span>
-            <div class="kju-why-icon-badge" aria-hidden="true">
-              <i class="fa-solid fa-headset"></i>
+          <!-- Tile 04: Canadian Credit Knowledge -->
+          <article class="kju-why-card kju-reveal kju-delay-3" tabindex="0">
+            <div class="kju-why-card-header">
+              <span class="kju-why-index">04</span>
+              <div class="kju-why-icon-badge" aria-hidden="true">
+                <i class="fa-solid fa-leaf"></i>
+              </div>
             </div>
-          </div>
-          <h3 class="kju-why-card-title">Support</h3>
-          <p class="kju-why-card-desc">You don't have to spend hours trying to figure everything out by yourself. Our team is here to help guide you through the process.</p>
-        </article>
+            <h3 class="kju-why-card-title">Canadian Credit Knowledge</h3>
+            <p class="kju-why-card-desc">Our services are designed around the Canadian credit system, including Equifax Canada and TransUnion Canada.</p>
+          </article>
+
+          <!-- Tile 05: Support (Spans 2 Columns under tiles 01-04) -->
+          <article class="kju-why-card is-span-2 kju-reveal kju-delay-3" tabindex="0">
+            <div class="kju-why-card-header">
+              <span class="kju-why-index">05</span>
+              <div class="kju-why-icon-badge" aria-hidden="true">
+                <i class="fa-solid fa-headset"></i>
+              </div>
+            </div>
+            <h3 class="kju-why-card-title">Support</h3>
+            <p class="kju-why-card-desc">You don't have to spend hours trying to figure everything out by yourself. Our team is here to help guide you through the process.</p>
+          </article>
+        </div>
       </div>
 
       <div class="kju-center-cta-wrap kju-reveal">

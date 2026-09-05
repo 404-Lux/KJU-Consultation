@@ -5192,6 +5192,16 @@ body.kju-nav-locked {
   position: relative;
 }
 
+/* Mobile Nav hidden on desktop */
+.kju-why-mobile-nav {
+  display: none;
+}
+
+/* On desktop, tiles track unwraps via display: contents to retain 3-column bento grid */
+.kju-why-tiles-track {
+  display: contents;
+}
+
 /* Solid Architectural Plates (No Frosted Glass) */
 .kju-why-card {
   background: #172236;
@@ -8460,13 +8470,217 @@ body.kju-nav-locked {
   .kju-how-section .kju-btn-primary i {
     font-size: 0.76rem !important;
   }
-  .kju-why-editorial-grid {
-    grid-template-columns: 1fr;
+  /* =========================================================
+     SECTION 10 — WHY CHOOSE KJU? (FEATURED CARD + TILES SWIPE DECK)
+     ========================================================= */
+  .kju-why-section {
+    padding: 46px 0 42px !important;
+    overflow-x: hidden !important;
   }
-  .kju-why-card.is-featured,
-  .kju-why-card.is-span-2 {
-    grid-column: span 1;
-    grid-row: auto;
+  .kju-why-header {
+    margin-bottom: 20px !important;
+    text-align: center !important;
+  }
+  .kju-why-title,
+  .kju-why-title strong {
+    font-size: clamp(1.48rem, 6.2vw, 1.95rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.01em !important;
+    max-width: 330px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  .kju-why-editorial-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Featured Philosophy Hero Card (Standalone on top, compact & refined) */
+  .kju-why-card.is-featured {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 20px 18px !important;
+    border-radius: 12px !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+  .kju-why-card.is-featured .kju-philosophy-top {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .kju-why-card.is-featured .kju-philosophy-badge {
+    font-size: 0.62rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    padding: 3px 8px !important;
+    margin-bottom: 12px !important;
+    border-radius: 4px !important;
+    align-self: flex-start !important;
+  }
+  .kju-why-card.is-featured .kju-philosophy-title {
+    font-size: 1.30rem !important;
+    font-weight: 900 !important;
+    line-height: 1.18 !important;
+    letter-spacing: 0.01em !important;
+    margin-bottom: 12px !important;
+    color: #FFFFFF !important;
+  }
+  .kju-why-card.is-featured .kju-philosophy-quote {
+    font-size: 0.90rem !important;
+    line-height: 1.5 !important;
+    color: rgba(240, 236, 228, 0.92) !important;
+    margin: 0 !important;
+  }
+  /* Refined, compact bottom seal bar / button */
+  .kju-why-card.is-featured .kju-philosophy-seal-bar {
+    margin-top: 16px !important;
+    padding: 8px 12px !important;
+    font-size: 0.76rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.06em !important;
+    border-radius: 5px !important;
+    gap: 8px !important;
+    align-self: flex-start !important;
+    width: auto !important;
+    display: inline-flex !important;
+  }
+  .kju-why-card.is-featured .kju-philosophy-seal-bar i {
+    font-size: 0.70rem !important;
+  }
+
+  /* Mobile Indicator & Swipe Hint for Tiles Deck */
+  .kju-why-mobile-nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 0 4px !important;
+    margin-top: 2px !important;
+    box-sizing: border-box !important;
+  }
+  .kju-why-dots {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+  .kju-why-dot {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background: rgba(184, 134, 11, 0.3) !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .kju-why-dot.is-active {
+    width: 22px !important;
+    border-radius: 4px !important;
+    background: #E2AD27 !important;
+    box-shadow: 0 0 8px rgba(226, 173, 39, 0.4) !important;
+  }
+  .kju-why-mobile-hint {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace !important;
+    font-size: 0.64rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    color: #B8860B !important;
+    text-transform: uppercase !important;
+  }
+  .kju-why-mobile-hint i {
+    font-size: 0.68rem !important;
+    animation: kjuWhySwipeNudge 1.6s ease-in-out infinite !important;
+  }
+  @keyframes kjuWhySwipeNudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+
+  /* Horizontal Peek Swipe Deck for Remaining 5 Tiles */
+  .kju-why-tiles-track {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 12px !important;
+    padding: 4px 4px 14px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    scrollbar-width: none !important;
+  }
+  .kju-why-tiles-track::-webkit-scrollbar {
+    display: none !important;
+  }
+  .kju-why-tiles-track .kju-why-card {
+    flex: 0 0 78vw !important;
+    min-width: 255px !important;
+    max-width: 310px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 18px 16px !important;
+    border-radius: 10px !important;
+    margin: 0 !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+  .kju-why-tiles-track .kju-why-card-header {
+    margin-bottom: 10px !important;
+  }
+  .kju-why-tiles-track .kju-why-index {
+    font-size: 0.78rem !important;
+  }
+  .kju-why-tiles-track .kju-why-icon-badge {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.85rem !important;
+    border-radius: 6px !important;
+  }
+  .kju-why-tiles-track .kju-why-card-title {
+    font-size: 1.02rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 8px !important;
+  }
+  .kju-why-tiles-track .kju-why-card-desc {
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Section 10 Proportional CTA Button */
+  .kju-why-section .kju-center-cta-wrap {
+    margin-top: 20px !important;
+    padding: 0 12px !important;
+  }
+  .kju-why-section .kju-btn-primary {
+    font-size: 0.78rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em !important;
+    padding: 12px 18px !important;
+    min-height: 44px !important;
+    max-width: 320px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    gap: 8px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 14px rgba(184, 134, 11, 0.28) !important;
+  }
+  .kju-why-section .kju-btn-primary i {
+    font-size: 0.76rem !important;
   }
   .kju-goal-tiles-grid {
     grid-template-columns: 1fr;
