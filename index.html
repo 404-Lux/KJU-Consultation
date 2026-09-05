@@ -780,59 +780,76 @@
 
           <!-- Consolidated Primary Action Button -->
           <button type="button" class="kju-btn kju-btn-primary kju-btn-prestige kju-dossier-cta-btn" data-open-fit-check>
-            <span>BOOK MY CREDIT CONSULTATION</span>
+            <span>BOOK MY CREDIT<br class="kju-dossier-mobile-br"> CONSULTATION</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
         </aside>
 
         <!-- Right: The 5-Stage Curriculum Syllabus (Interactive Consultation Agenda) -->
-        <div class="kju-syllabus-container kju-reveal kju-delay-1" role="region" aria-label="Interactive Consultation Agenda">
-          
-          <!-- Stage 01 -->
-          <article class="kju-syllabus-row" tabindex="0">
-            <div class="kju-syllabus-index" aria-label="Stage 01">01</div>
-            <div class="kju-syllabus-body">
-              <h3 class="kju-syllabus-heading">What's Affecting Your Credit</h3>
-              <p class="kju-syllabus-desc">We'll discuss the factors that may be helping or hurting your overall credit profile.</p>
-            </div>
-          </article>
+        <div class="kju-syllabus-wrap">
+          <div class="kju-syllabus-container kju-reveal kju-delay-1" id="kjuSyllabusDeck" role="region" aria-label="Interactive Consultation Agenda">
+            
+            <!-- Stage 01 -->
+            <article class="kju-syllabus-row" tabindex="0">
+              <div class="kju-syllabus-index" aria-label="Stage 01">01</div>
+              <div class="kju-syllabus-body">
+                <h3 class="kju-syllabus-heading">What's Affecting Your Credit</h3>
+                <p class="kju-syllabus-desc">We'll discuss the factors that may be helping or hurting your overall credit profile.</p>
+              </div>
+            </article>
 
-          <!-- Stage 02 -->
-          <article class="kju-syllabus-row" tabindex="0">
-            <div class="kju-syllabus-index" aria-label="Stage 02">02</div>
-            <div class="kju-syllabus-body">
-              <h3 class="kju-syllabus-heading">What You Should Focus On</h3>
-              <p class="kju-syllabus-desc">We'll help identify areas of your credit profile that may deserve your attention.</p>
-            </div>
-          </article>
+            <!-- Stage 02 -->
+            <article class="kju-syllabus-row" tabindex="0">
+              <div class="kju-syllabus-index" aria-label="Stage 02">02</div>
+              <div class="kju-syllabus-body">
+                <h3 class="kju-syllabus-heading">What You Should Focus On</h3>
+                <p class="kju-syllabus-desc">We'll help identify areas of your credit profile that may deserve your attention.</p>
+              </div>
+            </article>
 
-          <!-- Stage 03 -->
-          <article class="kju-syllabus-row" tabindex="0">
-            <div class="kju-syllabus-index" aria-label="Stage 03">03</div>
-            <div class="kju-syllabus-body">
-              <h3 class="kju-syllabus-heading">Potential Strategies</h3>
-              <p class="kju-syllabus-desc">We'll discuss credit-building strategies and potential next steps based on your individual situation.</p>
-            </div>
-          </article>
+            <!-- Stage 03 -->
+            <article class="kju-syllabus-row" tabindex="0">
+              <div class="kju-syllabus-index" aria-label="Stage 03">03</div>
+              <div class="kju-syllabus-body">
+                <h3 class="kju-syllabus-heading">Potential Strategies</h3>
+                <p class="kju-syllabus-desc">We'll discuss credit-building strategies and potential next steps based on your individual situation.</p>
+              </div>
+            </article>
 
-          <!-- Stage 04 -->
-          <article class="kju-syllabus-row" tabindex="0">
-            <div class="kju-syllabus-index" aria-label="Stage 04">04</div>
-            <div class="kju-syllabus-body">
-              <h3 class="kju-syllabus-heading">Your Questions</h3>
-              <p class="kju-syllabus-desc">You'll have an opportunity to ask questions about your credit and get clarity on things you may not understand.</p>
-            </div>
-          </article>
+            <!-- Stage 04 -->
+            <article class="kju-syllabus-row" tabindex="0">
+              <div class="kju-syllabus-index" aria-label="Stage 04">04</div>
+              <div class="kju-syllabus-body">
+                <h3 class="kju-syllabus-heading">Your Questions</h3>
+                <p class="kju-syllabus-desc">You'll have an opportunity to ask questions about your credit and get clarity on things you may not understand.</p>
+              </div>
+            </article>
 
-          <!-- Stage 05 -->
-          <article class="kju-syllabus-row" tabindex="0">
-            <div class="kju-syllabus-index" aria-label="Stage 05">05</div>
-            <div class="kju-syllabus-body">
-              <h3 class="kju-syllabus-heading">Whether KJU Can Help</h3>
-              <p class="kju-syllabus-desc">If one of our services may be appropriate for your situation, we'll explain how it works and what your options are.</p>
-            </div>
-          </article>
+            <!-- Stage 05 -->
+            <article class="kju-syllabus-row" tabindex="0">
+              <div class="kju-syllabus-index" aria-label="Stage 05">05</div>
+              <div class="kju-syllabus-body">
+                <h3 class="kju-syllabus-heading">Whether KJU Can Help</h3>
+                <p class="kju-syllabus-desc">If one of our services may be appropriate for your situation, we'll explain how it works and what your options are.</p>
+              </div>
+            </article>
 
+          </div>
+
+          <!-- Mobile Swipe Deck Pagination Controls (Mobile only) -->
+          <div class="kju-syllabus-deck-controls" aria-hidden="true">
+            <div class="kju-syllabus-dots">
+              <button type="button" class="kju-syllabus-dot is-active" data-index="0" aria-label="Stage 1"></button>
+              <button type="button" class="kju-syllabus-dot" data-index="1" aria-label="Stage 2"></button>
+              <button type="button" class="kju-syllabus-dot" data-index="2" aria-label="Stage 3"></button>
+              <button type="button" class="kju-syllabus-dot" data-index="3" aria-label="Stage 4"></button>
+              <button type="button" class="kju-syllabus-dot" data-index="4" aria-label="Stage 5"></button>
+            </div>
+            <div class="kju-syllabus-swipe-hint">
+              <span>Swipe stages</span>
+              <i class="fa-solid fa-arrow-right-long"></i>
+            </div>
+          </div>
         </div>
 
       </div>

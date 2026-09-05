@@ -2033,6 +2033,54 @@
   }
 
   // --------------------------------------------------------------------------
+  // 19B. SYLLABUS MOBILE SWIPE DECK
+  // --------------------------------------------------------------------------
+  function initSyllabusDeck() {
+    const deck = document.getElementById('kjuSyllabusDeck');
+    const dots = document.querySelectorAll('.kju-syllabus-dot');
+    if (!deck || !dots.length) return;
+
+    const rows = deck.querySelectorAll('.kju-syllabus-row');
+
+    let isScrolling = false;
+    deck.addEventListener('scroll', () => {
+      if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+          const deckRect = deck.getBoundingClientRect();
+          const deckCenter = deckRect.left + deckRect.width / 2;
+          let closestIndex = 0;
+          let minDistance = Infinity;
+
+          rows.forEach((row, idx) => {
+            const rowRect = row.getBoundingClientRect();
+            const rowCenter = rowRect.left + rowRect.width / 2;
+            const distance = Math.abs(deckCenter - rowCenter);
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestIndex = idx;
+            }
+          });
+
+          dots.forEach((dot, idx) => {
+            dot.classList.toggle('is-active', idx === closestIndex);
+          });
+          isScrolling = false;
+        });
+        isScrolling = true;
+      }
+    }, { passive: true });
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
+        if (rows[targetIndex]) {
+          rows[targetIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      });
+    });
+  }
+
+  // --------------------------------------------------------------------------
   // 20. INITIALIZATION ON DOM READY
   // --------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
@@ -2056,6 +2104,7 @@
     initHorizonBlades();
     initWhyBentoLighting();
     initBackToTop();
+    initSyllabusDeck();
 
     // Check deep-link hash (#fit-check)
     if (window.location.hash === '#fit-check') {
