@@ -7045,13 +7045,15 @@ body.kju-nav-locked {
   -webkit-backdrop-filter: blur(10px);
   z-index: 9999;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 24px;
+  padding: 24px 16px 36px;
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-normal), visibility var(--transition-normal);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
 
 .kju-modal-overlay.is-active {
@@ -7066,8 +7068,10 @@ body.kju-nav-locked {
   border: 2px solid var(--kju-authority-navy);
   border-radius: var(--radius-sm);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-  padding: 40px 36px;
+  padding: 36px 32px;
   position: relative;
+  margin: 12px auto;
+  box-sizing: border-box;
   transform: translateY(20px);
   transition: transform var(--transition-normal);
 }
@@ -7078,25 +7082,27 @@ body.kju-nav-locked {
 
 .kju-modal-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  color: var(--text-dark-muted);
-  font-size: 1.4rem;
+  top: 14px;
+  right: 14px;
+  z-index: 1000;
+  background: rgba(18, 28, 43, 0.08);
+  border: 1px solid rgba(18, 28, 43, 0.14);
+  color: var(--kju-authority-navy-dark, #121C2B);
+  font-size: 1.25rem;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: color var(--transition-fast), background var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .kju-modal-close:hover {
-  color: var(--text-dark-primary);
-  background: rgba(0, 0, 0, 0.05);
+  color: #000000;
+  background: rgba(18, 28, 43, 0.18);
+  transform: scale(1.08);
 }
 
 /* Progress */
@@ -7471,9 +7477,75 @@ body.kju-nav-locked {
 
 /* Calendly Modal Integration */
 .kju-modal-card.is-calendly-active {
-  max-width: 960px;
-  padding: 32px 30px 36px;
+  max-width: 920px;
+  padding: 20px 24px 20px;
+  margin: 8px auto 20px;
   transition: max-width var(--transition-normal), padding var(--transition-normal);
+}
+
+#step_calendly .kju-result-box {
+  margin-bottom: 8px !important;
+  text-align: left;
+}
+
+#step_calendly .kju-result-title {
+  font-size: 1.15rem !important;
+  margin-bottom: 2px !important;
+  letter-spacing: 0.02em;
+}
+
+#step_calendly #kjuCalendlySubtitle {
+  font-size: 0.82rem !important;
+  color: var(--text-dark-secondary);
+  margin-bottom: 8px !important;
+}
+
+.kju-teammate-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(18, 28, 43, 0.04);
+  border: 1px solid rgba(18, 28, 43, 0.12);
+  border-left: 3.5px solid var(--kju-gold, #B8860B);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.82rem;
+  color: var(--kju-authority-navy-dark, #121C2B);
+  box-sizing: border-box;
+}
+
+.kju-teammate-status-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kju-teammate-status-toggle {
+  background: transparent;
+  border: none;
+  color: var(--kju-gold-dark, #9E740A);
+  font-weight: 700;
+  font-size: 0.76rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: underline;
+  padding: 2px 6px;
+}
+
+.kju-teammate-status-toggle:hover {
+  color: var(--kju-authority-navy-dark, #121C2B);
+}
+
+.kju-teammate-drawer {
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgba(18, 28, 43, 0.02);
+  border: 1px solid rgba(18, 28, 43, 0.08);
+  border-radius: 6px;
 }
 
 /* Sales Teammates Selector (Bureau Access Routing) */
@@ -7613,7 +7685,8 @@ body.kju-nav-locked {
 }
 
 .kju-calendly-frame-wrap {
-  min-height: 650px;
+  min-height: 590px;
+  height: 590px;
   width: 100%;
   border-radius: 8px;
   background: #FFFFFF;
@@ -7621,6 +7694,7 @@ body.kju-nav-locked {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   position: relative;
   z-index: 5;
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -7628,7 +7702,8 @@ body.kju-nav-locked {
 .kju-calendly-frame-wrap .calendly-inline-widget {
   display: block;
   width: 100%;
-  min-height: 650px;
+  height: 590px;
+  min-height: 590px;
   border: none;
   background: #FFFFFF;
   pointer-events: auto !important;

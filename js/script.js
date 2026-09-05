@@ -858,26 +858,43 @@
 
     const teammates = CONFIG.salesTeammates;
     let activeTeammate = teammates.find(t => t.id === selectedTeammateId) || teammates[0];
-
     selectorWrap.innerHTML = `
-      <div class="kju-teammate-selector-header">
-        <i class="fa-solid fa-headset" style="color: var(--kju-gold);"></i>
-        <span>A sales teammate will help you get access. Choose your specialist:</span>
+      <div class="kju-teammate-status-bar">
+        <div class="kju-teammate-status-left">
+          <i class="fa-solid fa-headset" style="color: var(--kju-gold);"></i>
+          <span>Assigned Specialist: <strong>${activeTeammate.name}</strong></span>
+        </div>
+        <button type="button" class="kju-teammate-status-toggle" id="kjuToggleTeammateList">
+          Switch specialist <i class="fa-solid fa-chevron-down"></i>
+        </button>
       </div>
-      <div class="kju-teammate-grid">
-        ${teammates.map(t => `
-          <button type="button" class="kju-teammate-btn ${t.id === activeTeammate.id ? 'is-active' : ''}" data-teammate-id="${t.id}">
-            <div class="kju-teammate-avatar-ring">
-              <i class="fa-solid fa-user-check"></i>
-            </div>
-            <div class="kju-teammate-info">
-              <span class="kju-teammate-name">${t.name}</span>
-              <span class="kju-teammate-call-type">${t.title}</span>
-            </div>
-          </button>
-        `).join('')}
+      <div class="kju-teammate-drawer" id="kjuTeammateDrawer" style="display: none;">
+        <div class="kju-teammate-grid">
+          ${teammates.map(t => `
+            <button type="button" class="kju-teammate-btn ${t.id === activeTeammate.id ? 'is-active' : ''}" data-teammate-id="${t.id}">
+              <div class="kju-teammate-avatar-ring">
+                <i class="fa-solid fa-user-check"></i>
+              </div>
+              <div class="kju-teammate-info">
+                <span class="kju-teammate-name">${t.name}</span>
+                <span class="kju-teammate-call-type">Credit Specialist</span>
+              </div>
+            </button>
+          `).join('')}
+        </div>
       </div>
     `;
+
+    const toggleBtn = selectorWrap.querySelector('#kjuToggleTeammateList');
+    const drawer = selectorWrap.querySelector('#kjuTeammateDrawer');
+    if (toggleBtn && drawer) {
+      toggleBtn.onclick = (e) => {
+        e.preventDefault();
+        const isOpen = drawer.style.display !== 'none';
+        drawer.style.display = isOpen ? 'none' : 'block';
+        toggleBtn.innerHTML = isOpen ? 'Switch specialist <i class="fa-solid fa-chevron-down"></i>' : 'Close <i class="fa-solid fa-chevron-up"></i>';
+      };
+    }
 
     selectorWrap.querySelectorAll('.kju-teammate-btn').forEach(btn => {
       btn.onclick = (e) => {
@@ -889,8 +906,8 @@
 
     loadCalendlyEmbed(
       activeTeammate.url,
-      activeTeammate.title,
-      'A sales teammate will call you to help you retrieve your Credit Karma & Equifax files and walk you through your credit strategy.'
+      'Select Your Strategy Call Time',
+      `Choose an available date and time slot below for your call with ${activeTeammate.name}.`
     );
   }
 
@@ -932,6 +949,7 @@
     if (state.contact.email) params.push(`email=${emailParam}`);
     if (state.contact.phone) params.push(`a1=${phoneParam}`);
     params.push('hide_gdpr_banner=1');
+    params.push('hide_event_type_details=1');
     params.push('primary_color=b8860b');
 
     const fullCalendlyUrl = `${baseUrl}${separator}${params.join('&')}`;
@@ -957,11 +975,12 @@
         <iframe
           src="${fullCalendlyUrl}"
           width="100%"
-          height="650"
+          height="590"
           frameborder="0"
-          allow="camera; microphone; autoplay; encrypted-media; fullscreen;"
-          title="KJU Consultation Booking"
-          style="border-radius: 8px; background: #FFFFFF; width: 100%; min-height: 650px; border: none;"
+          title="Schedule Appointment"
+          allow="camera; microphone; autoplay; fullscreen"
+          loading="lazy"
+          style="border: 0; min-height: 590px; height: 590px; width: 100%;"
         ></iframe>
       `;
     }
