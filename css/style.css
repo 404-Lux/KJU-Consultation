@@ -3198,9 +3198,12 @@ body.kju-nav-locked {
     font-size: 0.85rem;
   }
   .kju-review-disclaimer {
-    font-size: 0.82rem;
-    margin-top: 12px;
-    line-height: 1.45;
+    font-size: 0.72rem;
+    color: rgba(13, 24, 33, 0.48);
+    margin-top: 10px;
+    line-height: 1.4;
+    max-width: 360px;
+    padding: 0 10px;
   }
 }
 
@@ -3242,6 +3245,11 @@ body.kju-nav-locked {
   .kju-btn-prestige {
     font-size: 0.80rem;
     padding: 12px 18px;
+    max-width: 320px;
+  }
+  .kju-review-disclaimer {
+    font-size: 0.70rem;
+    line-height: 1.38;
     max-width: 320px;
   }
 }
@@ -8118,7 +8126,9 @@ body.kju-nav-locked {
     line-height: 1.45;
   }
   .kju-review-disclaimer {
-    font-size: 0.78rem;
+    font-size: 0.68rem;
+    line-height: 1.35;
+    max-width: 280px;
   }
   .kju-testimonial-cta-wrap .kju-btn-prestige,
   .kju-btn-prestige {
