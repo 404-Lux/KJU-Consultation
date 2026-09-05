@@ -8,7 +8,7 @@
   // Configuration
   const CONFIG = {
     requiredWatchThreshold: 0.85, // 85% of video to unlock
-    calendlyBaseUrl: 'https://calendly.com/d/cp2f-sj7-4vx',
+    calendlyBaseUrl: 'https://calendly.com/mariane-pacheco-qua/credit-consultation-call?month=2026-07',
     paidConsultationUrl: 'https://calendly.com/kennys-consulting/interview-clone',
     salesTeammates: [
       {
@@ -542,19 +542,25 @@
     if (currentStepId === 'step_calendly') {
       if (progressText) progressText.textContent = 'SCHEDULE YOUR STRATEGY CALL';
       if (progressFill) progressFill.style.width = '100%';
-      if (state.answers.hasBureauAccess === 'No') {
-        loadSalesTeammateBooking(selectedTeammateId);
-      } else {
-        loadCalendlyEmbed();
-      }
+      loadSalesTeammateBooking(selectedTeammateId);
     } else {
       if (currentStepId === 'step_bureaus') {
         const q10Selector = document.getElementById('kjuTeammateSelectorQ10');
+        const headerTitle = document.getElementById('kjuTeammateHeaderTitle');
         if (q10Selector) {
-          q10Selector.style.display = state.answers.hasBureauAccess === 'No' ? 'block' : 'none';
-          q10Selector.querySelectorAll('.kju-teammate-btn').forEach(b => {
-            b.classList.toggle('is-active', b.dataset.teammateId === selectedTeammateId);
-          });
+          if (state.answers.hasBureauAccess) {
+            q10Selector.style.display = 'block';
+            if (headerTitle) {
+              headerTitle.textContent = state.answers.hasBureauAccess === 'No'
+                ? 'A sales teammate will help you get access. Choose your credit consultant:'
+                : 'Choose your credit consultant for your consultation call:';
+            }
+            q10Selector.querySelectorAll('.kju-teammate-btn').forEach(b => {
+              b.classList.toggle('is-active', b.dataset.teammateId === selectedTeammateId);
+            });
+          } else {
+            q10Selector.style.display = 'none';
+          }
         }
       }
       if (progressText) progressText.textContent = `QUESTION ${currentQNumber} OF ${totalQuestions}`;
@@ -988,8 +994,14 @@
 
           if (fieldName === 'hasBureauAccess') {
             const q10Selector = document.getElementById('kjuTeammateSelectorQ10');
+            const headerTitle = document.getElementById('kjuTeammateHeaderTitle');
             if (q10Selector) {
-              q10Selector.style.display = btn.dataset.value === 'No' ? 'block' : 'none';
+              q10Selector.style.display = 'block';
+              if (headerTitle) {
+                headerTitle.textContent = btn.dataset.value === 'No'
+                  ? 'A sales teammate will help you get access. Choose your credit consultant:'
+                  : 'Choose your credit consultant for your consultation call:';
+              }
               q10Selector.querySelectorAll('.kju-teammate-btn').forEach(b => {
                 b.classList.toggle('is-active', b.dataset.teammateId === selectedTeammateId);
               });

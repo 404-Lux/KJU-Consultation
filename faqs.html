@@ -507,11 +507,11 @@
           <button type="button" class="kju-option-btn" data-value="No"><span>No, I do not have access to both yet</span> <i class="fa-solid fa-chevron-right"></i></button>
         </div>
 
-        <!-- Sales Teammate Selection (revealed when 'No' is selected) -->
+        <!-- Sales Teammate Selection (revealed when 'Yes' or 'No' is selected) -->
         <div class="kju-teammate-selector-wrap" id="kjuTeammateSelectorQ10" style="display: none; margin-top: 20px;">
           <div class="kju-teammate-selector-header">
             <i class="fa-solid fa-headset" style="color: var(--kju-gold);"></i>
-            <span>A sales teammate will help you get access. Choose your credit consultant:</span>
+            <span id="kjuTeammateHeaderTitle">Choose your credit consultant:</span>
           </div>
           <div class="kju-teammate-grid">
             <button type="button" class="kju-teammate-btn is-active" data-teammate-id="mariane">
