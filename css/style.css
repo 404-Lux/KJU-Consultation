@@ -2275,6 +2275,18 @@ body.kju-nav-locked {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
 }
 
+.kju-watermark-desktop {
+  display: inline;
+}
+
+.kju-watermark-mobile {
+  display: none;
+}
+
+.kju-intro-mobile-br {
+  display: none;
+}
+
 .kju-intro-inner {
   position: relative;
   z-index: 2;
@@ -7748,14 +7760,18 @@ body.kju-nav-locked {
   .kju-intro-section {
     padding: 60px 0 54px;
   }
+  .kju-intro-mobile-br {
+    display: inline !important;
+  }
   .kju-intro-title {
-    font-size: clamp(2rem, 8.2vw, 2.5rem);
-    line-height: 1.1;
+    font-size: clamp(2.3rem, 9.2vw, 2.75rem);
+    line-height: 1.06;
     letter-spacing: 0.01em;
-    margin-bottom: 14px;
-    max-width: 340px;
+    margin-bottom: 16px;
+    max-width: 320px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
   }
   .kju-intro-lead-p {
     font-size: 0.94rem;
@@ -7764,16 +7780,25 @@ body.kju-nav-locked {
     margin: 0 auto 24px;
     color: rgba(232, 228, 220, 0.92);
   }
+  .kju-watermark-desktop {
+    display: none !important;
+  }
+  .kju-watermark-mobile {
+    display: block !important;
+  }
   .kju-watermark-text {
-    font-size: clamp(1.45rem, 7.6vw, 2.1rem);
+    font-size: clamp(3.4rem, 14vw, 4.5rem);
+    line-height: 0.92;
     letter-spacing: 0.05em;
-    white-space: nowrap;
+    white-space: normal;
     width: 100%;
     text-align: center;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+    -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.09);
+    pointer-events: none;
+    user-select: none;
   }
   .kju-intro-cta-btn {
     padding: 13px 22px;
@@ -7975,13 +8000,16 @@ body.kju-nav-locked {
     padding: 48px 0 42px;
   }
   .kju-intro-title {
-    font-size: 1.82rem;
+    font-size: 2.05rem;
+    line-height: 1.06;
+    max-width: 280px;
   }
   .kju-intro-lead-p {
-    font-size: 0.86rem;
+    font-size: 0.88rem;
   }
   .kju-watermark-text {
-    font-size: clamp(1.2rem, 7.2vw, 1.5rem);
+    font-size: clamp(2.8rem, 13vw, 3.4rem);
+    line-height: 0.92;
     letter-spacing: 0.04em;
   }
   .kju-telemetry-chip {
