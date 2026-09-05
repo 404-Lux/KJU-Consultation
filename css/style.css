@@ -2287,6 +2287,10 @@ body.kju-nav-locked {
   display: none;
 }
 
+.kju-prestige-mobile-br {
+  display: none;
+}
+
 .kju-intro-inner {
   position: relative;
   z-index: 2;
@@ -3170,6 +3174,9 @@ body.kju-nav-locked {
     flex-direction: column;
     align-items: center;
   }
+  .kju-prestige-mobile-br {
+    display: inline !important;
+  }
   .kju-testimonial-cta-wrap .kju-btn-prestige,
   .kju-btn-prestige {
     font-size: 0.82rem;
@@ -3180,6 +3187,11 @@ body.kju-nav-locked {
     width: 100%;
     margin: 0 auto;
     gap: 8px;
+  }
+  .kju-testimonial-cta-wrap .kju-btn-prestige span {
+    display: inline-block;
+    line-height: 1.25;
+    text-align: center;
   }
   .kju-testimonial-cta-wrap .kju-btn-prestige i,
   .kju-btn-prestige i {
